@@ -244,7 +244,7 @@ end
 24. Can an object be the state of another object?
   - give an example
 
-### Truthiness
+### Exceptions
 
 25. Look at the code below:
 
@@ -382,9 +382,31 @@ end
 
 - how to reference `NUMBER` inside `a_method` from `class C` without referencing `class A`?
 
+### Truthiness
+
+32. What message will be printed out? Why?
+
+```ruby
+def count_things(num = 2)
+  if 'false' || num / 0 > 1
+    puts "Cloudy day!"
+  else
+    puts "Sunny day!"
+  end
+end
+
+def calculate
+  count_things
+rescue ArgumentError, ZeroDivisionError
+  puts "Windy day!"
+end
+
+calculate
+```
+
 ### Others
 
-32. What's the final returned value of `p Dog.new.age = 2`? Why?
+33. What's the final returned value of `p Dog.new.age = 2`? Why?
 
 ```ruby
 class Dog
@@ -398,7 +420,7 @@ end
 p Dog.new.age = 2
 ```
 
-33. Can the code below work out ok?
+34. Can the code below work out ok?
 
 ```ruby
 class Dog
