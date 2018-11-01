@@ -196,7 +196,7 @@ def a_method
 end
 ```
 
-How many branches are there in the method?
+How many condition branches are there in the method?
 
 ```ruby
 def a_method

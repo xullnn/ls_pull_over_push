@@ -241,10 +241,17 @@ puts "#{dog.name} is a #{dog.age} years old #{dog.class.name.downcase}"
 18. When a class inherits from another class, what the two main things it can get from the superclass?
   - hint: an object can has its own () and ().
 
+- states(attributes) and behaviors(methods)
+
 19. Think of these words: lookup path, `super`, inherit, override. Choose one word to describe the directionality of these words.
   - (outward / inward / upward / downward)
 
+- upward
+
 20. Modules have two main features, what are they?
+
+- holding reusable methods which can be mixed into other classes.
+- namespacing: organize similar(or same type) classes into one module can facilitate management and avoid class name collision
 
 21. Given this code, how to call `shine` method within the `show` method in `Face` class then print out `Shining`
 
@@ -263,6 +270,12 @@ class Face
 end
 
 Face.new.show
+```
+
+```ruby
+def show
+  Features.shine
+end
 ```
 
 22. What is the output of the code?
@@ -295,6 +308,12 @@ end
 Human.new.breathe_in
 ```
 
+- the outputted message is `Whatever...`
+  - human object didn't find `breathe_in` in its class
+  - so it keep looking for it upwards following the inheritance chain
+  - until it went into `class Creature` which included `module Breathable`
+  - in `module Breathable`, the method lookup order is down to up, so the 'Whatever' one will override the 'Oxygen' one
+
 ### Assignment Branch Condition Size - ABC size
 
 23. Based on the class definition:
@@ -315,6 +334,10 @@ def a_method
   end
 end
 ```
+- after we wrote `attr_reader :age`, `age` or `self.age` would be a method call, so
+  - `age` + 3
+  - `<`, `>`, `%` and `==` are all fake operators + 4
+- totally 7
 
 What about this?
 
@@ -328,7 +351,12 @@ def a_method
 end
 ```
 
-How many branches are there in the method?
+- `age` was called once + 1
+- `age_value` is a variable points to `age`'s value so it's not a method call
+- `<`, `>`, `%` and `==` are all fake operators + 4
+- totally 5
+
+How many condition branches are there in the method?
 
 ```ruby
 def a_method
@@ -339,6 +367,8 @@ def a_method
 end
 ```
 
+- `if` + `elsif` + `elsif` = 3
+
 How about this?
 
 ```ruby
@@ -348,6 +378,8 @@ def a_method
   end
 end
 ```
+
+- `if` + `elsif` = 2
 
 Count the exact number of Assignments, Branches and Conditions in `a_method`
 
@@ -371,10 +403,43 @@ class Dog
 end
 ```
 
+Method call:
+  - `age` + 10
+  - `>` + 9
+
+Assignment
+  - `self.age = 9` + 1
+
+Condition branches:
+  - + 9
+
 ### Collaborator objects
 
 24. Can an object be the state of another object?
   - give an example
+
+- yes
+- example
+
+```ruby
+class Person
+end
+
+class Dog
+  attr_reader :name, :age, :owner
+
+  def initialize(name, age)
+    @name = name
+    @age = age
+    @owner = Person.new
+  end
+end
+
+dog = Dog.new('Puppy', 2)
+dog.name.is_a?(Object)
+dog.age.is_a?(Object)
+dog.owner.is_a?(Object)
+```
 
 ### Exceptions
 
@@ -411,6 +476,11 @@ Before running the last line
   - what is the last printed out message?
   - in `balls` array, which exception classes can be rescued by `rescue StandardError` if any of them is been raised? Why?
 
+- only `RustyError` will be raised since we specified a condition `if ball == RustyError`
+- 3 times.
+- the last printed out message is `"Didn't catch it..."`, it's printed by `puts e.message` in `play` method's `rescue` branch
+- all of them. Because all of them are descendant classes of `StandardError`, `rescue StandardError` will rescue `StandardError` and all of its descendant classes
+
 ### Reference constant
 
 26. How to reference the constant `NUMBER` in `a_method` in this case?
@@ -426,6 +496,17 @@ end
 
 class C < B
   NUMBER = 1
+end
+```
+
+- `NUMBER` is first initialized in `class C`
+- `class A` is at the upstream of `C` we cannot access a constant downwards
+
+```ruby
+class A
+  def a_method
+    C::NUMBER
+  end
 end
 ```
 
@@ -446,6 +527,20 @@ class C < B
 end
 ```
 
+- core rule
+  - descendant class can access superclass's constant without specify first initialized place(class)
+  - looking upward
+
+```ruby
+class C < B
+  def a_method
+    # 1: NUMBER; 2: C::NUMBER; 3: B::NUMBER; 4: A::NUMBER; 5: self.class::NUMBER
+    # 6: self.class.superclass::NUMBER; 7: self.class.superclass.superclass::NUMBER
+    # 8: C.superclass::NUMBER; 9: B.superclass::NUMBER ....
+  end
+end
+```
+
 28. How to reference the constant `NUMBER` in `a_method` in this case?
 
 ```ruby
@@ -458,6 +553,16 @@ end
 
 class B < A
   def a_method
+  end
+end
+```
+
+- answer
+
+```ruby
+class B < A
+  def a_method
+    X::NUMBER
   end
 end
 ```
@@ -479,6 +584,17 @@ class B < A
 end
 ```
 
+- answer
+  - easiest way is ignoring classes, get it directly from the module
+
+```ruby
+class B < A
+  def a_method
+    X::NUMBER
+  end
+end
+```
+
 30. How to reference the constant `NUMBER` in `a_method` in this case?
 
 ```ruby
@@ -490,6 +606,16 @@ end
 
 class B
   def a_method
+  end
+end
+```
+
+- answer
+
+```ruby
+class B
+  def a_method
+    X::A::NUMBER
   end
 end
 ```
@@ -514,6 +640,16 @@ end
 
 - how to reference `NUMBER` inside `a_method` from `class C` without referencing `class A`?
 
+- answer
+
+```ruby
+class C
+  def a_method
+    X::B::NUMBER
+  end
+end
+```
+
 ### Truthiness
 
 32. What message will be printed out? Why?
@@ -536,6 +672,13 @@ end
 calculate
 ```
 
+- calling `count_things` without passing in argument will not raise exception since we specified default value from the argument while defining this method
+- `'false' || num / 0 > 1` will not raise exception, because the short circuiting mechanism of Ruby
+  - while using `||`, once a truthy value appears, the whole expression is surely to be truthy so the rest of the expression will be omitted
+  - in this case `'false'` will first evaluated to true, so ruby never run `num / 0 > 1`
+- no exceptions so program goes into the `if` branch in `count_things` method
+- so the outputted message is `"Cloudy day!"`
+
 ### Others
 
 33. What's the final returned value of `p Dog.new.age = 2`? Why?
@@ -552,6 +695,9 @@ end
 p Dog.new.age = 2
 ```
 
+- whatever you do, the return value of a setter method in Ruby is always the original argument
+- so the return value is 2
+
 34. Can the code below work out ok?
 
 ```ruby
@@ -562,6 +708,9 @@ end
 
 Dog.new.age = 2
 ```
+
+- no
+  - private method `age=` cannot be used outside of the class definition
 
 How about this?
 
@@ -578,6 +727,11 @@ end
 
 Dog.new.set_age(2)
 ```
+
+- no
+  - though setter method is the only exception which accepts a reciever, but
+    - the reciever must exactly be `self`
+    - anyother variables pointing to current instance are not accepts even they are pointing to the same thing as `self`
 
 Then how about this?
 
