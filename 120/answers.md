@@ -2,41 +2,144 @@
 
 1. Describe "what is object in Ruby" in less than 30 words?
 
+- In Ruby, objects can be think of as conceptual entities which have states(instance variables) and behaviors(methods), objects may have information exchanging with each other.
+
 2. What are procedural programming and object-oriented programming?(this question is over the range of this course)
   - briefly describe what's the difference?
   - give examples about both of them, examples should be short, while showing some similarities and differences.
 
+- procedural programming and OOP are both a type of programming paradigms.
+  - precedural programming does things in [an imperative, step-by-step, logical fashion](https://launchschool.com/curriculum/courses/79f19170).
+  - [Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.
+- examples:
+
+```ruby
+bag = []
+loop do
+  batter = make_batter
+  cake = bake_cake(batter)
+  bag << cake
+  break if bag.size == 5
+end
+```
+
+```ruby
+class Batter
+end
+
+class Cook
+  attr_reader :bag
+
+  def initialize
+    @bag = []
+  end
+
+  def make_5_cakes
+    while bag.size < 5
+      bag << bake_cake
+    end
+  end
+
+  private
+
+  def bake(batter)
+  end
+
+  def bake_cake
+    bake(Batter.new)
+  end
+end
+
+Cook.new.make_5_cakes
+```
+
 3. Observe the example you just wrote, think of some of the pros and cons of OOP.
 
+- pros
+  - easier to understand in a conceptual level
+  - individuality of objects make program more flexible
+  - easier to manage interfaces
+- cons
+  - hard to observe program procedure in linear way
+  - need to write more code
+  - so flexible to come up with a best or good enough solution
+  - may take more resources
+
 4. In essence, OOP is just a programming paradigm, is there any other paradigms(y/n)?
+- yes of course
 
 5. Describe Encapsulation in 30 words.
+- The behavior of deliberately hiding pieces of functionality(blocks of code) while exposing interfaces that the designer only want to expose. It's a form of data protection and interface management.
 
 6. Describe Polymorphism in 30 words.
+- In Ruby, Polymorphism describes the feature(implementation) that different receiver may return various values when we send same message to them.
 
 7. Extract a key word(concept) from the definitions of Encapsulation and Polymorphism, this word should be one of the focusing points they all share.
+- interface
 
 8. What the `???` should be?
   - factory -- products, mould -- swords, blueprint -- buidings, ??? -- objects
 
+- class
+
 9. This type of relationship can be analogized to what relationship?
   - parent gives birth to child becomes parent gives birth to child becomes ...
+
+- class and object
 
 ### Instance variable
 
 10. Instance variables keep track of ??? and instance methods expose ??? for objects.
+- states
+- behaviors
 
 11. What method will be called automatically every time you create a new object?
+- initialize
 
 12. Can an instance variable's lifespan be longer than the object which owns it?
   - can an instance variable keep existing after the the object which owns it 'died'?
 
+- no, because instance variables are used to keep track of object's states
+- no
+
 13. What is the repsonsibility of an instance variable?
+
+- instance variables are used to keep track of object's states
 
 14. Uninitialized new instance variables can be referenced in an instance method, what is the return value?
   - is this the same with instance variables for Class?
   - is this the same with class variables?
   - give example(s) to demonstrate this
+
+- `nil`
+- yes
+- no
+- examples:
+
+```ruby
+class Dog
+  class << Dog
+    attr_reader :var
+  end
+
+  def print_instance_variable
+    p @var
+  end
+
+  def print_class_instance_variable
+    p self.class.var
+  end
+
+  def print_class_variable
+    p @@var
+  end
+end
+
+dog = Dog.new
+dog.print_instance_variable
+dog.print_class_instance_variable
+dog.print_class_variable
+```
 
 ### `to_s`, `puts`, `p`, string interpolation
 
@@ -77,6 +180,19 @@ puts dog.to_s.inspect
 => nil
 ```
 
+- `to_s` can be understood as "string representation of ...", the return value is a string, the content of the string depends on how the object's class implements its own `to_s`.
+
+- `inspect` also returns string. But vary from `to_s` it will return all information about an object, like instance variables which `to_s` usually does not. So we can think of `to_s` as a customized `inspect`
+
+- both `to_s` and `inspect`'s return values are not the original objects, they are strings contains the information about objects
+
+- `print` and `puts` both print out given object's string representation without any changing, then return `nil`.
+  - difference is `puts` will append a new line character
+  - if given object is not a string then `to_s` will first be called on the object
+
+- `p`: For each object, directly writes `obj.inspect` followed by a newline to the program's standard output.
+  - `p object` == `puts object.inspect` == `print(object.inspect + "\n")`
+
 Look at the second example below, is `to_s` called before or after `.inspect` ? why
 
 ```ruby
@@ -87,7 +203,16 @@ Look at the second example below, is `to_s` called before or after `.inspect` ? 
 => "This is a #<Dog:0x00007fcddb98e990 @age=4>"
 ```
 
+- `to_s` is called after `inspect`, because
+  - if it first called `dog.first` then returned a string that doesn't contain instance variable `@age`
+  - then we call `inspect` on the previously returned string, the content would not have any change
+  - so it must call `to_s` after `inspect` showing the full information
+
 16. Among `puts`, `p` and string interpolation, which ones will call `to_s`, if called, when?
+
+- `puts` will call `to_s` if the given argument(s) is not a string
+- `inspect` will not call `to_s` automatically but the return value is also string
+- string interpolation will call `to_s` at the very end of its interior.
 
 17. Would this code work out okay? Can you guess the message being outputted and what is the final return value?
 
@@ -103,6 +228,13 @@ dog.age = 3
 puts "#{dog.name} is a #{dog.age} years old #{dog.class.name.downcase}"
 }"
 ```
+
+- it works.
+- the printed out message would be `Babo is a 3 years old dog`
+- the final return value is an empty string
+  - the last line inside the whole string interpolation is `puts ...`, so the return value in the string interpolation is `nil`
+  - so it's same as `"#{nil}"`, `nil` into a string interpolation will evaluate to nothing
+  - so finally we get an emtpy string `""`
 
 ### Inheritance and mixin
 
