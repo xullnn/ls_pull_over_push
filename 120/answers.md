@@ -204,9 +204,9 @@ Look at the second example below, is `to_s` called before or after `.inspect` ? 
 ```
 
 - `to_s` is called after `inspect`, because
-  - if it first called `dog.first` then returned a string that doesn't contain instance variable `@age`
-  - then we call `inspect` on the previously returned string, the content would not have any change
-  - so it must call `to_s` after `inspect` showing the full information
+  - if it first called `dog.to_s`, it will first returned a string that doesn't contain instance variable `@age`
+  - then we call `inspect` on the previously returned **string**, the content would not have any change
+  - so it must call `to_s` after `inspect` to show the full information of an object
 
 16. Among `puts`, `p` and string interpolation, which ones will call `to_s`, if called, when?
 
@@ -672,7 +672,7 @@ end
 calculate
 ```
 
-- calling `count_things` without passing in argument will not raise exception since we specified default value from the argument while defining this method
+- calling `count_things` without passing in argument will not raise exception since we specified default value for the argument while defining this method
 - `'false' || num / 0 > 1` will not raise exception, because the short circuiting mechanism of Ruby
   - while using `||`, once a truthy value appears, the whole expression is surely to be truthy so the rest of the expression will be omitted
   - in this case `'false'` will first evaluated to true, so ruby never run `num / 0 > 1`
