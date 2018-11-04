@@ -750,3 +750,117 @@ Dog.new.set_age(2)
 
 - why the first case failed?
 - according to the last 2 cases, can you explain the rule of using private setter method?
+
+ *Updated*
+
+### Module and Multiple Inheritance
+
+35. Give an example which can illustrate the use of mixin in Ruby core.
+
+- A exmaple about `class String`, `class Hash`, `class Array` and `class Numeric`
+- These classes are relating to the main data types that we use very often in Ruby.
+
+If we check the ancestors for each of them:
+```ruby
+> [Array, Hash, String, Numeric].each { |main_type| p main_type.ancestors }
+[Array, Enumerable, Object, Kernel, BasicObject]
+[Hash, Enumerable, Object, Kernel, BasicObject]
+[String, Comparable, Object, Kernel, BasicObject]
+[Numeric, Comparable, Object, Kernel, BasicObject]
+# => [Array, Hash, String, Numeric]
+```
+
+Tow things here need to be noticed:
+- not all ancestors are classes
+- their direct superclass is `class Object`
+
+Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that can enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things in this module.
+
+![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg)
+*Kernel is included in `class Object`, this is not labelled in the graph.*
+
+36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance?
+
+- If not, give an example of multiple inheritance
+
+- No. It's not. Multiple inheritance means one class directly inherits from many classes.
+- exmaple:
+
+```ruby
+class A; end
+
+class B; end
+
+class C < A; end
+class C < B; end
+```
+
+[here's a discussion on stack overflow](https://stackoverflow.com/questions/10254689/multiple-inheritance-in-ruby)
+
+37. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
+
+38. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example based on the example you gave in previous question.
+
+- answer 37 and 38
+
+Say we have these classes:
+- `Animal`
+- `Mammal`, `Fish`, `Bird`
+- `Whale`, `Dog`, `Cat`, `Penguin`, `Woodpecker`
+
+Their relationships can be represented by code:
+
+```ruby
+class Animal; end
+
+class Mammal < Animal
+end
+
+class Fish < Animal
+  # able to swim
+end
+
+class Bird < Animal
+end
+
+class Whale < Mammal
+   # able to swim
+end
+
+class Dog < Mammal
+  # able to swim
+  # able to walk
+end
+
+class Cat < Mammal
+  # able to walk
+end
+
+class Penguin < Bird
+  # able to swim
+  # able to walk
+end
+
+class Woodpecker < Bird
+  # able to fly
+end
+```
+
+Then we can visualize the relationships in thie graph
+
+![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animals.jpg)
+
+According to this graph we can see:
+- we cannot include `Walkable` and `Swimmable` into `Mammal`, since one of the mammals `Cat` cannot swim, also `Whale` cannot walk
+-  we cannot incldue `Flyable` into `Bird` because there is an exception `Penguin` cannot swim, it just walks...
+
+When focusing on the classes which include 2 modules -- `Dog` and `Penguin` in this case
+- `Dog` can swim and walk
+  - but it cannot inherit from `class Fish` to enable itself to swim, because it is not fish
+  - it cannot inherit from `class Mammal` to enable itself to walk since the existence of `Whale` disproves 'all mammals can walk'
+
+- `Penguin` can swim and walk too
+  - but it cannot inherit from `class Mammal` to enable itself to walk(same reason with Dog)
+  - it cannot inherit from `class Fish` to enable itself to swim, because it is not fish
+
+Even though Ruby allowed multiple inheritance, this problem cannot be solve. So we have to distribute different module to different classes as needed.
