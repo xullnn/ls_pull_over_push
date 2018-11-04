@@ -776,6 +776,9 @@ Tow things here need to be noticed:
 
 Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that can enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things in this module.
 
+https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg
+
+
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg)
 *Kernel is included in `class Object`, this is not labelled in the graph.*
 
@@ -847,6 +850,8 @@ end
 ```
 
 Then we can visualize the relationships in thie graph
+
+https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animals.jpg
 
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animals.jpg)
 
