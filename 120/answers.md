@@ -774,10 +774,9 @@ Tow things here need to be noticed:
 - not all ancestors are classes
 - their direct superclass is `class Object`
 
-Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that can enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things in this module.
+Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that can enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things in this module.(graph may not showed complete, click link below to see full)
 
 https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg
-
 
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg)
 *Kernel is included in `class Object`, this is not labelled in the graph.*
@@ -849,7 +848,7 @@ class Woodpecker < Bird
 end
 ```
 
-Then we can visualize the relationships in thie graph
+Then we can visualize the relationships in thie graph(graph may not showed complete, click link below to see full)
 
 https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animals.jpg
 
