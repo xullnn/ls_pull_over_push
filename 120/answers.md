@@ -961,3 +961,19 @@ end
 - wirte `self.sleep` after the definition of class method `sleep`
 - within the method definition of class method `sleep`; and the last line inside the class definition
 - write `Dog.dream` outside of class definition(ignore the raised error)
+
+41. (optional)Think of a metaphor to help you undstand public and private method
+
+metaphor 1:
+
+- public method is like an object is shouting, any other objects who want to hear can hear from it
+- private method is like an object's monologue in its mind, it's very secret, nobody can hear
+
+metaphor 2(this one is from book<well grounded rubyist>)
+
+When you own a bakery, now you want to let one of your baker to bake some cakes and loaves
+
+- public methods is like you are talk to your baker: "`bake_some_cakes` and then `bake_some_loaves`"
+- private methods is like the baker is recalling the baking steps in his/her mind : "Ok, first I need to `beat_eggs`, then `mix_in_flour`, then `add_water`, then `stir_to_batter`, then `bake()`".
+
+`bake_some_cakes` is a public order(method) that you said to baker. You will never tell your baker to `add_water` or `beat_eggs`, these are things(private method) a baker will only recalls in mind, the baker just automatically follow these steps when he/she want to bake something.
