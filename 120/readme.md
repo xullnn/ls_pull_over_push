@@ -465,15 +465,16 @@ Dog.new.set_age(2)
 - why the first case failed?
 - according to the last 2 cases, can you explain the rule of using private setter method?
 
-
  *Updated*
 
 ### Module and Multiple Inheritance
 
-35. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance?
+35. Give an example which can illustrate the use of mixin in Ruby core.
+
+36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance?
 
 - If not, give an example of multiple inheritance
 
-36. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
+37. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
 
-37. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example based on the example you gave in previous question.
+38. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example to illustrate this.

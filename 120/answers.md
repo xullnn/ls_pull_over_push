@@ -801,7 +801,7 @@ class C < B; end
 
 37. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
 
-38. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example based on the example you gave in previous question.
+38. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example to illustrate this.
 
 - answer 37 and 38
 
