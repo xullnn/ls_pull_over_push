@@ -868,3 +868,96 @@ When focusing on the classes which include 2 modules -- `Dog` and `Penguin` in t
   - it cannot inherit from `class Fish` to enable itself to swim, because it is not fish
 
 Even though Ruby allowed multiple inheritance, this problem cannot be solve. So we have to distribute different module to different classes as needed.
+
+39. Read this description about public methods
+
+> A public method is a method that is available to anyone who knows either the class name or the object's name. These methods are readily available for the rest of the program to use and comprise the class's interface (that's how other classes and objects will interact with this class and its objects).
+
+Write a code example to illustrate the things that are discribed by this paragraph
+
+```ruby
+class Human
+  def eat(food)
+  end
+end
+
+class Meat
+  def cook
+  end
+end
+
+Human.new.eat(Meat.new.cook) #or
+
+bob = Human.new
+cooked_meat = Meat.new.cook
+
+bob.eat(cooked_meat)
+```
+
+In the above example
+- `cook` method is a public instance method in `class Meat`
+- but we can call `cook` once we
+  - 1) know the class which `cook` reside in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without limitation
+  - 2) get an instance of `Meat`(same reason)
+
+We can even make many other classes which can eat cooked meat, like `Bear`, `Cat`, `Dog` ... Not matter what the classes are, once they want interact with `Meat`, the `cook` method would be an "always there" (entrance)interface
+
+for example
+
+```ruby
+Dog.new.feed(Meat.new.cook)
+Bear.new.feed(Meat.new.cook)
+```
+
+Or even other classes's class methods which need cooked meat
+
+```ruby
+class Restaurant
+  def self.serve(food)
+  end
+end
+
+Restaurant.serve(Meat.new.cook)
+```
+
+So once I know:
+- the public method's class name or
+- an instance from its class
+
+I can call this method without limitation.
+
+40. Private methods are methods that cannot been called out of the class definition.
+
+Given this example:
+
+```ruby
+class Dog
+  private
+
+  def self.dream
+    puts "I am flying!"
+  end
+
+  public
+
+  def self.sleep # 2
+    dream
+  end
+
+  dream # 1
+end
+```
+
+- look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
+- find a way to print out `I am flying!"` outside of the class definition
+- find a way to print out `I am flying!"` inside of the class definition
+- point out all the places we call `dream` inside the class definition
+- give an example about "call `dream` outside of the definition"
+
+- answer
+
+- No; but `self.dream` would. Because `dream` is a private class method, we cannot call a private method with any receiver
+- write `Dog.sleep` outside of the class definition
+- wirte `self.sleep` after the definition of class method `sleep`
+- within the method definition of class method `sleep`; and the last line inside the class definition
+- write `Dog.dream` outside of class definition(ignore the raised error)

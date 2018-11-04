@@ -478,3 +478,37 @@ Dog.new.set_age(2)
 37. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
 
 38. To solve the problem mentioned in previous question, what is the solution in Ruby, what mechanism does Ruby use to simulate(mimic) multiple inheritance, give code example to illustrate this.
+
+39. Read this description about public methods
+
+> A public method is a method that is available to anyone who knows either the class name or the object's name. These methods are readily available for the rest of the program to use and comprise the class's interface (that's how other classes and objects will interact with this class and its objects).
+
+Write a code example to illustrate the things that are discribed by this paragraph
+
+40. Private methods cannot be called out of the class definition.
+
+Given this example:
+
+```ruby
+class Dog
+  private
+
+  def self.dream
+    puts "I am flying!"
+  end
+
+  public
+
+  def self.sleep # 2
+    dream
+  end
+
+  dream # 1
+end
+```
+
+- look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
+- find a way to print out `I am flying!"` outside of the class definition
+- find a way to print out `I am flying!"` inside of the class definition
+- point out all the places we call `dream` inside the class definition
+- give an example about "call `dream` outside of the definition"(ignore the raised error)
