@@ -275,7 +275,7 @@ clown.balls = balls
 
 Before running the last line
   - how many exceptions will be raised
-  - how many times the message `"Throwing ... . Catch me!"` will be printed out?
+  - how many times the message `"Throwing ... . Catch it!"` will be printed out?
   - what is the last printed out message?
   - in `balls` array, which exception classes can be rescued by `rescue StandardError` if any of them is been raised? Why?
 
@@ -509,6 +509,6 @@ end
 
 - look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
 - find a way to print out `I am flying!"` outside of the class definition
-- find a way to print out `I am flying!"` inside of the class definition
+- find a way to print out `I am flying!"` inside of the class definition without directly calling `dream`
 - point out all the places we call `dream` inside the class definition
 - give an example about "call `dream` outside of the definition"(ignore the raised error)

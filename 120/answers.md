@@ -408,11 +408,12 @@ end
 ```
 
 Method call:
-  - `age` + 10
+  - `age` + 9
+  - `age=()` +1
   - `>` + 9
 
 Assignment
-  - `self.age = 9` + 1
+  - None: (`self.age = 9` is a method call)
 
 Condition branches:
   - + 9
@@ -456,7 +457,7 @@ class Clown
   attr_accessor :balls
   def throw
     balls.each do |ball|
-      puts "Throwing #{ball}. Catch me!"
+      puts "Throwing #{ball}. Catch it!"
       raise(ball, "Didn't catch it...") if ball == RustyError
     end
   end
@@ -476,7 +477,7 @@ clown.balls = balls
 
 Before running the last line
   - how many exceptions will be raised
-  - how many times the message `"Throwing ... . Catch me!"` will be printed out?
+  - how many times the message `"Throwing ... . Catch it!"` will be printed out?
   - what is the last printed out message?
   - in `balls` array, which exception classes can be rescued by `rescue StandardError` if any of them is been raised? Why?
 
@@ -735,7 +736,7 @@ Dog.new.set_age(2)
 - no
   - though setter method is the only exception which accepts a reciever, but
     - the reciever must exactly be `self`
-    - anyother variables pointing to current instance are not accepts even they are pointing to the same thing as `self`
+    - anyother variables pointing to current instance are not acceptted even they are pointing to the same thing as `self`
 
 Then how about this?
 
@@ -904,7 +905,7 @@ In the above example
   - 1) know the class which `cook` reside in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without limitation
   - 2) get an instance of `Meat`(same reason)
 
-We can even make many other classes which can eat cooked meat, like `Bear`, `Cat`, `Dog` ... Not matter what the classes are, once they want interact with `Meat`, the `cook` method would be an "always there" (entrance)interface
+We can even make many other classes which can eat cooked meat, like `Bear`, `Cat`, `Dog` ... No matter what the classes are, once they want interact with `Meat`, the `cook` method would be an "always there" (entrance)interface
 
 for example
 
@@ -954,7 +955,7 @@ end
 
 - look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
 - find a way to print out `I am flying!"` outside of the class definition
-- find a way to print out `I am flying!"` inside of the class definition
+- find a way to print out `I am flying!"` inside of the class definition without directly calling `dream`
 - point out all the places we call `dream` inside the class definition
 - give an example about "call `dream` outside of the definition"
 
@@ -973,9 +974,9 @@ metaphor 1:
 - public method is like an object is shouting, any other objects who want to hear can hear from it
 - private method is like an object's monologue in its mind, it's very secret, nobody can hear
 
-metaphor 2(this one is from book<well grounded rubyist>)
+metaphor 2(this one is from book`<well grounded rubyist>`)
 
-When you own a bakery, now you want to let one of your baker to bake some cakes and loaves
+Say if you own a bakery, now you want to let one of your bakers to bake some cakes and loaves
 
 - public methods is like you are talk to your baker: "`bake_some_cakes` and then `bake_some_loaves`"
 - private methods is like the baker is recalling the baking steps in his/her mind : "Ok, first I need to `beat_eggs`, then `mix_in_flour`, then `add_water`, then `stir_to_batter`, then `bake()`".
