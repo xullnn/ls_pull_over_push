@@ -191,7 +191,11 @@ puts dog.to_s.inspect
   - if given object is not a string then `to_s` will first be called on the object
 
 - `p`: For each object, directly writes `obj.inspect` followed by a newline to the program's standard output.
-  - `p object` == `puts object.inspect` == `print(object.inspect + "\n")`
+
+If we only compare the outputted message then the 3 expression below will show you the same message,(but be aware of they may have different return values, especially for `p` method)
+  - `p object`
+  - `puts object.inspect`
+  - `print(object.inspect + "\n")`
 
 Look at the second example below, is `to_s` called before or after `.inspect` ? why
 
