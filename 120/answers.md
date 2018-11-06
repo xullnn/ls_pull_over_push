@@ -2,7 +2,7 @@
 
 1. Describe "what is object in Ruby" in less than 30 words?
 
-- In Ruby, objects can be think of as conceptual entities which have states(instance variables) and behaviors(methods), objects may have information exchanging with each other.
+- In Ruby, objects can be thought of as conceptual entities which have states(instance variables) and behaviors(methods), objects may have information exchanging with each other.
 
 2. What are procedural programming and object-oriented programming?(this question is over the range of this course)
   - briefly describe what's the difference?
@@ -389,7 +389,7 @@ Count the exact number of Assignments, Branches and Conditions in `a_method`
 
 ```ruby
 class Dog
-  attr_reader :age
+  attr_accessor :age
 
   def a_method
     if age > 10
@@ -762,7 +762,7 @@ Dog.new.set_age(2)
 
 35. Give an example which can illustrate the use of mixin in Ruby core.
 
-- A exmaple about `class String`, `class Hash`, `class Array` and `class Numeric`
+- An exmaple about `class String`, `class Hash`, `class Array` and `class Numeric`
 - These classes are relating to the main data types that we use very often in Ruby.
 
 If we check the ancestors for each of them:

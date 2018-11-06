@@ -221,7 +221,7 @@ Count the exact number of Assignments, Branches and Conditions in `a_method`
 
 ```ruby
 class Dog
-  attr_reader :age
+  attr_accessor :age
 
   def a_method
     if age > 10
