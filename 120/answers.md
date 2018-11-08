@@ -2,7 +2,7 @@
 
 1. Describe "what is object in Ruby" in less than 30 words?
 
-- In Ruby, objects can be thought of as conceptual entities which have states(instance variables) and behaviors(methods), objects may have information exchanging with each other.
+- In Ruby, objects can be thought of as conceptual entities which have states(instance variables) and behaviors(methods), objects could exchange information with each other through different types of interfaces.
 
 2. What are procedural programming and object-oriented programming?(this question is over the range of this course)
   - briefly describe what's the difference?
@@ -10,7 +10,9 @@
 
 - procedural programming and OOP are both a type of programming paradigms.
   - precedural programming does things in [an imperative, step-by-step, logical fashion](https://launchschool.com/curriculum/courses/79f19170).
-  - [Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.
+  - OOP does things by encapsulating data into objects and let them interact with other other.
+
+  - (from wiki)[Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.</p>
 - examples:
 
 ```ruby
@@ -533,7 +535,7 @@ end
 ```
 
 - core rule
-  - descendant class can access superclass's constant without specify first initialized place(class)
+  - descendant class can access superclass' constant without specify first initialized place(class)
   - looking upward
 
 ```ruby
@@ -876,7 +878,7 @@ Even though Ruby allowed multiple inheritance, this problem cannot be solve. So 
 
 39. Read this description about public methods
 
-> A public method is a method that is available to anyone who knows either the class name or the object's name. These methods are readily available for the rest of the program to use and comprise the class's interface (that's how other classes and objects will interact with this class and its objects).
+> A public method is a method that is available to anyone who knows either the class name or the object's name. These methods are readily available for the rest of the program to use and comprise the class' interface (that's how other classes and objects will interact with this class and its objects).
 
 Write a code example to illustrate the things that are discribed by this paragraph
 
