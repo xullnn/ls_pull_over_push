@@ -58,8 +58,8 @@ Cook.new.make_5_cakes
 3. Observe the example you just wrote, think of some of the pros and cons of OOP.
 
 - pros
-  - easier to understand in a conceptual level
-  - individuality of objects make program more flexible
+  - easier to understand on a conceptual level
+  - individuality of objects makes program more flexible
   - easier to manage interfaces
 - cons
   - hard to observe program procedure in linear way
@@ -80,7 +80,7 @@ Cook.new.make_5_cakes
 - interface
 
 8. What the `???` should be?
-  - factory -- products, mould -- swords, blueprint -- buidings, ??? -- objects
+  - factory -- products, mould -- swords, blueprint -- buildings, ??? -- objects
 
 - class
 
@@ -120,27 +120,23 @@ Cook.new.make_5_cakes
 
 ```ruby
 class Dog
-  class << Dog
-    attr_reader :var
-  end
-
   def print_instance_variable
     p @var
   end
 
-  def print_class_instance_variable
-    p self.class.var
+  def self.print_class_instance_variable
+    p @var
   end
 
-  def print_class_variable
+  def self.print_class_variable
     p @@var
   end
 end
 
 dog = Dog.new
 dog.print_instance_variable
-dog.print_class_instance_variable
-dog.print_class_variable
+Dog.print_class_instance_variable
+Dog.print_class_variable
 ```
 
 ### `to_s`, `puts`, `p`, string interpolation
@@ -445,7 +441,7 @@ end
 dog = Dog.new('Puppy', 2)
 dog.name.is_a?(Object)
 dog.age.is_a?(Object)
-dog.owner.is_a?(Object)
+dog.owner.is_a?(Person)
 ```
 
 ### Exceptions
@@ -904,7 +900,7 @@ bob.eat(cooked_meat)
 In the above example
 - `cook` method is a public instance method in `class Meat`
 - but we can call `cook` once we
-  - 1) know the class which `cook` reside in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without limitation
+  - 1) know the class which `cook` resides in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without limitation
   - 2) get an instance of `Meat`(same reason)
 
 We can even make many other classes which can eat cooked meat, like `Bear`, `Cat`, `Dog` ... No matter what the classes are, once they want interact with `Meat`, the `cook` method would be an "always there" (entrance)interface
