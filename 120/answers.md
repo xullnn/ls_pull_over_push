@@ -10,7 +10,7 @@
 
 - procedural programming and OOP are both a type of programming paradigms.
   - precedural programming does things in [an imperative, step-by-step, logical fashion](https://launchschool.com/curriculum/courses/79f19170).
-  - OOP does things by encapsulating data into objects and let them interact with other other.
+  - OOP does things by encapsulating data into objects and let them interact with each other.
 
   - (from wiki)[Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.</p>
 - examples:
