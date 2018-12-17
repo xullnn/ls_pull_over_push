@@ -248,3 +248,12 @@ counter.call
 
 - What's the meaning of the second argument `'~> 5.10'`?
 - What about `'~> 5.1.1'`
+
+29. Briefly describe the relationships among
+
+- Your local system
+- Ruby
+- Rubygems
+- RVM and Rbenv
+- Bundler
+- Rake

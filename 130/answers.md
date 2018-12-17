@@ -523,3 +523,25 @@ So before the first `counter.call`, the `n` relating to the binding of the proc 
   - `'~> 5.1.1'` means the version number should `>= 5.1.1` but `< 5.2.0`
 
 > Most of the version specifiers, like `>= 1.0`, are self-explanatory. The specifier `~>` has a special meaning, best shown by example. `~> 2.0.3` is identical to `>= 2.0.3` and `< 2.1`. `~> 2.1` is identical to `>= 2.1` and `< 3.0`. `~> 2.2.beta` will match prerelease versions like `2.2.beta.12`.
+
+29. Briefly describe the relationships among
+
+- Your local operating system
+- Ruby
+- Rubygems
+- RVM and Rbenv
+- Bundler
+- Rake
+
+- answer
+  - level 1: among all the stuff listed above, the local operating system(call OS) is at the highest level.
+  - level 2: Ruby is a programming language that is originally carried by MacOS, we can inspect this by running `/usr/bin/ruby -v`, this will get `ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin17]`, this is the system-carried Ruby version installation
+  - level 1.5: I prefer to put the RVM or Rbenv at the level between 1 and 2. because they are both Ruby version manager that deviate from the system-carried Ruby.
+    - they can install and manage multiple versions of Ruby and RubyGems
+    - it can also determines what version of Ruby we are using
+  - level 3: RubyGems, they are packages of code that we can download, install and execute in our Ruby project or terminal. We talk about RubyGems under the context of Ruby. They can be thought of as external libraries we can import.
+    - we use directives start with `gem` to manipulate the different gems
+    - we don't have to install RubyGems, it's carried by modern Rubies
+  - level 4: Bundler and Rake, they are both RubyGems
+    - rake is originally carried by modern Rubies, it's a tool that can automate many tasks on Ruby development.
+    - bundler is a gem, but it can manage the versions of gem for a project, it is a little recursive. We use bundler to handle the various dependencies in our project, it ensures we would run the correct version of different gems in different projects.
