@@ -4,9 +4,7 @@
   - why we call it 'closure'?
   - Is closure a unique concept in Ruby?
 
-2. How many ways are there in Ruby to implement closure?
-  - give code examples to demonstrate these ways
-  - give code examples to show the differences among these ways
+2. Give a code example to show the use of a closure.
 
 3. What's the 'binding' of a closure?
 
@@ -29,7 +27,7 @@ output:
  => [1, 2, 3, 4, 5]
 ```
 - what's the initial receiver(caller)?
-- how many methods did we call out of the block?
+- how many methods did we call outside the block?
 - how many methods did we call inside the block?
 - did we pass any arguments to any outside-block methods?
 - how should we call `n` and `i` in `|n, i|`
@@ -176,7 +174,7 @@ def a_method(x)
 end
 ```
 
-While iterating through array `[1, 2, 3]`, how to perform  `a_method` on every element by using the syntaxes below.
+While iterating through array `[1, 2, 3]`, how to perform  `a_method` on every element by using the syntax below.
 - add one line of code before the expression to make it work as we want.
 - what is the return value of the expression?
 
@@ -222,9 +220,31 @@ class CarTest < Minitest::Test
 end
 ```
 
-Which 'SEAT' steps are included in the code? Which is absent?
+Which 'SEAT' steps included in the code? Which is absent?
   - indicate each step
 
 25. What's the difference between `assert_equal` and `assert_same`?
 
 26. What're the differences among proc, lambda and block, use code examples to explain.
+
+27. What's the return value of every `counter.call`, why?
+
+```ruby
+def make_counter
+  n = 3
+  pr = Proc.new { n = n + 1 }
+  n = 0
+  pr
+end
+
+n = 5
+counter = make_counter
+counter.call
+counter.call
+counter.call
+```
+
+28. If I have a Gemfile for a project, and I specified the versions of minitest that are compatible with my project, by writing `gem 'minitest', '~> 5.10'`.
+
+- What's the meaning of the second argument `'~> 5.10'`?
+- What about `'~> 5.1.1'`
