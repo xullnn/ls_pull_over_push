@@ -2,7 +2,7 @@
 
 1. What's the definition of 'closure'?
   - why we call it 'closure'?
-  - Is closure a unique concept in Ruby?
+  - Is closure an unique concept in Ruby?
 
 - answer
   - A closure is a **general programming concept** that allows programmers to save a "chunk of code" and execute it at a later time.
@@ -38,7 +38,7 @@ p make_a_dish(Chicken) { |food| food.steam.bake }
 p make_a_dish(Beef) { |food| food.boil.bake }
 ```
 
-In the above code, the `make_a_dish()` method accepts the type of food, but it doesn't know or care about how to cook the food, so it give this part of autonomy later to the method caller, by accepting a chunk of code(block) at the calling time.
+In the above code, the `make_a_dish()` method accepts the type of food, but it doesn't know or care about how to cook the food, so it gives this part of autonomy later to the method caller, by accepting a chunk of code(block) at the calling time.
 
 3. What's the 'binding' of a closure?
 
@@ -225,7 +225,10 @@ File.open('../sample.txt', 'w') do |f|
 end
 ```
 
-  - though we only performed the file processing without writing the `open` and `close`, the `File::open` method actually did that for us, it's implemented in the method definition. Thus we can focus on the main purpose of processing file and no worry about forgetting close the file or bothering open the file every time.
+  - though we only performed the file processing, the `File::open` method actually did both open and close work for us, it's implemented in the method definition. Thus we can focus on the main purpose of processing file and no worry about forgetting close the file or bothering open the file every time.
+  - another similar scenario is the the setup and teardown steps in minitest
+
+  - Another possible kind of scenarios is when we are writing a general method but we want to leave part of the intermediate operation decision to the method caller, means while calling that method, the method caller has some flexibility to add a twist on part of the method(without affecting the original implementation of the method). Many of Ruby's methods in Enumerable module fall into this kind.
 
 14. Given this method definition:
 
@@ -357,7 +360,7 @@ They are different:
 - for `[1,2,3].each(&something)` the `&` is trying to 1) converted `something` to a proc; 2) then to a block
   - the termination is block
   - the whole process is heading executing
-- for `def a_method(&something)`, the `&` is trying to 1) capture a possibly passed block; 2) capture then convert the block to a proc; 3) then assign the newly created proc to `something`
+- for `def a_method(&something)`, the `&` is trying to 1) capture a possibly passed block; 2) capture then convert the block to a proc; 3) then assign the newly created proc to `something` which can be referenced as a local variable inside the method
   - the termination is use the passed in block to instantiate a proc object
   - the whole process is aiming defining method
 
@@ -371,7 +374,7 @@ They are different:
 
 - answer
   - first need to load Ruby's test library `require 'minitest/autorun'`
-  - second need to load the file(s) which contain the program we want to test `require '../sample.rb'`
+  - second need to load the file(s) which contain the program we want to test, for example `require '../sample.rb'`
   - then need to create the test class which inherits from `Minitest::Test` for example `class CarTest < Minitest::Test; end`
 
 22. In order to make a test run automatically, how should we name the test method?
@@ -506,7 +509,7 @@ Line by line:
   - second the method local variable `n` was assigned twice, before and after the proc was created.
     - according to how a closure behaves in Ruby, the proc will grasp the updated `n` (`n = 0`) as part of its binding
     - so if this proc object is executed later, the `n` will start from `0`
-  - third the return value of `make_counter` is a proc object, we assigned it to top level local variable `counter`, when we later calling `counter.call` we are not invoking `make_counter` again, we just call `call` method on the same proc, so the update steps inside `make_counter` will not effect the proc binding afterwards
+  - third the return value of `make_counter` is a proc object, we assigned it to top level local variable `counter`, when we later calling `counter.call` we are not invoking `make_counter` again, we just call `call` method on the same proc, so the update steps of `n` inside `make_counter` will not effect the proc's binding afterwards
 
 So before the first `counter.call`, the `n` relating to the binding of the proc is `0`, then:
   - first `counter.call` will perform `n = n + 1` so the return value is `1`, also the `n` has updated to `1`
@@ -534,14 +537,14 @@ So before the first `counter.call`, the `n` relating to the binding of the proc 
 - Rake
 
 - answer
-  - level 1: among all the stuff listed above, the local operating system(call OS) is at the highest level.
-  - level 2: Ruby is a programming language that is originally carried by MacOS, we can inspect this by running `/usr/bin/ruby -v`, this will get `ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin17]`, this is the system-carried Ruby version installation
+  - level 1: among all the stuff listed above, the local operating system(the OS) is at the highest level.
+  - level 2: Ruby is a programming language that is originally carried by MacOS, we can inspect this by running `/usr/bin/ruby -v`, this will show something like `ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin17]`, this is the system-carried Ruby version installation
   - level 1.5: I prefer to put the RVM or Rbenv at the level between 1 and 2. because they are both Ruby version manager that deviate from the system-carried Ruby.
     - they can install and manage multiple versions of Ruby and RubyGems
-    - it can also determines what version of Ruby we are using
-  - level 3: RubyGems, they are packages of code that we can download, install and execute in our Ruby project or terminal. We talk about RubyGems under the context of Ruby. They can be thought of as external libraries we can import.
+    - it can also determines what version of Ruby we are using by bypassing the system-carried Ruby
+  - level 3: RubyGems, they are packages of code that we can download, install and execute in our Ruby project or terminal. We talk about RubyGems under the context of Ruby. They can be thought of as external libraries we can import to extend our Ruby project or our local Ruby.
     - we use directives start with `gem` to manipulate the different gems
     - we don't have to install RubyGems, it's carried by modern Rubies
   - level 4: Bundler and Rake, they are both RubyGems
     - rake is originally carried by modern Rubies, it's a tool that can automate many tasks on Ruby development.
-    - bundler is a gem, but it can manage the versions of gem for a project, it is a little recursive. We use bundler to handle the various dependencies in our project, it ensures we would run the correct version of different gems in different projects.
+    - bundler is a gem, but it can manage the versions of other gems for a project(it seems a little recursive). We use bundler to manage the various dependencies in our project, it ensures we run the correct version of Ruby and correct version of different gems in different projects.

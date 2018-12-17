@@ -2,7 +2,7 @@
 
 1. What's the definition of 'closure'?
   - why we call it 'closure'?
-  - Is closure a unique concept in Ruby?
+  - Is closure an unique concept in Ruby?
 
 2. Give a code example to show the use of a closure.
 
