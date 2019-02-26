@@ -12,7 +12,7 @@ https://www.khanacademy.org/computing/computer-science/internet-intro/internet-w
 
 2. What is a protocol?
 
-A protocol is a well-known set of rules and standards used to communicate between machines.
+A protocol is a well-known set of rules and standards used by devices on the internet to communicate with each other.
 
 3. What is a device's unique address under the context of the internet?
 
@@ -120,8 +120,7 @@ When a port number is needed, the address is specified as:
 ```
 </details>
 
-
-10. What is the statelessness of HTTP? What's the pros and cons?
+9. What is the statelessness of HTTP? What's the pros and cons?
 
 Statelessness of HyperText Transfer Protocol means every request/response between devices using http is independent from each other. No state is persisted through their communication.
 
@@ -129,11 +128,11 @@ The pros is it makes communication more lightweight, and both the server and cli
 
 The cons is it makes it harder to maintain a state during a session between client and server. Developers have to find a way to simulate a statefulness so the both sides -- especially the server side -- know who is sending the information.
 
-11. What is a URL? What's the difference between a URL and an IP address?
+10. What is a URL? What's the difference between a URL and an IP address?
 
 URL stands for Uniform Resource Locator, often referred as web address, for example `exmaple.com/pictures/1`. IP address stands for Internet Protocol Address, it's the unique identifier to recognize a device's location on the internet, in the previous example of URL `exmaple.com/pictures/1`, IP address is determined by the hostname part `example.com`.
 
-12. Recognize all components in this URL `http://www.example.com:88/home?item=book`, describe the meaning of every component.
+11. Recognize all components in this URL `http://www.example.com:88/home?item=book`, describe the meaning of every component.
 
 `http`: The scheme. It always comes before the colon and two forward slashes and tells the web client how to access the resource. In this case it tells the web client to use the Hypertext Transfer Protocol or HTTP to make a request. Other popular URL schemes are ftp, mailto or git.
 
@@ -147,8 +146,7 @@ URL stands for Uniform Resource Locator, often referred as web address, for exam
 
 Sometimes, we may want to include a port number which the host uses to listen to HTTP requests. A URL in the form of: http://localhost:3000/profile is using the port number 3000 to listen to HTTP requests. The **default port number for HTTP** is port 80. Even though this port number is not always specified, it's assumed to be part of every URL. Unless a different port number is specified, port 80 will be used by default in normal HTTP requests. To use anything other than the default, one has to specify it in the URL.
 
-
-13. In a query string `?search=ruby&results=10`, what's the different components and their meaning?
+12. In a query string `?search=ruby&results=10`, what's the different components and their meaning?
 
 `?`	This is a reserved character that marks the start of the query string
 
@@ -158,17 +156,17 @@ Sometimes, we may want to include a port number which the host uses to listen to
 
 `results=10`	This is also a parameter name/value pair.
 
-14. Does a server have to process any query string?
+13. Does a server have to process any query string?
 
 No. How the server uses these parameters is up to the server side application.
 
-15. What's the pros and cons when using query strings?
+14. What's the pros and cons when using query strings?
 
 Query strings have a maximum length. Therefore, if you have a lot of data to pass on, you will not be able to do so with query strings.
 
 The name/value pairs used in query strings are visible in the URL. For this reason, passing sensitive information like username or password to the server in this manner is not recommended.
 
-16. Why URL encoding?
+15. Why URL encoding?
 
 URL(web address) is originally designed to only accept chars in [ASCII Character Set](https://en.wikipedia.org/wiki/ASCII) which only has limited chars in it. If a url:
 
@@ -181,7 +179,7 @@ URL(web address) is originally designed to only accept chars in [ASCII Character
 
 ![](https://upload.wikimedia.org/wikipedia/commons/a/a7/ASCII-infobox.svg)
 
-17. What the format of encoding char in url?
+16. What the format of encoding char in url?
 
 https://en.wikipedia.org/wiki/Percent-encoding
 
@@ -189,19 +187,19 @@ Percentage sign `%` plus two hexidecimal digits.
 
 https://en.wikipedia.org/wiki/ASCII#/media/File:USASCII_code_chart.png
 
-19. What is `curl`?
+17. What is `curl`?
 
 curl is a free command line tool that is used to issue HTTP requests.
 
-20. When we type a url in a tab bar of browser, then click enter, and we see the whole page, would there only one get request be issued by the browser?
+18. When we type a url in a tab bar of browser, then click enter, see the displayed webpage, would there only one get request be issued by the browser?
 
 No. If there's other resource like css, js or images, by default the browser will automatically issue new requests to download these resource. Another situation is if the first response's headers contains status 3xx and `"Location"` header, the page we `GET` is not the page we first requested for, we'd been redirected to another page.
 
-21. What is HTTP Request Method?
+19. What is HTTP Request Method?
 
 It's a verb contained in the request line which indicates the type of operation we want to perform. When we need to retrieve information from the server we normally use `GET`, when we want to change data from the server we usually use `POST`.
 
-21. What's the main difference between get and post request?
+20. What's the main difference between get and post request?
 
 `GET` requests send data via url, url has a maximum length.
 
@@ -209,32 +207,25 @@ It's a verb contained in the request line which indicates the type of operation 
 
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/Snip20190225_1.png)
 
-22. Can get requests have body?
+21. Can get requests have body?
 
 https://stackoverflow.com/questions/978061/http-get-with-request-body
 
 Yes it can, but not recommended to do so.
 
-23. What are request headers used for?
+22. What are request headers used for?
 
 Request headers give more information about the client and the resource to be fetched.
 
-24. What is status code?
+23. What is status code?
 
 Status code is a three-digit number that the server sends back after receiving a request signifying the status of the request.
 
-25. What are response headers used for?
+24. What are response headers used for?
 
 Response headers offer more information about the resource being sent back.
 
-26. What is the most important components to understand an HTTP request?
-
-- HTTP method
-- path
-- request headers
-- message body(for POST)
-
-27. What consists of a http request message? which parts are required which are optional?
+25. What consists of a http request message? which parts are required which are optional?
 
 - a request line (e.g., `GET /images/logo.png HTTP/1.1`, which requests a resource called `/images/logo.png` from the server.)
 - request header fields (e.g., `Accept-Language: en`).
@@ -243,7 +234,7 @@ Response headers offer more information about the resource being sent back.
 
 Only request line is required.
 
-28. What consists of a http response? which parts are required which are optional?
+26. What consists of a http response? which parts are required which are optional?
 
 - status code
 - response headers
@@ -251,13 +242,13 @@ Only request line is required.
 
 Only status code is required.
 
-26. What is a session id?
+27. What is a session id?
 
 Its full name is session identifier, not an id of something.
 
 Session identifier can be used by server to identify client. A session identifier is a unique token such as(`AHWqTUmEn3d-zaGnzmAvwmYNxt1Egj......`). This string identifier is first sent from server to client -- there may have a authenticating step before -- then the client will save this session id locally, normally it would be the browser's cookies. After saving, all the sequent requests send to the said server from this client(browser) will carry this session id information, as a result, the server can identify the identity of the sender. This is how we make an app seemed stateful, even http is stateless.
 
-27. Where is the difference between session data stored in server and the session data stored in a client's browser?
+28. Where is the difference between session data stored in server and the session data stored in a client's browser?
 
 Originally, session identifier was generated by server, the client only store that information in its browser. Server can validate the session id sent by the client. It can also reset(send a new one) or make the client's session id unavailable(e.g. by means of set expire time) . It's up to the server side to determine how to handle the session data sent along with a request.
 
@@ -268,11 +259,11 @@ Originally, session identifier was generated by server, the client only store th
   <p>The most important thing is to understand that the session id is stored on the client, and it is used as a "key" to the session data stored server side. That's how web applications work around the statelessness of HTTP.</p>
 </details>
 
-28. What is Ajax?
+29. What is Ajax?
 
 AJAX is short for Asynchronous JavaScript and XML. Its main feature is that it allows browsers to issue requests and process responses without a full page refresh.
 
-29. What is Same-Origin-Policy?
+30. What is Same-Origin-Policy?
 
 [Same-Origin-Policy](https://en.wikipedia.org/wiki/Same-origin_policy) is a policy that allows scripts(code) from same origin to reference or manipulate other resources of the same origin, but prevents scripts(code) of different origins from changing the resources of each other. Same origin is defined as: 1) Same protocol; 2) Same hostname; 3) Same port
 
@@ -287,11 +278,11 @@ SOP is an important concept for security.
   <p>The same-origin policy is an important guard against session hijacking attacks and serves as a cornerstone of web application security.</p>
 </details>
 
-30. What is session hijacking?
+31. What is session hijacking?
 
 When a malicious person hijacks a user's session id of a certain web app, that person can use the session id to access the use's information on different web apps. She/he doesn't even need to know the users username and password.
 
-31. What's the main countermeasures for session hijacking?
+32. What's the main countermeasures for session hijacking?
 
 An approach is re-authenticate and then reset session identifier before some important operations, for example issue a money transfer, delete account etc. The reset session id will make the hijacked session id unavailable.
 
@@ -309,7 +300,7 @@ Finally, always use https to protect the communication on the transportation lay
 
 </details>
 
-32. What is XSS? How it works?
+33. What is XSS? How it works?
 
 https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
 
@@ -324,7 +315,7 @@ XSS stands for Cross-Site-Scripting. It's a type of malicious attack that inject
   <p>Attackers can craft ingeniously malicious HTML and JavaScript and be very destructive to both the server as well as future visitors of this page. For example, an attacker can use JavaScript to grab the session id of every future visitor of this site and then come back and assume their identity. It could happen silently without the victims ever knowing about it. Note that the malicious code would bypass the same-origin policy because the code lives on the site.</p>
 </details>
 
-33. What the possible solutions to defend xss?
+34. What the possible solutions to defend xss?
 
 Sanitize all user input data, especially some sensitive text like `<script>` tag. (input)
 
@@ -332,13 +323,13 @@ Escape all text before displaying them on webpage.(output and presentation)
 
 If you want to use html formatted text, ask user to use more safe syntax like markdown rather than use plain html.(application layer)
 
-36. What determines whether a request should use GET or POST as its HTTP method?
+35. What determines whether a request should use GET or POST as its HTTP method?
 
 GET requests should only retrieve content from the server. They can generally be thought of as "read only" operations, however, there are some subtle exceptions to this rule. For example, consider a webpage that tracks how many times it is viewed. GET is still appropriate since the main content of the page doesn't change.
 
 POST requests involve changing values that are stored on the server. Most HTML forms that submit their values to the server will use POST. Search forms are a noticeable exception to this rule: they often use GET since they are not changing any data on the server, only viewing it.
 
-37. In client-sever paradigm, what's the 3 main pieces of infrastructure in the server side? What are they used for?
+36. In client-sever paradigm, what's the 3 main pieces of infrastructure in the server side? What are they used for?
 
 From a simplified view of point, there are 3 components on the server side: web server, application server, data store
 
@@ -357,7 +348,7 @@ From a simplified view of point, there are 3 components on the server side: web 
   <p>The application server will often consult a persistent data store, like a relational database, to retrieve or create data. Data stores can also be simple files, key/value stores, document stores and many other variations, as long as it can save data in some format for later retrieval and processing.</p>
 </details>
 
-38. In all layers of OSI(Open Systems Interconnection) model -- application, presentation, session, transport, network, data link, physical -- which layer HTTP is at, same question for TCP and IP? What's the relationship among these 3 protocols?
+37. In all layers of OSI(Open Systems Interconnection) model -- application, presentation, session, transport, network, data link, physical -- which layer HTTP is at, same question for TCP and IP? What's the relationship among these 3 protocols?
 
 ![](https://blogs.bmc.com/wp-content/uploads/2018/06/osi-model-7-layers.jpg)
 
@@ -368,34 +359,35 @@ Think of this in what each of these protocols are used for.
 
 TCP is built upon IP(and all the layers below), HTTP is built upon TCP(and all the layers below).
 
-39. What is the scheme, host, path, port. query strings in these url?
+38. What is the scheme, host, path, port. query strings in these url?
 
 - http://exmaple.com
 - https://example.com:1001/users/1?type=human
 - http://localhost:4567/todos/15
 - http://amazon.com:3000/products/B60HON32?qid=142952676&sr=93
 <!-- - ftp://username@ftp.empire.gov/ -->
-40. What are two different ways to encode a space in a query parameter?
+
+39. What are two different ways to encode a space in a query parameter?
 
 `%20` or `+`
 
-41. What character indicates the beginning of a URL's query parameters?
+40. What character indicates the beginning of a URL's query parameters?
 
 `?`
 
-42. What character is used between the name and value of a query parameter?
+41. What character is used between the name and value of a query parameter?
 
 `=`
 
-43. What character is used between multiple query parameters?
+42. What character is used between multiple query parameters?
 
 `&`
 
-44. What's the only mandatory component of a http response?
+43. What's the only mandatory component of a http response?
 
 Only **status code**. headers and body are both optional.
 
-45. What is Rack? What is a Rack Application?
+44. What is Rack? What is a Rack Application?
 
 Rack is a generic interface to help application developers connect to web servers, so it works with many other servers besides WEBrick.
 
@@ -403,7 +395,7 @@ A Rack application is a **Ruby object** (not a class) that responds to `call` me
 
 https://www.rubydoc.info/github/rack/rack/master/file/SPEC
 
-46. what is a `.ru` file used for? what should we write in there in order to use it?
+45. what is a `.ru` file used for? what should we write in there in order to use it?
 
 `ru` file is Rack's configuration file.
 
@@ -416,32 +408,30 @@ run App.new
 
 The most simple code is first require the files which contain your application, and call `run` method on your app object which responds to `call`
 
-48. How to run a Rack app and let it listen to port 9292 on your local machine?
+46. How to run a Rack app and let it listen to port 9292 on your local machine?
 
 ```
 bundle exec rackup config.ru -p 9292
 ```
 
-49. In a Rack app if we don't specify which web server we use, how would Rack handle this?
-
-Note that Rack doesn’t come with its own server, but it’s smart enough to automatically try to use a server that’s already installed on your machine. If you didn’t install any server, like Puma or Thin, then Rack will just use the default server that comes with Ruby, Webrick.
+47. In a Rack app if we don't specify which web server we use, how would Rack handle this?
 
 Actually Rack has an [Order of precedence](https://github.com/rack/rack/blob/4bd09c04f7e6497db4a4cef169ee9099d25c3391/lib/rack/handler.rb#L48) to choose server based on a predetermined order.
 
-50. What if we want to use another web server like `puma`?
+48. What if we want to use another web server like `puma`?
 
 From the previous question, in the [Order of precedence](https://github.com/rack/rack/blob/4bd09c04f7e6497db4a4cef169ee9099d25c3391/lib/rack/handler.rb#L48) of rack(`pick ['puma', 'thin', 'falcon', 'webrick']`), webrick is at the last position, so we just need to install `puma` in our project, Rack will choose `puma`.
 
-51. What does Ruby's `ERB` library do?
+49. What does Ruby's `ERB` library do?
 
 The ERB library can process a special syntax that mixes Ruby into HTML, and produces a final 100% HTML string. That’s all it does.
 
-54. What's the difference between `<% 5.inspect %>` and `<%= 5.inspect %>`
+50. What's the difference between `<% 5.inspect %>` and `<%= 5.inspect %>`
 
 `<%= %>` - will evaluate the embedded Ruby code, and include its return value in the HTML output.
 `<% %>` - will only evaluate the Ruby code, but not include the return value in the HTML output.
 
-55. Describe how `erb` method can display dynamic result to a client's browser?
+51. Describe how `erb` method can display dynamic result to a client's browser based on the code example below?
 
 ```ruby
 require './advice.rb'
@@ -487,11 +477,11 @@ Take the code example above.
     - first pass the said string(may include the syntax `<%= %>` or `<% %>`) to `ERB::new` method, it will return a [ERB object](http://ruby-doc.org/stdlib-2.6.1/libdoc/erb/rdoc/ERB.html)
     - then we call `result` method on that erb object while passing the binding object to it, so if anywhere in the erb file calls variables or methods live in that passed binding object, they can be evaluated correctly.
 
-58. What's template file?
+52. What's template file?
 
 Templates (or view templates) are files that contain text that will be converted into HTML before being sent to a user's browser in a response. There are a lot of different templating languages, and they all provide different ways to define what HTML to generate and how to embed dynamic values.
 
-59. Rack's basic idea can be described by using the code below:
+53. Rack's basic idea can be described by using the code below:
 
 ```ruby
 def run_the_stack(middlewares, app, env)
@@ -545,17 +535,17 @@ A more likely flow and the interaction through the course can be drawn as below:
 
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/Rack+flow.png)
 
-60. How sinatra redirect a user to another page?
+54. How sinatra redirect a user to another page?
 
 The `redirect` method sets the Location header in the HTTP **response** that is sent back to the client, as well as the status code to a value in the range of **3XX**, signifying redirection; codes `301` and `302` are the most commonly used for redirection. The browser confirms that the correct status `3XX` status code is there, looks at the value of this header, and then uses that header value to navigate to a new URL.
 
-61. What's the 3 ways to insert data to `params` hash in sinatra app?
+55. What's the 3 ways to insert data to `params` hash in sinatra app?
 
 - Using url path `users/1/pictures/3`
 - Using query string in URL `?query=foods`
 - By submitting a form using a POST request
 
-62. What are the basic elements of a html form?
+56. What are the basic elements of a html form?
 
 - a `<form></form>` object
 - attributes of form
@@ -566,11 +556,11 @@ The `redirect` method sets the Location header in the HTTP **response** that is 
   - if it has, the input tag should contain `name` and `value` attributes to form a complete a valid `name/value` pair as part of the parameters sent to server
 - a submit button which has the attribute `type="submit"`
 
-63. How to consider if a file in your project is server-side code or client-side code?
+57. How to consider if a file in your project is server-side code or client-side code?
 
 Consider where the code is first executed.
 
-64. What's a `Procfile` used for?
+58. What's a `Procfile` used for?
 
 When using Heroku, a project's Procfile determines what processes should be started when the application boots up.
 
@@ -583,30 +573,30 @@ Heroku apps include a Procfile that specifies the commands that are executed by 
 - A singleton process, such as a clock
 - Tasks to run before a new release is deployed
 
-66. (Optional)What's the main difference between Local Storage, Session Storage, and Cookies
+59. (Optional)What's the main difference between Local Storage, Session Storage, and Cookies
 ?
 
 https://www.quora.com/What-is-the-difference-between-sessionstorage-localstorage-and-Cookies
 
-68. Is POST requests more secure than GET requests?
+60. Is POST requests more secure than GET requests?
 
 Both GET and POST send information in the form of plain text when we use HTTP. HTTPS encrypts the connect. Note, though, that there is no significant difference in security between GET and POST requests.
 
-69. What the meaning of `__FILE__`?
+61. What the meaning of `__FILE__`?
 
 The name of the current file like `example.rb`
 
-70. If we are in a file `some/path/example.rb`, what message will be printed out by running `puts __FILE__`
+62. If we are in a file `some/path/example.rb`, what message will be printed out by running `puts __FILE__`
 
 `example.rb`
 
-71. What does `File::expand_path` do? Give a simple example to demonstrate
+63. What does `File::expand_path` do? Give a simple example to demonstrate
 
 It will expands a given path to absolute path. For example if we are in `example.rb` we can use `File.expand_path(__FILE__)` to get the full path of the file such as `/users/bob/some/path/example.rb`. If we want to go one level up, we can pass an extra argument `File.expand_path("..", __FILE__)`, then we get `/users/bob/some/path`, if we want to go two levels up then down in another path `/users/bob/some/books` we write `File.expand_path("../../books", __FILE__)`
 
 http://ruby-doc.org/core-2.6.1/File.html#method-c-expand_path
 
-72. What is `Dir::glob` used for? Give a simple example to demonstrate
+64. What is `Dir::glob` used for? Give a simple example to demonstrate
 
 `Dir::glob` accepts 3 arguments and an optional block. The 3 arguments are a match pattern, flags, a keyword argument `base: path`. Only the first argument is required. If no block given, it will (based on current working directory) return an array which contains all matched filenames. The optional `base` keyword argument specifies the base directory for interpreting relative pathnames instead of the current working directory.
 
@@ -620,7 +610,7 @@ if we are under `/Users/xullnn`
 
 http://ruby-doc.org/core-2.6.1/Dir.html#method-c-glob
 
-73. When learning Rack app, we know that a Rack app can simply be a ruby object which responds to `call` method that takes an argument `env` and returns an array Rack asked for all rack apps.
+65. When learning Rack app, we know that a Rack app can simply be a ruby object which responds to `call` method that takes an argument `env` and returns an array Rack asked for all rack apps.
 
 config.ru
 
@@ -663,7 +653,7 @@ REQUEST_PATH : /
 
 https://launchschool.com/posts/11a43ad4
 
-74. In order to test a sinatra app with rack-test and Ruby minitest library, what preparation works we need to do?
+66. In order to test a sinatra app with rack-test and Ruby minitest library, what preparation works we need to do?
 
 List all file changes and code changes, explain the use of every change.
 
@@ -708,7 +698,7 @@ List all file changes and code changes, explain the use of every change.
   end
   ```
 
-75. Why should we isolate data from different environments? What's the general idea to do this?
+67. Why should we isolate data from different environments? What's the general idea to do this?
 
 In general isolating data from different environments can prevent operations under different environments from affecting the data of each other.
 
@@ -720,11 +710,11 @@ There are several reasons to do so.
 
 The general idea is to use different file/database/space for different environments. The switch of file/database/space can based on the certain environment variable that will be used in all 3 environments.
 
-76. What's the meaning of the code `last_request.env['rack.session']` in a test for a Rack app?
+68. What's the meaning of the code `last_request.env['rack.session']` in a test for a Rack app?
 
 Fetch the value of `'rack.session'` from the last request's application environment variable `env`
 
-77. What's the code `get "/", {}, {"rack.session" => { username: "admin"} }` doing in a test for a Rack app?
+69. What's the code `get "/", {}, {"rack.session" => { username: "admin"} }` doing in a test for a Rack app?
 
 What's the difference between this and the previous mentioned code? (hint: Are they relating to request or response? They all have `rack.session` part, where does that come from?)
 
@@ -748,7 +738,7 @@ What's the difference between this and the previous mentioned code? (hint: Are t
   <p>Once values have been provided like this once, they will be remembered for all future calls to get or post within the same test, unless, of course, those values are modified by code within your application. This means that you can set values for the session in the first request made in a test and they will be retained until you remove them.</p>
 </details>
 
-78. In this test:
+70. In this test:
 
 ```ruby
 # corresponding route handler ------------------------------------------
@@ -789,7 +779,7 @@ Can we move line `#3` between `#1` and `#2`, Why?(hint: Where does the flash mes
 
 No `get last_response["Location"] # 3` will trigger the server side to render erb file and evaluate the embedded ruby code there -- include `<%= session.delete(:message)%>`, the return value of `session.delete(:message)` can be displayed on the webpage of that response, but since then the `session[:message]` had gone, if we assert `last_request_session[:message]` to be equal to `"nonexistent.txt doesn't exist."`, it will fail.
 
-78. In the test for user signin:
+71. In the test for user signin:
 
 ```ruby
 # corresponding route handler ------------------------------------------
@@ -836,13 +826,13 @@ Is the final assertion still succeed? Why?
 
 Same result, same reason.
 
-79. Simply describe what's an one-way hash function, and how it can be used on cryptography?
+72. Simply describe what's an one-way hash function, and how it can be used on cryptography?
 
 An one-way hash function is a function that can convert a string which has arbitrary length to a fixed length token. And this operation is one-way, means we cannot convert this token back to the original string.
 
 In practice we won't store users' password or other sensitive information as raw data, we only store the hashed ones. If an attacker steal this hashed data, it's almost impossible to restore the user's real password.
 
-80. This is a code example from [bcrypt's doc](https://github.com/codahale/bcrypt-ruby):
+73. This is a code example from [bcrypt's doc](https://github.com/codahale/bcrypt-ruby):
 
 ```ruby
 require 'bcrypt'
@@ -869,7 +859,7 @@ The returned string `"$2a$12$K0ByB.6YI2/OYrB4fQOYLe6Tv0datUVf6VZ/2Jzwm879BW5K1cH
 ```
 So `...2Jzwm879BW5K1cHey" == "my password"` is not invocating `String#==` it is invocating instance method `BCrypt::Password#==`
 
-81. If there's a yaml file:
+74. If there's a yaml file:
 
 example.yaml
 
