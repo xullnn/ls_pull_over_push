@@ -5,7 +5,7 @@
 - RDBMS
 - SQL
 
-A relational database is a database based on the relational model of data. A software system used to maintain relational database is call Relational Database Management System(RDBMS). In practice all RDBMS use SQL to maintain and query data in the database.
+A relational database is a database based on the relational model of data. A software system used to maintain relational database is call Relational Database Management System(RDBMS). In practice all RDBMS use SQL to operate relational database.
 
 - Relational model organizes data into one or more tables(relaitons) of columns and rows, with an unique key identifying each row. Rows are also called records, columns are also called attributes. Generally each table(relation) represents one "[entity](https://en.wikipedia.org/wiki/Associative_entity) type".
 - RDBMS is software/application used to maintain relational database
@@ -13,8 +13,11 @@ A relational database is a database based on the relational model of data. A sof
 
 2. What's the difference among:
 - PostgreSQL client application(`createdb`, `psql`, `dropdb`)
+  - these are commands built for PostgreSQL, actually they are just wrappers of SQL, and can be seen as abstractions of SQL. The presence of client application is to simplify certain operations which may be tedious by using SQL sentence.
 - meta-commands(`\c db_name`, `\list`)
-- SQL statements
+  - they are specific to a PostgreSQL client application `psql`, in `psql` console we use meta-commands to perform some high level tasks like list all database managed by postgresql or view the schema of specific table.
+- SQL
+  - SQL is the language used by all relational database to operate the database.
 
 3. What is the sign of the end of an sql statement?
 
@@ -27,7 +30,7 @@ A semicolon.
     - `createdb db_name`
   - what is the extension name of a file that we write sql statements in?
     - `.sql`
-  - how to import an external .sql file into an existent database?
+  - how to import an external `.sql` file into an existent database?
     - in terminal: `psql -d db_name < file_name.sql`
     - in psql console: `\i ~/path/to/file/file_name.sql` (1.need to connect to target databse; 2.need absolute path)
 
@@ -131,15 +134,15 @@ To keep the integrity and consistency of data.
   - all sequences
     - `\ds`
 
-21. How to check the schema of a specific table?
+20. How to check the schema of a specific table?
 
 `\d table_name`
 
-22. Is the 'security settings'(controlled by DCL) of a database part of its schema?
+21. Is the 'security settings'(controlled by DCL) of a database part of its schema?
 
 Yes.
 
-23. If part an sql statement is `(weight DECIMAL(8, 2))` what's the meaning of `8` and `2`? What the max and minimal value for this column?
+22. If part an sql statement is `(weight DECIMAL(8, 2))` what's the meaning of `8` and `2`? What the max and minimal value for this column?
 
 - `weight` is the name of the column
 - `DECIMAL` indicates the type of column is an arbitrary decimal number with a specified precision and scale
@@ -147,7 +150,7 @@ Yes.
   - `2` is called scale, it confines the number of digits on the right side of the decimal point
   - in this case the number range is (0.01 to 999999.99)
 
-24. What's in common on all below syntax?
+23. What's in common on all below syntax?
 
 - rename a table
 - rename a column
@@ -159,11 +162,11 @@ Yes.
 
 They all start with `ALTER TABLE`
 
-25. What are the four types of Data Manipulation Statements?
+24. What are the four types of Data Manipulation Statements?
 
 CRUD, create, read, update, delete
 
-26. What is the syntax of inserting data?
+25. What is the syntax of inserting data?
 
 ```sql
 INSERT INTO table_name (col_1, col_2, col_n)
@@ -172,7 +175,7 @@ INSERT INTO table_name (col_1, col_2, col_n)
   (v_1_1, v_2_2, v_3_3);
 ```
 
-27. How to add a `CHECK` constraint to a column to let it can't be inserted into empty string?
+26. How to add a `CHECK` constraint to a column to let it can't be inserted into empty string?
 
 ```sql
 ALTER TABLE table_name ADD CHECK (check_expression); --
@@ -187,15 +190,15 @@ Notice here we can't use the syntax `SET` to add a `CHECK` to a column. If we wa
 
 The syntax `SET` can only used to add constraints like `UNIQUE` and `NOT NULL`.(e.g `ALTER TABLE table_name ALTER COLUMN column_name SET UNIQUE;`)
 
-28. What's the alternative syntax of `<>` in SQL?
+27. What's the alternative syntax of `<>` in SQL?
 
 `!=`
 
-29. How to insert string `'O' Sullivan'` into a table?
+28. How to insert string `'O' Sullivan'` into a table?
 
 In SQL string is wrapped by single quotation, we need to use single quotation mark `'` to escape single quotation in a string. Double quation is used to escape arguments whose name collide with the SQL key words.
 
-30. What would cause a "Three State Boolean problem or Three Valued-logic problem" ?
+29. What would cause a "Three State Boolean problem or Three Valued-logic problem" ?
 
 Allow `NULL` in a boolean type column. If we did so the column can contain 3 values:
 - true
@@ -204,7 +207,7 @@ Allow `NULL` in a boolean type column. If we did so the column can contain 3 val
 
 Then if we choose values that is not true (e.g `paid != true`), the results will contain rows who have `NULL` and rows that are `false`,  and vice versa. We have to add another logic expression to exclude rows with `NULL`(`paid != true AND paid IS NOT NULL`).
 
-31. What's the difference between `char` and `varchar` type when we use match pattern to match content in certain column(s)?
+30. What's the difference between `char` and `varchar` type when we use match pattern to match content in certain column(s)?
 
 They are both character type, and accept an argument to confine the number of characters the column can hold(e.g `char(20)` or `varchar(20)`). The difference is:
 - if the inserted string is less than 20 chars, `char(20)` will pad the remaining spaces with white spaces
@@ -228,15 +231,15 @@ auction=# select 'Lee'::varchar(5) like 'Lee';
 (1 row)
 ```
 
-33. If you have a column named just as one of reserved words in SQL, how could you handle this?
+31. If you have a column named just as one of reserved words in SQL, how could you handle this?
 
 Quote it with double quotation.
 
-34. If we order query results by a boolean column in ascending order, which ones would be listed first?
+32. If we order query results by a boolean column in ascending order, which ones would be listed first?
 
 When ordering by boolean values, `false` comes before `true` in ascending order.
 
-35. What is the sort logic which contains multiple sorting conditions, like:
+33. What is the sort logic which contains multiple sorting conditions, like:
 
 ```
 SELECT * FROM users ORDER BY activated ASC, id DESC;
@@ -245,17 +248,17 @@ SELECT * FROM users ORDER BY activated ASC, id DESC;
 - first sort by `activated ASC`
 - if the sort results contains rows who have the same value, then sort these rows by `id DESC`
 
-36. Operators are used in which clause in SQL Query?
+34. Operators are used in which clause in SQL Query?
 
 In `WHERE` clause.
 
-37. What are the main 3 types of operator in SELECT query?
+35. What are the main 3 types of operator in SELECT query?
 
 - comparison operator (`=`, `>=` ...)
 - logic operator (`OR` `AND`...)
 - string matching operator
 
-38. The meaning of `"predicates"` in Grammar can be seen as "the part of a sentence that is other than the subject". What's `comparison predicates` in `WHERE` clause?
+36. The meaning of `"predicates"` in Grammar can be seen as "the part of a sentence that is other than the subject". What's `comparison predicates` in `WHERE` clause?
 
 - subject, verb, object
   - `id = 2`
@@ -263,66 +266,66 @@ In `WHERE` clause.
 
 The part except the left side of the `=`, in above example, is `= 2` and ` IS NOT NULL`
 
-39. How to get all rows of whose certain column is `NULL`?
+37. How to get all rows of whose certain column is `NULL`?
 
-Use `IS NOT NULL` as comparison predicates.
+Use `IS NULL` as comparison predicates.
 
-40. Choose logical operator for each word:
+38. Choose logical operator for each word:
 - either `OR`
 - both `AND`
 - other than `NOT`
 
-41. What is the wild card character in a SQL to match string?
+39. What is the wild card character in a SQL to match string?
 
 Percent sign.
 
-42. What's the key word used for string matching?
+40. What's the key word used for string matching?
 
 `LIKE`, or `ILIKE`(case insensitive)
 
-43. How to match all user names whose name contains `Lee`. like `Mary Lee. S`, `Lee Jhon`, `Wu Lee.` in a `char(15)` column?
+41. How to match all user names whose name contains `Lee`. like `Mary Lee. S`, `Lee Jhon`, `Wu Lee.` in a `char(15)` column?
 
 `SELECT name FROM table_name WHERE name LIKE '%Lee%';`
 
-45. What's the basic syntax of updating row(s) in a table?
+42. What's the basic syntax of updating row(s) in a table?
 
 `UPDATE table_name SET (col_1 = 'some value') WHERE id = 2;`
 
-46. What would happen if we omit the `WHERE` clause potion of our updating statement?
+43. What would happen if we omit the `WHERE` clause potion of our updating statement?
 
 All the rows will be updated.
 
-47. What's the basic syntax to delete row(s) in a table?
+44. What's the basic syntax to delete row(s) in a table?
 
 `DELETE FROM table_name WHERE id = 2;`
 
-48. What would happen if we omit the `WHERE` clause potion of our deleting statement?
+45. What would happen if we omit the `WHERE` clause potion of our deleting statement?
 
 All rows will be deleted.
 
-49. What is normalization of database?
+46. What is normalization of database?
 
 The process of splitting up data to remove duplication and improve data integrity is known as normalization.
 
-50. Why we need normalization?
+47. Why we need normalization?
 
 The reason for normalization is to reduce data redundancy and improve data integrity.
 
-51. what's the mechanism for carrying out normalization?
+48. what's the mechanism for carrying out normalization?
 
 The mechanism for carrying out normalization is arranging data in multiple tables and defining relationships between them.
 
-52. How you understand entities and relationships in database design?
+49. How you understand entities and relationships in database design?
 
 Entity is a mental model of a noun such as `order`, `book` or `user`. In database we can use name of columns to represent the attributes of the entity, and each row of data represents an instance of that entity.
 
 Relationship describes how different entities relate to each other.
 
-53. What is an Entity Relationship Diagram?
+50. What is an Entity Relationship Diagram?
 
 It's a diagram use the name of entities and crow's foot notation to draw out the relationships among entities.
 
-54. What is primary and foreign key, what are they used for?
+51. What is primary and foreign key, what are they used for?
 
 In the context of database, key is a concept that used to reference a certain row of data. More specifically
 
@@ -330,31 +333,31 @@ In the context of database, key is a concept that used to reference a certain ro
 - Unlike primary key, foreign key references row of data from another table.
 - Primary key and foreign key is the way how we implement the relationship between relations.
 
-55. What's the meaning of referential integrity?
+52. What's the meaning of referential integrity?
 
 The need to keep data integrity across tables within a relationship. Or say prevent a foreign key column from containing(referencing) a non-existent record in relevant table.
 
-56. Why we need `ON DELETE` clause, how it relates to referential integrity?
+53. Why we need `ON DELETE` clause, how it relates to referential integrity?
 
 `ON DELETE` usually follows `FOREIGN KEY()` constraint to say that "when the referenced record of another table is deleted, delete this corresponding row in this table either.". It's a way to implement referential integrity.
 
-57. What a cross-reference table(join table) be used for?
+54. What a cross-reference table(join table) be used for?
 
 Used to implement a many-to-many relationship.
 
-58. What's the basic syntax of join tables?
+55. What's the basic syntax of join tables?
 
 `SELECT col_1, col_2 FROM table_1 JOIN table_2 ON table_1.pkey = table_2.fkey WHERE col_1 LIKE 'Lee%';`
 
-59. What's the difference between `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `FULL JOIN`, and `CROSS JOIN`, which two of them are less used?
+56. What's the difference between `INNER JOIN`, `LEFT OUTER JOIN`, `RIGHT OUTER JOIN`, `FULL JOIN`, and `CROSS JOIN`, which two of them are less used?
 
-- INNER JOIN joins rows only match the condition in all table, we can understand it as 'intersection'
-- LEFT OUTER JOIN joins rows with the intersection part plus remaining rows from the first(left) table with the empty fileds with `NULL`
+- INNER JOIN only joins rows matched the condition from all table, we can understand it as 'intersection'
+- LEFT OUTER JOIN joins rows with the intersection part plus remaining rows from the first(left) table with the empty fields filled with `NULL`
 - RIGHT OUTER JOIN is similar to LEFT but keeps all rows in the second(right) table
 - FULL JOIN first get the intersection of all tables, then plus all the remaining rows of all tables, also fill all empty fields with `NULL`. It can be understood as the union of all rows from all tables
 - CROSS JOIN is different from the above ones, it don't need a `ON` condition to specify the join condition. It perform combination across all rows of all tables.
 
-60. What's the syntax of table name aliasing in SQL?(and shorthand form)
+57. What's the syntax of table name aliasing in SQL?(and shorthand form)
 
 `SELECT t.name FROM table_1 AS t;`
 
@@ -362,11 +365,11 @@ We can omit `AS`
 
 `SELECT t.name FROM table_1 t;`
 
-61. What's the syntax of column name aliasing in SQL?
+58. What's the syntax of column name aliasing in SQL?
 
 `SELECT first_name AS name FROM table_1;`
 
-62. What's subquery in SQL? Take the below example to explain:
+59. What's subquery in SQL? Take the below example to explain:
 
 ```sql
 SELECT u.full_name FROM users u
@@ -377,21 +380,21 @@ A Subquery or Inner query or a Nested query is a query within another SQL query 
 
 In the above example the result of `(SELECT c.user_id FROM checkouts c)` will serve as the further query condition of the main query.
 
-63. In some situations, can JOINs and subqueries interchangeable?
+60. In some situations, can JOINs and subqueries interchangeable?
 
 Yes. Most queries can have multiple ways to accomplish.
 
-64. Does SQL only handle data in databases?
+61. Does SQL only handle data in databases?
 
 Not exactly, the DDL and DCL part won't touch actual data.
 
-65. What is bit? What is byte?
+62. What is bit? What is byte?
 
 "bit" stands for binary digit. It is a basic unit of information in information theory, computing, and digital communications. 1 bit can be `1` or `zero`.
 
 A group of 8 binary digits is commonly called one byte, but historically the size of the byte is not strictly defined. If we use binary number to represent decimal numbers, the positive or negative sign take 1 bit then we left 7 bits in a byte, then this 1 byte can range from `-1111111` to `+11111111` that is -127 to +127. If we only consider positive numbers then we can represent number from `00000000` to `11111111` that is 0 to 255.
 
-67. What's the syntax to add multiple new columns to a table when creating a table?
+63. What's the syntax to add multiple new columns to a table when creating a table?
 
 ```SQL
 CREATE TABLE table_name (
@@ -400,7 +403,7 @@ CREATE TABLE table_name (
 );
 ```
 
-68. How to extract a year number(as integer) from a timestamp/date column?
+64. How to extract a year number(as integer) from a timestamp/date column?
 
 https://stackoverflow.com/questions/43397871/postgresql-getting-a-year-from-date-type-as-integer
 
@@ -408,7 +411,7 @@ Use `extract()` function
 
 `SELECT extract(year from published_date)::int FROM reviews;`
 
-69. How to split a string in PostgreSQL? How to get substring from a given string position in PostgreSQL?
+65. How to split a string in PostgreSQL? How to get substring from a given string position in PostgreSQL?
 
 https://www.postgresql.org/docs/11/functions-string.html
 
@@ -434,7 +437,7 @@ sql_book=# SELECT substring ('simultaneously' from 3 for 2);
 
 Notice the `3` is not zero based index.
 
-70. What would be the result if we perform any operator on `NULL` in postgresql?
+66. What would be the result if we perform any operator on `NULL` in postgresql?
 
 It will return `NULL`
 
@@ -462,18 +465,18 @@ sql_book=# SELECT NULL IS NULL;
 (1 row)
 ```
 
-71. What are the 3 aspects of restriction we can add to a column?
+67. What are the 3 aspects of restriction we can add to a column?
 
 - type
 - length
 - constraints
 
-73. What is natural key and surrogate key?
+68. What is natural key and surrogate key?
 
 - Natural key means using existing values of a column in a table as the primary key of the table.
 - surrogate key means create another column which solely used as its primary key.
 
-74. What's the difference between `(id integer PRIMARY KEY)` and `(id serial)`
+69. What's the difference between `(id integer PRIMARY KEY)` and `(id serial)`
 
 think of these:
 - auto incrementing?
@@ -493,7 +496,7 @@ think of these:
 - allow NULL
 - doesn't require UNIQUE
 
-75. In SQL, is sequence independent to table?
+70. In SQL, is sequence independent to table?
 
 https://www.postgresql.org/docs/11/sql-createsequence.html
 
@@ -517,27 +520,27 @@ sql_book=# \d
 
 Type `sequence` indicates that a sequence is independent to a table, but a table can use a sequence as part of itself. Another evidence is that when we create or delete a sequence we don't have to mention the table name.
 
-76. If a column was originally set with a `DEFAULT` value, what would happen if we exclude the column name from the column list while performing inserting or updating?
+71. If a column was originally set with a `DEFAULT` value, what would happen if we exclude the column name from the column list while performing inserting or updating?
 
 https://www.postgresql.org/docs/11/ddl-default.html
 
 That column will filled with the default value. If no default value is declared explicitly, the default value is the null value. This usually makes sense because a null value can be considered to represent unknown data.
 
-77. If a column was originally set as `boolean` type and not added with a `NOT NULL` constraint. How to construct an expression to select all rows that are not `false` in this column?(notice the relationship between boolean values and `NULL`, what is the opposite(!=) of `true` or `false`)
+72. If a column was originally set as `boolean` type and not added with a `NOT NULL` constraint. How to construct an expression to select all rows that are not `false` in this column?(notice the relationship between boolean values and `NULL`, what is the opposite(!=) of `true` or `false`)
 
 `... WHERE column_name != false AND column_name IS NULL;`
 
-79. How to distinguish relation and relationship?
+73. How to distinguish relation and relationship?
 
 Relation is just another way to say table, relationship describe how different relations(tables) relate to each other.
 
-80. What is cardinality of a relationship?
+74. What is cardinality of a relationship?
 
 https://www.sqa.org.uk/e-learning/SoftDevRDS02CD/page_44.htm
 
 Cardinality of a relationship is the number of entities on each side of the relation. For example, in a one-to-many relationship. The cardinality of this relationship is 1 and many. We can think of cardinality as the maximum number of connections of each side.
 
-81. What is modality within a relationship?
+75. What is modality within a relationship?
 
 https://www.calebcurry.com/cardinality-and-modality/
 
@@ -550,11 +553,11 @@ For example in a one-to-many relationship
 - if the `one` side can have many entities of the `many` side, but it doesn't have to have 1 of them, or say the relationship on the `many` side is not required, then in this relationship the number of entities on the `many` side can be zero or more(0, 1, 2, 3 ...)
 - same logic can perform to other situations
 
-82. What is crow's foot notation used for? Why it is named crow's foot?
+76. What is crow's foot notation used for? Why it is named crow's foot?
 
 Crow's foot notation is used to draw out the relationship of tables, or say it's a graphic description of a relationship's cardinality and modality.
 
-83. Why we can't use aggregation functions in `WHERE` clause?(think of from what object(s) each them will perform on?)
+77. Why we can't use aggregation functions in `WHERE` clause?(think of from what object(s) each them will perform on?)
 
 https://stackoverflow.com/questions/42470849/why-are-aggregate-functions-not-allowed-in-where-clause
 
@@ -564,7 +567,7 @@ https://stackoverflow.com/questions/42470849/why-are-aggregate-functions-not-all
 
 If want to perform further filter based on `WHERE`'s work, we can add a `HAVING` clause.
 
-84. What are the two ways to create a foreign key constraint?
+78. What are the two ways to create a foreign key constraint?
 
 - Add as column constraint when creating table
 - Add as table constraint using `ALTER TABLE` sentence
@@ -585,27 +588,23 @@ CREATE TABLE table_name (
 ALTER TABLE table_name ADD FOREIGN KEY (book_id) REFERENCES books(id);
 ```
 
-85. Does a foreign key constraint prevent NULL values from being stored in a column?What about primary key column
+79. Does a foreign key constraint prevent NULL values from being stored in a column?What about primary key column
 
 No, foreign key will not prevent `NULL`. But a primary key constraint will impose both `UNIQUE` AND `NOT NULL`.
 
-86. What is the two basic steps to perform a normalization?
+80. What is the two basic steps to perform a normalization?
 
 - split table
 - build relationship between new tables
 
-87. What's the difference between `WHERE` and `HAVING`?
+81. What's the difference between `WHERE` and `HAVING`?
 
 https://stackoverflow.com/questions/287474/whats-the-difference-between-having-and-where
 
 - HAVING: is used to check conditions after the aggregation takes place.
 - WHERE: is used to check conditions before the aggregation takes place.
 
-88. Does a newly added foreign key constraint will also enforce a  `NOT NULL` constraint to the column?
-
-NO.
-
-89. At which places we can put a subquery in SQL?
+82. At which places we can put a subquery in SQL?
 
 A subquery may occur in :
 - A SELECT clause
@@ -613,7 +612,7 @@ A subquery may occur in :
 - A WHERE clause
 The subquery can be nested inside a SELECT, INSERT, UPDATE, or DELETE statement or inside another subquery.
 
-90. Briefly describe the use of `EXISTS` `IN` `NOT IN` `ANY/SOME` `ALL` in `WHERE` clause which contains subquery?
+83. Briefly describe the use of `EXISTS` `IN` `NOT IN` `ANY/SOME` `ALL` in `WHERE` clause which contains subquery?
 
 Similar to comparison operators(`>` `<` `!=` ...), in WHERE clause all the keywords above plus a set of(or a single) value(s) form the predicate of the comparison expression. Some possible examples may be:
 
@@ -623,7 +622,7 @@ Similar to comparison operators(`>` `<` `!=` ...), in WHERE clause all the keywo
 
 Notice in certain cases, some syntaxes are interchangeable. For example `WHERE age > ALL (SELECT age FROM users);` or `WHERE age < ALL (SELECT age FROM users);` can also write as `WHERE age NOT IN (SELECT age FROM users);`.
 
-91. How indexes work?
+84. How indexes work?
 
 https://stackoverflow.com/questions/1108/how-does-database-indexing-work
 
@@ -649,5 +648,5 @@ Notice index is normally sorted and unique. If this index table has 4 million ro
 
 5000000 vs 22, that's the difference.
 
-92. How to create index on specified column(s) within a database?
+85. How to create index on specified column(s) within a database?
 `CREATE INDEX index_name ON table_name (field_name);`
