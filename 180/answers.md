@@ -1,6 +1,6 @@
 ## SQL and Relationship Database
 
-1. What is relational database? include these terms in answer and do a lucid describe of these terms
+1. What is relational database? include these terms in answer and do a lucid description of these terms
 - relational model
 - RDBMS
 - SQL
@@ -13,7 +13,7 @@ A relational database is a database based on the relational model of data. A sof
 
 2. What's the difference among:
 - PostgreSQL client application(`createdb`, `psql`, `dropdb`)
-  - these are commands built for PostgreSQL, actually they are just wrappers of SQL, and can be seen as abstractions of SQL. The presence of client application is to simplify certain operations which may be tedious by using SQL sentence.
+  - these are commands/applications built for PostgreSQL, actually some of them are just wrappers of SQL, and can be seen as abstractions of SQL. The presence of client application is to simplify certain operations which may be tedious by using SQL sentence.
 - meta-commands(`\c db_name`, `\list`)
   - they are specific to a PostgreSQL client application `psql`, in `psql` console we use meta-commands to perform some high level tasks like list all database managed by postgresql or view the schema of specific table.
 - SQL
@@ -122,7 +122,7 @@ sample_db=# CREATE TABLE users (
 
 18. Why we need constraints?
 
-To keep the integrity and consistency of data.
+To keep the integrity and consistency of data and the relationships between tables in a database.
 
 19. How to view these things in psql console
   - all databases on your local machine
@@ -180,9 +180,11 @@ INSERT INTO table_name (col_1, col_2, col_n)
 ```sql
 ALTER TABLE table_name ADD CHECK (check_expression); --
   --  `check_expression` can be things like `id < 9999`
-ALTER TABLE table_name ADD CONSTRAINT id_limit CHECK (check_expression);
+ALTER TABLE table_name ADD CONSTRAINT check_name CHECK (check_expression);
   -- same results of the previous one but with an specified constraint name `id_limit`
 ```
+
+In this case, check_expression may be `trim(both from name, ' ') != ''`
 
 Notice here we can't use the syntax `SET` to add a `CHECK` to a column. If we want to add a `CHECK` constraint to a column we can:
 - add constraint while creating table
@@ -246,7 +248,7 @@ SELECT * FROM users ORDER BY activated ASC, id DESC;
 ```
 
 - first sort by `activated ASC`
-- if the sort results contains rows who have the same value, then sort these rows by `id DESC`
+- if the sort results contains rows which have the same value, then sort these rows by `id DESC`
 
 34. Operators are used in which clause in SQL Query?
 
@@ -376,7 +378,7 @@ SELECT u.full_name FROM users u
 WHERE u.id NOT IN (SELECT c.user_id FROM checkouts c);
 ```
 
-A Subquery or Inner query or a Nested query is a query within another SQL query and embedded within the WHERE clause.
+A Subquery or Inner query or a Nested query is a query within another SQL query.
 
 In the above example the result of `(SELECT c.user_id FROM checkouts c)` will serve as the further query condition of the main query.
 

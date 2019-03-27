@@ -1,6 +1,6 @@
 ## SQL and Relationship Database
 
-1. What is relational database? include these terms in answer and do a lucid describe of these terms
+1. What is relational database? include these terms in answer and do a lucid description of these terms
 - relational model
 - RDBMS
 - SQL
