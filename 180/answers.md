@@ -148,7 +148,7 @@ Yes.
 - `DECIMAL` indicates the type of column is an arbitrary decimal number with a specified precision and scale
   - `8` is called precision, it confines the total number of digits in this column
   - `2` is called scale, it confines the number of digits on the right side of the decimal point
-  - in this case the number range is (0.01 to 999999.99)
+  - in this case the number range is (-999999.99 to 999999.99) if negative allowed
 
 23. What's in common on all below syntax?
 
