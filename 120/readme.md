@@ -2,9 +2,7 @@
 
 1. Describe "what is object in Ruby" in less than 30 words?
 
-2. What are procedural programming and object-oriented programming?(this question is over the range of this course)
-  - briefly describe what's the difference?
-  - give examples about both of them, examples should be short, while showing some similarities and differences.
+2. What are procedural programming and object-oriented programming?(optional question)
 
 3. Observe the example you just wrote, think of some of the pros and cons of OOP.
 
@@ -31,8 +29,6 @@
 12. Can an instance variable's lifespan be longer than the object which owns it?
   - can an instance variable keep existing after the the object which owns it 'died'?
 
-13. What is the repsonsibility of an instance variable?
-
 14. Uninitialized new instance variables can be referenced in an instance method, what is the return value?
   - is this the same with instance variables for Class?
   - is this the same with class variables?
@@ -41,55 +37,12 @@
 ### `to_s`, `puts`, `p`, string interpolation
 
 15. Observe the code below, describe the relationships among `to_s`, `puts` and `p` in a reasonable way.
-  - be aware of the difference between outputted message and return value
+  - be aware of the difference between output message and return value
 
-```ruby
-class Dog
-  attr_accessor :age
-end
-=> nil
-dog = Dog.new
-=> #<Dog:0x00007fca5d0a1c50>
-dog.age = 4
-=> 4
-
-p dog
-#<Dog:0x00007fca5d0a1c50 @age=4>
-=> #<Dog:0x00007fca5d0a1c50 @age=4>
-
-puts dog
-#<Dog:0x00007fca5d0a1c50>
-=> nil
-
-p dog.to_s
-"#<Dog:0x00007fca5d0a1c50>"
-=> "#<Dog:0x00007fca5d0a1c50>"
-
-dog.inspect
-=> "#<Dog:0x00007fca5d0a1c50 @age=4>"
-
-puts dog.inspect
-#<Dog:0x00007fca5d0a1c50 @age=4>
-=> nil
-
-puts dog.to_s.inspect
-"#<Dog:0x00007fca5d0a1c50>"
-=> nil
-```
-
-Look at the second example below, is `to_s` called before or after `.inspect` ? why
-
-```ruby
-"This is a #{dog}"
-=> "This is a #<Dog:0x00007fcddb98e990>"
-
-"This is a #{dog.inspect}"
-=> "This is a #<Dog:0x00007fcddb98e990 @age=4>"
-```
 
 16. Among `puts`, `p` and string interpolation, which ones will call `to_s`, if called, when?
 
-17. Would this code work out okay? Can you guess the message being outputted and what is the final return value?
+17. Would this code work out okay? Can you guess the message being output and what is the final return value?
 
 ```ruby
 "#{
@@ -298,7 +251,7 @@ end
 ```
 
 27. How to reference the constant `NUMBER` in `a_method` in this case?
-  - come up with more than 5 ways, it doesn't have to be concise, just let it work
+  - come up with more than 5 ways, it doesn't have to be concise, just make it work
 
 ```ruby
 class A
@@ -471,9 +424,7 @@ Dog.new.set_age(2)
 
 35. Give an example which can illustrate the use of mixin in Ruby core.
 
-36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance?
-
-- If not, give an example of multiple inheritance
+36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance? If not, give an example of multiple inheritance
 
 37. Using a code example to illustrate why sometimes single inheritance cannot meet the needs.
 
@@ -510,5 +461,4 @@ end
 - look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
 - find a way to print out `I am flying!"` outside of the class definition
 - find a way to print out `I am flying!"` inside of the class definition without directly calling `dream`
-- point out all the places we call `dream` inside the class definition
 - give an example about "call `dream` outside of the definition"(ignore the raised error)

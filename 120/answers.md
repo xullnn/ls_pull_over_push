@@ -1,19 +1,19 @@
 ## Object Oriented Programming
 
-1. Describe "what is object in Ruby" in less than 30 words?
+1. Describe "what is object in Ruby"?
 
-- In Ruby, objects can be thought of as conceptual entities which have states(instance variables) and behaviors(methods), objects could exchange information with each other through different types of interfaces.
+- In Ruby, objects can be thought of as conceptual entities which have states(instance variables) and behaviors(methods), objects can exchange information with each other through different types of interfaces.
 
-2. What are procedural programming and object-oriented programming?(this question is over the range of this course)
-  - briefly describe what's the difference?
-  - give examples about both of them, examples should be short, while showing some similarities and differences.
+2. What are procedural programming and object-oriented programming?(optional question)
 
 - procedural programming and OOP are both a type of programming paradigms.
   - precedural programming does things in [an imperative, step-by-step, logical fashion](https://launchschool.com/curriculum/courses/79f19170).
   - OOP does things by encapsulating data into objects and let them interact with each other.
 
-  - (from wiki)[Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.</p>
+  - (from wiki)[Object-oriented programming](https://en.wikibooks.org/wiki/C%2B%2B_Programming/Programming_Languages/Paradigms#Object-oriented_programming) can be seen as an extension of procedural programming in which programs are made up of collections of individual units called objects that have a distinct purpose and function with limited or no dependencies on implementation.
 - examples:
+
+Procedural style: steps are visible.
 
 ```ruby
 bag = []
@@ -24,6 +24,8 @@ loop do
   break if bag.size == 5
 end
 ```
+
+OOP: closer to English but logic process is not so obvious
 
 ```ruby
 class Batter
@@ -62,51 +64,61 @@ Cook.new.make_5_cakes
   - individuality of objects makes program more flexible
   - easier to manage interfaces
 - cons
-  - hard to observe program procedure in linear way
-  - need to write more code
-  - so flexible to come up with a best or good enough solution
+  - hard to observe program procedures in linear way
+  - needs to write more code
+  - too flexible may cause confusion on design(especially for novices)
   - may take more resources
 
 4. In essence, OOP is just a programming paradigm, is there any other paradigms(y/n)?
 - yes of course
 
 5. Describe Encapsulation in 30 words.
-- The behavior of deliberately hiding pieces of functionality(blocks of code) while exposing interfaces that the designer only want to expose. It's a form of data protection and interface management.
+- The behavior of deliberately hiding pieces of functionality(some code) while exposing interfaces that the designer only want to expose. It's a concern about both program design and security.
 
 6. Describe Polymorphism in 30 words.
 - In Ruby, Polymorphism describes the feature(implementation) that different receiver may return various values when we send same message to them.
 
+```ruby
+2.send(:*, 5)
+'2'.send(:*, 5)
+[2].send(:*, 5)
+```
+
+In above cases, same message `:*` and `5` are sent to different objects `2`(Integer), `'2'`(String), `[2]`(Array), but all the return values are different.
+
 7. Extract a key word(concept) from the definitions of Encapsulation and Polymorphism, this word should be one of the focusing points they all share.
-- interface
+
+interface
 
 8. What the `???` should be?
-  - factory -- products, mould -- swords, blueprint -- buildings, ??? -- objects
+
+factory -- products, mould -- swords, blueprint -- buildings, ??? -- objects
 
 - class
 
 9. This type of relationship can be analogized to what relationship?
-  - parent gives birth to child becomes parent gives birth to child becomes ...
+
+parent gives birth to child becomes parent gives birth to child becomes ...
 
 - class and object
 
 ### Instance variable
 
 10. Instance variables keep track of ??? and instance methods expose ??? for objects.
+
 - states
 - behaviors
 
 11. What method will be called automatically every time you create a new object?
-- initialize
+
+- `initialize`
 
 12. Can an instance variable's lifespan be longer than the object which owns it?
-  - can an instance variable keep existing after the the object which owns it 'died'?
+
+- can an instance variable keep existing after the the object which owns it 'died'?
 
 - no, because instance variables are used to keep track of object's states
 - no
-
-13. What is the repsonsibility of an instance variable?
-
-- instance variables are used to keep track of object's states
 
 14. Uninitialized new instance variables can be referenced in an instance method, what is the return value?
   - is this the same with instance variables for Class?
@@ -116,6 +128,7 @@ Cook.new.make_5_cakes
 - `nil`
 - yes
 - no
+
 - examples:
 
 ```ruby
@@ -141,74 +154,13 @@ Dog.print_class_variable
 
 ### `to_s`, `puts`, `p`, string interpolation
 
-15. Observe the code below, describe the relationships among `to_s`, `puts` and `p` in a reasonable way.
-  - be aware of the difference between outputted message and return value
+15. Describe the relationships among `to_s`, `puts` and `p` in a reasonable way.
+  - be aware of the difference between output message and return value
 
-```ruby
-class Dog
-  attr_accessor :age
-end
-=> nil
-dog = Dog.new
-=> #<Dog:0x00007fca5d0a1c50>
-dog.age = 4
-=> 4
-
-p dog
-#<Dog:0x00007fca5d0a1c50 @age=4>
-=> #<Dog:0x00007fca5d0a1c50 @age=4>
-
-puts dog
-#<Dog:0x00007fca5d0a1c50>
-=> nil
-
-p dog.to_s
-"#<Dog:0x00007fca5d0a1c50>"
-=> "#<Dog:0x00007fca5d0a1c50>"
-
-dog.inspect
-=> "#<Dog:0x00007fca5d0a1c50 @age=4>"
-
-puts dog.inspect
-#<Dog:0x00007fca5d0a1c50 @age=4>
-=> nil
-
-puts dog.to_s.inspect
-"#<Dog:0x00007fca5d0a1c50>"
-=> nil
-```
-
-- `to_s` can be understood as "string representation of ...", the return value is a string, the content of the string depends on how the object's class implements its own `to_s`.
-
-- `inspect` also returns string. But vary from `to_s` it will return all information about an object, like instance variables which `to_s` usually does not. So we can think of `to_s` as a customized `inspect`
-
-- both `to_s` and `inspect`'s return values are not the original objects, they are strings contains the information about objects
-
-- `print` and `puts` both print out given object's string representation without any changing, then return `nil`.
-  - difference is `puts` will append a new line character
-  - if given object is not a string then `to_s` will first be called on the object
-
-- `p`: For each object, directly writes `obj.inspect` followed by a newline to the program's standard output.
-
-If we only compare the outputted message then the 3 expression below will show you the same message,(but be aware of they may have different return values, especially for `p` method)
-  - `p object`
-  - `puts object.inspect`
-  - `print(object.inspect + "\n")`
-
-Look at the second example below, is `to_s` called before or after `.inspect` ? why
-
-```ruby
-"This is a #{dog}"
-=> "This is a #<Dog:0x00007fcddb98e990>"
-
-"This is a #{dog.inspect}"
-=> "This is a #<Dog:0x00007fcddb98e990 @age=4>"
-```
-
-- `to_s` is called after `inspect`, because
-  - if it first called `dog.to_s`, it will first returned a string that doesn't contain instance variable `@age`
-  - then we call `inspect` on the previously returned **string**, the content would not have any change
-  - so it must call `to_s` after `inspect` to show the full information of an object
+- `to_s` returns an object's string representation, or say returns a string which contains the certain information about the object. What would the information be is determined by how the object's class defines its `to_s` instance method
+- build on `to_s`, `puts` can be understood as "print out the string representation of the object and return `nil`"
+- `inspect` also returns string which contains information about the object, but different from `to_s` it contains some extra information for example its instance variables, `inspect` returns string.
+- `p` is build on `inspect`, it will call `inspect` on the object and append a new line character then print that out, but `p` returns the object itself.
 
 16. Among `puts`, `p` and string interpolation, which ones will call `to_s`, if called, when?
 
@@ -216,7 +168,7 @@ Look at the second example below, is `to_s` called before or after `.inspect` ? 
 - `inspect` will not call `to_s` automatically but the return value is also string
 - string interpolation will call `to_s` at the very end of its interior.
 
-17. Would this code work out okay? Can you guess the message being outputted and what is the final return value?
+17. Would this code work out okay? Can you guess the message being output and what is the final return value?
 
 ```ruby
 "#{
@@ -253,7 +205,7 @@ puts "#{dog.name} is a #{dog.age} years old #{dog.class.name.downcase}"
 20. Modules have two main features, what are they?
 
 - holding reusable methods which can be mixed into other classes.
-- namespacing: organize similar(or same type) classes into one module can facilitate management and avoid class name collision
+- namespacing: organize similar(or same type) classes into one module which can facilitate management and avoid class name collision
 
 21. Given this code, how to call `shine` method within the `show` method in `Face` class then print out `Shining`
 
@@ -336,7 +288,7 @@ def a_method
   end
 end
 ```
-- after we wrote `attr_reader :age`, `age` or `self.age` would be a method call, so
+- after we wrote `attr_reader :age`, `age` would be a method call, so
   - `age` + 3
   - `<`, `>`, `%` and `==` are all fake operators + 4
 - totally 7
@@ -479,7 +431,7 @@ Before running the last line
   - what is the last printed out message?
   - in `balls` array, which exception classes can be rescued by `rescue StandardError` if any of them is been raised? Why?
 
-- only `RustyError` will be raised since we specified a condition `if ball == RustyError`
+- only `RustyError` is raised(but not shown because it has been rescued), or say no visible exception is raised, that's because we specified a condition `if ball == RustyError`
 - 3 times.
 - the last printed out message is `"Didn't catch it..."`, it's printed by `puts e.message` in `play` method's `rescue` branch
 - all of them. Because all of them are descendant classes of `StandardError`, `rescue StandardError` will rescue `StandardError` and all of its descendant classes
@@ -514,7 +466,7 @@ end
 ```
 
 27. How to reference the constant `NUMBER` in `a_method` in this case?
-  - come up with more than 5 ways, it doesn't have to be concise, just let it work
+  - come up with more than 5 ways, it doesn't have to be concise, just make it work
 
 ```ruby
 class A
@@ -531,7 +483,7 @@ end
 ```
 
 - core rule
-  - descendant class can access superclass' constant without specify first initialized place(class)
+  - descendant class can access superclass' constants without specifying first initialized place(class)
   - looking upward
 
 ```ruby
@@ -578,7 +530,7 @@ module X
 end
 
 class A
-  include module
+  include X
 end
 
 class B < A
@@ -589,6 +541,7 @@ end
 
 - answer
   - easiest way is ignoring classes, get it directly from the module
+  - another way is referencing it without any prepended classes or modules
 
 ```ruby
 class B < A
@@ -677,8 +630,8 @@ calculate
 
 - calling `count_things` without passing in argument will not raise exception since we specified default value for the argument while defining this method
 - `'false' || num / 0 > 1` will not raise exception, because the short circuiting mechanism of Ruby
-  - while using `||`, once a truthy value appears, the whole expression is surely to be truthy so the rest of the expression will be omitted
-  - in this case `'false'` will first evaluated to true, so ruby never run `num / 0 > 1`
+  - when using `||`, once one truthy value appears, the whole expression will be evaluated as `true` so the rest of the expression will be skipped
+  - in this case `'false'` will first evaluated to `true`, so Ruby never run `num / 0 > 1`
 - no exceptions so program goes into the `if` branch in `count_things` method
 - so the outputted message is `"Cloudy day!"`
 
@@ -732,9 +685,9 @@ Dog.new.set_age(2)
 ```
 
 - no
-  - though setter method is the only exception which accepts a reciever, but
-    - the reciever must exactly be `self`
-    - anyother variables pointing to current instance are not acceptted even they are pointing to the same thing as `self`
+  - though setter method is the only exception which accepts a receiver, but
+    - the receiver must exactly be `self`
+    - any other variables pointing to current instance are not acceptted even they are pointing to the same thing as `self`
 
 Then how about this?
 
@@ -751,8 +704,12 @@ end
 Dog.new.set_age(2)
 ```
 
+- This works.
+
 - why the first case failed?
 - according to the last 2 cases, can you explain the rule of using private setter method?
+
+Private setter method is an exception that can be invoked with a receiver, but the receiver has to be `self`.
 
  *Updated*
 
@@ -760,7 +717,7 @@ Dog.new.set_age(2)
 
 35. Give an example which can illustrate the use of mixin in Ruby core.
 
-- An exmaple about `class String`, `class Hash`, `class Array` and `class Numeric`
+- An example is about `class String`, `class Hash`, `class Array` and `class Numeric`
 - These classes are relating to the main data types that we use very often in Ruby.
 
 If we check the ancestors for each of them:
@@ -775,18 +732,16 @@ If we check the ancestors for each of them:
 
 Tow things here need to be noticed:
 - not all ancestors are classes
-- their direct superclass is `class Object`
+- their direct superclass is `Object` class
 
-Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that can enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things in this module.(graph may not showed complete, click link below to see full)
+Actually `Enumerable`, `Comparable` and `Kernel` are modules, not classes. Modules are like pluggable packages that enable specific classes to do many things. Once a class includes a module, its instances and its subclasses' instances are able to do things defined in this module.(graph may not showed complete, click link below to see full)
 
 https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg
 
 ![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/core.jpg)
 *Kernel is included in `class Object`, this is not labelled in the graph.*
 
-36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance?
-
-- If not, give an example of multiple inheritance
+36. `class C` inherits from `class B` inherits from `class A` inherits from `class Object`. Is this multiple Inheritance? If not, give an example of multiple inheritance
 
 - No. It's not. Multiple inheritance means one class directly inherits from many classes.
 - exmaple:
@@ -851,7 +806,7 @@ class Woodpecker < Bird
 end
 ```
 
-Then we can visualize the relationships in thie graph(graph may not showed complete, click link below to see full)
+Then we can visualize the relationships in the graph(graph may not showed complete, click link below to see full)
 
 https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animals.jpg
 
@@ -859,7 +814,7 @@ https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/animal
 
 According to this graph we can see:
 - we cannot include `Walkable` and `Swimmable` into `Mammal`, since one of the mammals `Cat` cannot swim, also `Whale` cannot walk
--  we cannot incldue `Flyable` into `Bird` because there is an exception `Penguin` cannot swim, it just walks...
+-  we cannot include `Flyable` into `Bird` because there is an exception `Penguin` cannot swim, it just walks...
 
 When focusing on the classes which include 2 modules -- `Dog` and `Penguin` in this case
 - `Dog` can swim and walk
@@ -870,13 +825,13 @@ When focusing on the classes which include 2 modules -- `Dog` and `Penguin` in t
   - but it cannot inherit from `class Mammal` to enable itself to walk(same reason with Dog)
   - it cannot inherit from `class Fish` to enable itself to swim, because it is not fish
 
-Even though Ruby allowed multiple inheritance, this problem cannot be solve. So we have to distribute different module to different classes as needed.
+Even if Ruby allowed multiple inheritance, this problem cannot be solve. So we have to distribute different modules to different classes as needed.
 
 39. Read this description about public methods
 
 > A public method is a method that is available to anyone who knows either the class name or the object's name. These methods are readily available for the rest of the program to use and comprise the class' interface (that's how other classes and objects will interact with this class and its objects).
 
-Write a code example to illustrate the things that are discribed by this paragraph
+Write a code example to illustrate the things that are described by this paragraph
 
 ```ruby
 class Human
@@ -900,7 +855,7 @@ bob.eat(cooked_meat)
 In the above example
 - `cook` method is a public instance method in `class Meat`
 - but we can call `cook` once we
-  - 1) know the class which `cook` resides in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without limitation
+  - 1) know the class which `cook` resides in -- `Meat`, because once we know the name of the class, then we can instantiate instances from this class, then we can call the public instance methods without restriction
   - 2) get an instance of `Meat`(same reason)
 
 We can even make many other classes which can eat cooked meat, like `Bear`, `Cat`, `Dog` ... No matter what the classes are, once they want interact with `Meat`, the `cook` method would be an "always there" (entrance)interface
@@ -927,9 +882,9 @@ So once I know:
 - the public method's class name or
 - an instance from its class
 
-I can call this method without limitation.
+I can call this method without restriction.
 
-40. Private methods are methods that cannot been called out of the class definition.
+40. Private methods are methods that cannot be called out of the class definition.
 
 Given this example:
 
@@ -954,29 +909,12 @@ end
 - look at the very end of the class definition, would the call to `dream` raise exception? What if we wrote `self.dream`? Why?
 - find a way to print out `I am flying!"` outside of the class definition
 - find a way to print out `I am flying!"` inside of the class definition without directly calling `dream`
-- point out all the places we call `dream` inside the class definition
 - give an example about "call `dream` outside of the definition"
 
 - answer
 
 - No; but `self.dream` would. Because `dream` is a private class method, we cannot call a private method with any receiver
 - write `Dog.sleep` outside of the class definition
-- wirte `self.sleep` after the definition of class method `sleep`
+- write `self.sleep` or `sleep` after the definition of class method `sleep`
 - within the method definition of class method `sleep`; and the last line inside the class definition
 - write `Dog.dream` outside of class definition(ignore the raised error)
-
-41. (optional)Think of a metaphor to help you undstand public and private method
-
-metaphor 1:
-
-- public method is like an object is shouting, any other objects who want to hear can hear from it
-- private method is like an object's monologue in its mind, it's very secret, nobody can hear
-
-metaphor 2(this one is from book`<well grounded rubyist>`)
-
-Say if you own a bakery, now you want to let one of your bakers to bake some cakes and loaves
-
-- public methods is like you are talk to your baker: "`bake_some_cakes` and then `bake_some_loaves`"
-- private methods is like the baker is recalling the baking steps in his/her mind : "Ok, first I need to `beat_eggs`, then `mix_in_flour`, then `add_water`, then `stir_to_batter`, then `bake()`".
-
-`bake_some_cakes` is a public order(method) that you said to baker. You will never tell your baker to `add_water` or `beat_eggs`, these are things(private method) a baker will only recalls in mind, the baker just automatically follow these steps when he/she want to bake something.
