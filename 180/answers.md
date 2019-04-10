@@ -1,6 +1,6 @@
 ## SQL and Relationship Database
 
-1. What is relational database? include these terms in answer and do a lucid description of these terms
+1. What is relational database? include these terms in answer and do a short description of these terms:
 - relational model
 - RDBMS
 - SQL
@@ -23,7 +23,7 @@ A relational database is a database based on the relational model of data. A sof
 
 A semicolon.
 
-4. How to perform these operations by using postgresql client applications
+4. How to perform these operations by using postgresql client applications:
 
 - set up
   - how to create a database with a given name
@@ -41,15 +41,15 @@ A semicolon.
   - what does `-d` flag means in a `psql` Meta-commands(check `psql --help`)
     -  -d, --dbname=DBNAME  database name to connect to (default: "xullnn") `psql -d db_name` means enter the database named `db_name` owned by user `"Xullnn"` via psql console
 
-5. how to select one or more columns from a table? how to separate the names of columns
+5. how to select one or more columns from a table? how to separate the names of columns?
 
 Type one or more column names after `SELECT`, separate them with commas. For example `SELECT col_1, col_2, col_3 FROM tb_name;`
 
 6. what's the means of database usually used to label a specific row? or say what will be used as unique identifier to a row?
 
-Normally we use a column called `id` which holds non-empty, unique, integer values to identify each row.
+Normally we use a column called `id` which holds non-empty, unique, integer value to identify each row.
 
-7. what should be written before and after the `=` in sql statement? what is the difference on meaning of this in sql and programing language like Ruby.
+7. what should be written before and after the `=` in sql statement? what is the difference on meaning of this `=` in sql and programing language like Ruby?
 
 In SQL `=` can be used in `WHERE` clause or to update data
   - in SQL
@@ -91,14 +91,14 @@ DDL handles the schema of database and tables. If a SQL statement touches(CRUD) 
 
 `\c db_name`
 
-15. If your psql prompt is `another_database=#`, and you want to delete the `another_database` database, how to do it? Two ways!
+15. If your psql prompt is `another_database=#`, and you want to delete the `another_database` database, how to do it?
 
 - exit psql console by execute `\q` then perform `dropdb db_name`
 - or in psql console
   - first switch to another database `\c another_database`
   - perform SQL `DROP DATABASE db_name;` (don't forget semicolon)
 
-16. Point out the different components in this sql statement, which of these components are required.
+16. Point out the different components in this sql statement, which of these components are required?
 
 ```
 sample_db=# CREATE TABLE users (
@@ -124,7 +124,8 @@ sample_db=# CREATE TABLE users (
 
 To keep the integrity and consistency of data and the relationships between tables in a database.
 
-19. How to view these things in psql console
+19. How to view these things in psql console?
+
   - all databases on your local machine
     - `\list`
   - all relations in a database in psql console?
@@ -142,7 +143,7 @@ To keep the integrity and consistency of data and the relationships between tabl
 
 Yes.
 
-22. If part an sql statement is `(weight DECIMAL(8, 2))` what's the meaning of `8` and `2`? What the max and minimal value for this column?
+22. If part of a sql statement is `(weight DECIMAL(8, 2))` what's the meaning of `8` and `2`? What the maximal and minimal value for this column?
 
 - `weight` is the name of the column
 - `DECIMAL` indicates the type of column is an arbitrary decimal number with a specified precision and scale
@@ -198,7 +199,7 @@ The syntax `SET` can only used to add constraints like `UNIQUE` and `NOT NULL`.(
 
 28. How to insert string `'O' Sullivan'` into a table?
 
-In SQL string is wrapped by single quotation, we need to use single quotation mark `'` to escape single quotation in a string. Double quation is used to escape arguments whose name collide with the SQL key words.
+In SQL string is wrapped by single quotation, we need to use single quotation mark `'` to escape single quotation in a string. Double quotation is used to escape arguments whose name collide with the SQL key words.
 
 29. What would cause a "Three State Boolean problem or Three Valued-logic problem" ?
 
@@ -291,7 +292,7 @@ Percent sign.
 
 42. What's the basic syntax of updating row(s) in a table?
 
-`UPDATE table_name SET (col_1 = 'some value') WHERE id = 2;`
+`UPDATE table_name SET col_1 = 'some value' WHERE id = 2;`
 
 43. What would happen if we omit the `WHERE` clause potion of our updating statement?
 
@@ -331,7 +332,7 @@ It's a diagram use the name of entities and crow's foot notation to draw out the
 
 In the context of database, key is a concept that used to reference a certain row of data. More specifically
 
-- Primary key is a key used as an unique identifier for a single row, we can locate a row of data by using primary key of the table.
+- Primary key is a key used as an unique identifier for a single row, we can pinpoint a row of data by using primary key of the table.
 - Unlike primary key, foreign key references row of data from another table.
 - Primary key and foreign key is the way how we implement the relationship between relations.
 
@@ -341,7 +342,7 @@ The need to keep data integrity across tables within a relationship. Or say prev
 
 53. Why we need `ON DELETE` clause, how it relates to referential integrity?
 
-`ON DELETE` usually follows `FOREIGN KEY()` constraint to say that "when the referenced record of another table is deleted, delete this corresponding row in this table either.". It's a way to implement referential integrity.
+`ON DELETE` usually follows `FOREIGN KEY()` constraint to say that "when the referenced record of another table is deleted, delete this corresponding row in this table either". It's a way to implement referential integrity.
 
 54. What a cross-reference table(join table) be used for?
 
@@ -359,7 +360,7 @@ Used to implement a many-to-many relationship.
 - FULL JOIN first get the intersection of all tables, then plus all the remaining rows of all tables, also fill all empty fields with `NULL`. It can be understood as the union of all rows from all tables
 - CROSS JOIN is different from the above ones, it don't need a `ON` condition to specify the join condition. It perform combination across all rows of all tables.
 
-57. What's the syntax of table name aliasing in SQL?(and shorthand form)
+57. What's the syntax of table name aliasing in SQL(and shorthand form)?
 
 `SELECT t.name FROM table_1 AS t;`
 
@@ -390,7 +391,7 @@ Yes. Most queries can have multiple ways to accomplish.
 
 Not exactly, the DDL and DCL part won't touch actual data.
 
-62. What is bit? What is byte?
+62. (Optional)What is bit? What is byte?
 
 "bit" stands for binary digit. It is a basic unit of information in information theory, computing, and digital communications. 1 bit can be `1` or `zero`.
 
@@ -413,7 +414,7 @@ Use `extract()` function
 
 `SELECT extract(year from published_date)::int FROM reviews;`
 
-65. How to split a string in PostgreSQL? How to get substring from a given string position in PostgreSQL?
+65. How to split a string in PostgreSQL? How to get substring from a given char position in PostgreSQL?
 
 https://www.postgresql.org/docs/11/functions-string.html
 
@@ -478,7 +479,7 @@ sql_book=# SELECT NULL IS NULL;
 - Natural key means using existing values of a column in a table as the primary key of the table.
 - surrogate key means create another column which solely used as its primary key.
 
-69. What's the difference between `(id integer PRIMARY KEY)` and `(id serial)`
+69. What's the difference between `(id integer PRIMARY KEY)` and `(id serial)`?
 
 think of these:
 - auto incrementing?
@@ -528,7 +529,7 @@ https://www.postgresql.org/docs/11/ddl-default.html
 
 That column will filled with the default value. If no default value is declared explicitly, the default value is the null value. This usually makes sense because a null value can be considered to represent unknown data.
 
-72. If a column was originally set as `boolean` type and not added with a `NOT NULL` constraint. How to construct an expression to select all rows that are not `false` in this column?(notice the relationship between boolean values and `NULL`, what is the opposite(!=) of `true` or `false`)
+72. If a column was originally set as `boolean` type and not added with a `NOT NULL` constraint. How to construct an expression to select all rows that are not `false` in this column?(notice the relationship between boolean values and `NULL`, what is the opposite(!=) of `true` or `false`)?
 
 `... WHERE column_name != false AND column_name IS NULL;`
 
@@ -559,11 +560,11 @@ For example in a one-to-many relationship
 
 Crow's foot notation is used to draw out the relationship of tables, or say it's a graphic description of a relationship's cardinality and modality.
 
-77. Why we can't use aggregation functions in `WHERE` clause?(think of from what object(s) each them will perform on?)
+77. (Optional)Why we can't use aggregation functions in `WHERE` clause?(think of from what object(s) each them will perform on?)
 
 https://stackoverflow.com/questions/42470849/why-are-aggregate-functions-not-allowed-in-where-clause
 
-- Where handles 1 row each time, it filters rows by scanning the table row by row.
+- `WHERE` handles 1 row each time, it filters rows by scanning the table row by row.
 - aggregate function perform operation on multiple rows, the choosing of rows in aggregate function is based on the result of `WHERE` clause
 - so the order of operation is scan and filter rows by `FROM` and `WHERE` then perform aggregate function, so we cannot perform aggregate function in the middle of the work of `WHERE`
 
@@ -590,7 +591,7 @@ CREATE TABLE table_name (
 ALTER TABLE table_name ADD FOREIGN KEY (book_id) REFERENCES books(id);
 ```
 
-79. Does a foreign key constraint prevent NULL values from being stored in a column?What about primary key column
+79. Does a foreign key constraint prevent NULL values from being stored in a column? What about primary key column?
 
 No, foreign key will not prevent `NULL`. But a primary key constraint will impose both `UNIQUE` AND `NOT NULL`.
 
@@ -624,7 +625,7 @@ Similar to comparison operators(`>` `<` `!=` ...), in WHERE clause all the keywo
 
 Notice in certain cases, some syntaxes are interchangeable. For example `WHERE age > ALL (SELECT age FROM users);` or `WHERE age < ALL (SELECT age FROM users);` can also write as `WHERE age NOT IN (SELECT age FROM users);`.
 
-84. How indexes work?
+84. (Optional)How indexes work?
 
 https://stackoverflow.com/questions/1108/how-does-database-indexing-work
 

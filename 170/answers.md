@@ -538,10 +538,6 @@ p run_the_stack([Shout, Zuul], Talk.new, { name: "Dana"} )
 
 ```
 
-A more likely flow and the interaction through the course can be drawn as below:
-
-![](https://s3-ap-southeast-1.amazonaws.com/image-for-articles/image-bucket-1/Rack+flow.png)
-
 54. How sinatra redirect a user to another page?
 
 The `redirect` method sets the Location header in the HTTP **response** that is sent back to the client, as well as the status code to a value in the range of **3XX**, signifying redirection; codes `301` and `302` are the most commonly used for redirection. The browser confirms that the correct status `3XX` status code is there, looks at the value of this header, and then uses that header value to navigate to a new URL.
