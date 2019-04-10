@@ -43,7 +43,7 @@
 
 14. How to connect to another database in psql console?
 
-15. If your psql prompt is `another_database=#`, and you want to delete the `another_database` database, how to do it? Two ways!
+15. If your psql prompt is `another_database=#`, and you want to delete the `another_database` database, how to do it?
 
 16. Point out the different components in this sql statement, which of these components are required.
 
@@ -127,7 +127,7 @@ SELECT * FROM users ORDER BY activated ASC, id DESC;
 
 41. How to match all user names whose name contains `Lee`. like `Mary Lee. S`, `Lee Jhon`, `Wu Lee.`in a `char(15)` column?
 
-42. What's the basci syntax of updating row(s) in a table?
+42. What's the basic syntax of updating row(s) in a table?
 
 43. What would happen if we omit the `WHERE` clause potion of our updating statement?
 
