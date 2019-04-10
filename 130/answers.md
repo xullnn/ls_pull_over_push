@@ -6,7 +6,7 @@
 
 - answer
   - A closure is a **general programming concept** that allows programmers to save a "chunk of code" and execute it at a later time.
-    - It's called a "closure" because it's said to bind its surrounding artifacts (ie, variables, methods, objects, etc) and build an "enclosure" around everything so that they can be referenced when the closure is later executed.
+    - It's called a "closure" because it's said to bind its surrounding artifacts (ie, variables, methods, objects, etc) and build an "enclosure" around everything so that they can be referenced when the closure is used later.
     - no.
 
 2. Give a code example to show the use of a closure.
@@ -38,12 +38,12 @@ p make_a_dish(Chicken) { |food| food.steam.bake }
 p make_a_dish(Beef) { |food| food.boil.bake }
 ```
 
-In the above code, the `make_a_dish()` method accepts the type of food, but it doesn't know or care about how to cook the food, so it gives this part of autonomy later to the method caller, by accepting a chunk of code(block) at the calling time.
+In the above code, the `make_a_dish()` method accepts the type of food, but it doesn't know or care about how to cook the food, so it saves/leaves/keeps/reserves this part of work undetermined by accepting a chunk of code(block) at the calling time.
 
 3. What's the 'binding' of a closure?
 
 - answer
-  - in order to be properly executed later, a closure will 'memorize' the needed artifacts around it during its creation. The closure may reference one or more of these artifacts when it is being executed later. All these information absorbed during closure's creation is called its binding.
+  - in order to be properly executed later, a closure will 'memorize' the needed artifacts around it during its creation. The closure may reference one or more of these artifacts when it is being executed later. All these information absorbed during closure's creation is called its binding. We can understand it as the environmental information gathered when a closure is created.
 
 4. Given the code below:
 
@@ -77,10 +77,9 @@ output:
   - how should we call `n` and `i` in `|n, i|`
     - respectively, what each of them represents?
     - what's the difference between 'argument' and 'parameter'
-
-    - `n` and `i` in `|n, i|` called block parameters
-    - inside the block, `n` represents each element in the caller, `i` represents the corresponding index in every iteration step.
-    - `parameter` means the name of the real passed in value, like in `def a_method(x); end`, we would say we defined `a_method` which takes one parameter `x`; but when we call the method `a_method("a")`, the `"a"` can be called the argument passed in.
+      - `n` and `i` in `|n, i|` called block parameters
+      - inside the block, `n` represents each element in the caller, `i` represents the corresponding index in every iteration step.
+      - `parameter` means the name of the real passed in value, like in `def a_method(x); end`, we would say we defined `a_method` which takes one parameter `x`; but when we call the method `a_method("a")`, the `"a"` can be called the argument passed in.
   - what's the return value of every iteration step, how the return values were used?
     - the return values of every block is `1, 4, 9, 16, 25`,
     non of them is used, means non of them affects the method's return value.
@@ -90,7 +89,7 @@ output:
 5. What is the determinative factor that can decide the return value of a method(which optional accepts a block)?
 
 - answer
-  - it is the implementation of the method, or say how we initially defined the method. We could choose to let the block's return value affects the method's return value, we also could choose not to.
+  - it is the implementation of the method, or say how we initially defined the method. We could choose to or not to utilize the block's return value, it's due to the design of the method.
 
 6. Can we pass a block to any methods?
   - yes. Syntactically, every method in Ruby accepts a block as an implicit argument.
@@ -140,7 +139,7 @@ a_method(1, 2, a_proc)
 - answer
   - add `if block_given?` or other appropriate conditional
 
-10. How to implement a method can be called with or without giving a block? (Two ways)
+10. How to implement a method which can be called with or without giving a block? (Two ways)
 
 - answer
   - use `&block` to capture the possibly passed in block
@@ -176,8 +175,8 @@ Which definition(s) are wrong, why?
 
 - answer
   - the key is knowing the difference between `&arg` and `arg` when defining a method
-  - bare `arg` in the argument list means this method explicitly requires 1 argument or say one object
-  - `&arg` doesn't mean that, it means this method will capture the potentially passed in block, convert it into a proc, and assign that proc to `arg`, and block is not an object, so this method doesn't accept any object as its argument.
+  - bare `arg` in the argument list means this method explicitly **requires** 1 argument or say one object
+  - `&arg` doesn't mean that, it means this method will capture the potentially passed in block, convert it into a proc, and assign that proc to `arg`, however, block is not an object, so this method doesn't accept any object as its argument.
 
   - so accordingly
     - `#2` is wrong on syntactic level, inside the method definition we use `arg` without `&` to call out the captured-then-converted proc.
@@ -217,7 +216,7 @@ method_five('Hello', a_proc)
 
   - answer
     - a typical scenario is when we need some 'before and after' operation on our program.
-    - for example when we are dealing with `File` objects, we need to first open it then perform some processings, then close the file at the end. The 'open' and 'close' operations are the same steps would be performed every time, but the processing procedure might vary.
+    - for example when we are dealing with `File` objects, we need to first open it then perform some processing work, then close the file at the end. The 'open' and 'close' operations are the same steps which would be performed every time, but the processing procedure might vary.
 
 ```ruby
 File.open('../sample.txt', 'w') do |f|
@@ -228,7 +227,7 @@ end
   - though we only performed the file processing, the `File::open` method actually did both open and close work for us, it's implemented in the method definition. Thus we can focus on the main purpose of processing file and no worry about forgetting close the file or bothering open the file every time.
   - another similar scenario is the the setup and teardown steps in minitest
 
-  - Another possible kind of scenarios is when we are writing a general method but we want to leave part of the intermediate operation decision to the method caller, means while calling that method, the method caller has some flexibility to add a twist on part of the method(without affecting the original implementation of the method). Many of Ruby's methods in Enumerable module fall into this kind.
+  - Another possible scenario is when we are writing a general method but we want to leave part of the intermediate operation decision to the method caller, means the moment when we calling that method, the method caller has some flexibility to add a twist on part of the method(without affecting the original implementation of the method). Many of Ruby's methods in `Enumerable` module fall into this kind.
 
 14. Given this method definition:
 
@@ -251,7 +250,7 @@ a_method(proc_obj)
 ```
 
 - answer
-  - `#1`: `Nil`
+  - `#1`: `NilClass`
   - `#2`: `Proc`
   - `#3`: this will raise ArgumentError
 
@@ -301,10 +300,10 @@ The 'before and after' methods `setup` and `teardown` are not written into the `
 Given this code expression:
 
 ```ruby
-[1,2,3].each(&something)
+['abc', 'def'].map(&something)
 ```
 
-How the `&` in `[1,2,3].each(&something)` will put in effort to make the code work? Use pseudo code to draw out the steps the `&` will try.
+How the `&` in `['abc', 'def'].map(&something)` will put in effort to make the code work? Use pseudo code to draw out the steps the `&` will try.
 
 - answer
   - a general description is `&` will first try to convert `something` into a proc object, then further convert the proc to a block which can be used by the `each` method
@@ -315,6 +314,28 @@ first try converting `something` to a proc
   else call `to_proc` on `something`
     if `something` can't be converted to a proc, raise exception
 second convert the proc object into a block, then pass this block to the method invocation -- `each`
+```
+
+code experiment
+
+```ruby
+something = 'split'
+ => "split"
+['abc', 'def'].map(&something)
+Traceback (most recent call last):
+        2: from /Users/xullnn/.rvm/rubies/ruby-2.5.3/bin/irb:11:in `<main>'
+        1: from (irb):24
+TypeError (wrong argument type String (expected Proc))
+
+something = :split
+ => :split
+['abc', 'def'].map(&something)
+ => [["abc"], ["def"]]
+
+something = Proc.new { |x| x.split }
+ => #<Proc:0x00007ff4518473d8@(irb):27>
+['abc', 'def'].map(&something)
+ => [["abc"], ["def"]]
 ```
 
 18. Given the code below:
@@ -342,7 +363,7 @@ obj = method(:a_method)
 
 return value is `[3, 4, 5]`
 
-19. Do the two `&`s below behave the same?
+19. Do the two `&`s below behave the same way?
   - if not, what's the difference?
 
 ```ruby
@@ -359,10 +380,10 @@ end
 They are different:
 - for `[1,2,3].each(&something)` the `&` is trying to 1) converted `something` to a proc; 2) then to a block
   - the termination is block
-  - the whole process is heading executing
-- for `def a_method(&something)`, the `&` is trying to 1) capture a possibly passed block; 2) capture then convert the block to a proc; 3) then assign the newly created proc to `something` which can be referenced as a local variable inside the method
-  - the termination is use the passed in block to instantiate a proc object
-  - the whole process is aiming defining method
+  - the final purpose is to execute the code predefined in `something`
+- for `def a_method(&something)`, the `&` is trying to 1) capture a possibly passed block; 2) then convert the block to a proc; 3) then assign the created proc to `something` which can be referenced as a local variable inside the method
+  - the final purpose is using the passed in block to instantiate a proc object
+  - the whole process is defining a method
 
 ---
 
@@ -373,7 +394,7 @@ They are different:
 21. What's the prerequisite code needed to create test class aided by minitest?
 
 - answer
-  - first need to load Ruby's test library `require 'minitest/autorun'`
+  - first need to load minitest library `require 'minitest/autorun'`
   - second need to load the file(s) which contain the program we want to test, for example `require '../sample.rb'`
   - then need to create the test class which inherits from `Minitest::Test` for example `class CarTest < Minitest::Test; end`
 
@@ -478,7 +499,7 @@ a_lambda.call('x')
 # => ArgumentError: wrong number of arguments
 ```
 
-27. What's the return value of every `counter.call`, why?
+27. (Optional)What's the return value of every `counter.call`, why?
 
 ```ruby
 def make_counter
@@ -537,14 +558,14 @@ So before the first `counter.call`, the `n` relating to the binding of the proc 
 - Rake
 
 - answer
-  - level 1: among all the stuff listed above, the local operating system(the OS) is at the highest level.
+  - level 1: among all the stuff listed above, the local operating system(the OS) is at the lowest level.
   - level 2: Ruby is a programming language that is originally carried by MacOS, we can inspect this by running `/usr/bin/ruby -v`, this will show something like `ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin17]`, this is the system-carried Ruby version installation
-  - level 1.5: I prefer to put the RVM or Rbenv at the level between 1 and 2. because they are both Ruby version manager that deviate from the system-carried Ruby.
+  - level 3: RVM and Rbenv, because they are both Ruby version managers.
     - they can install and manage multiple versions of Ruby and RubyGems
     - it can also determines what version of Ruby we are using by bypassing the system-carried Ruby
-  - level 3: RubyGems, they are packages of code that we can download, install and execute in our Ruby project or terminal. We talk about RubyGems under the context of Ruby. They can be thought of as external libraries we can import to extend our Ruby project or our local Ruby.
+  - level 4: RubyGems, they are packages of code that we can download, install and execute in our Ruby project or terminal. We talk about RubyGems under the context of Ruby. They can be thought of as external libraries we can import to extend our Ruby project or our local Ruby.
     - we use directives start with `gem` to manipulate the different gems
     - we don't have to install RubyGems, it's carried by modern Rubies
-  - level 4: Bundler and Rake, they are both RubyGems
-    - rake is originally carried by modern Rubies, it's a tool that can automate many tasks on Ruby development.
-    - bundler is a gem, but it can manage the versions of other gems for a project(it seems a little recursive). We use bundler to manage the various dependencies in our project, it ensures we run the correct version of Ruby and correct version of different gems in different projects.
+  - level 4.5: Bundler and Rake, they are both RubyGems
+    - rake is originally carried by modern Rubies, it's a tool that can automate many tasks in Ruby development.
+    - bundler is a gem, but it can manage the versions of other gems for a project(it seems a little recursive). We use bundler to manage the various dependencies in our project, it ensures we run the correct version of Ruby and correct versions of different gems in different projects.

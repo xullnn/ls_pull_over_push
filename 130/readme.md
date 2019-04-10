@@ -71,7 +71,7 @@ a_method(1, 2, a_proc)
 
 9. How to avoid this kind of situation?
 
-10. How to implement a method can be called with or without a followed block? (Two ways)
+10. How to implement a method which can be called with or without a followed block? (Two ways)
 
 11. Given these method definitions:
 
@@ -161,10 +161,10 @@ a_method(proc_obj) # => ArgumentError
 Given this code expression:
 
 ```ruby
-[1,2,3].each(&something)
+['abc', 'def'].map(&something)
 ```
 
-How the `&` in `[1,2,3].each(&something)` will put in effort to make the code work? Use pseudo code to draw out the steps the `&` will try.
+How the `&` in `['abc', 'def'].map(&something)` will put in effort to make the code work? Use pseudo code to draw out the steps the `&` will try.
 
 18. Given the code below:
 
@@ -183,7 +183,7 @@ While iterating through array `[1, 2, 3]`, how to perform  `a_method` on every e
 [1,2,3].map(&obj)
 ```
 
-19. Do the two `&`s below behave the same?
+19. Do the two `&`s below behave the same way?
   - if not, what's the difference?
 
 ```ruby
