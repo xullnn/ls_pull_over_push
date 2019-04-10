@@ -2,7 +2,7 @@
 
 1. What is internet?
 
-The Internet (contraction of interconnected network) is the global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide.
+The Internet is the global system of interconnected computer networks that use the Internet protocol suite (TCP/IP) to link devices worldwide.
 
 https://en.wikipedia.org/wiki/Internet
 
@@ -28,7 +28,7 @@ The Domain Name System (DNS) is a **system** used to convert a computer's host n
 
 <details>
 <summary>More details</summary>
-For example, if a computer needs to communicate with the web server `example.net`, your computer needs the IP address of the web server `example.net`. It is the job of the DNS to convert the host name(`example.com`) to the IP address of the web server. It is sometimes called the Internet's telephone book because it converts a Website's name that people know, to a number that the Internet actually uses.
+For example, if a computer needs to communicate with the web server `example.net`, your computer needs the IP address of the web server `example.net`. It is the job of the DNS to convert the host name(`example.net`) to the IP address of the web server. It is sometimes called the Internet's telephone book because it converts a Website's name that people know, to a number that the Internet actually uses.
 </details>
 
 5. How is data delivered to you reliably through the internet?
@@ -41,7 +41,7 @@ key concepts:
 
 First we need to know exactly where we want to send the data, also the sending destination needs to know where the data sent from, this is done by IP address.
 
-Next,  based one size and type, the data will be splitted into a set of packets before being sent out. The receiving device will receive these packets, then it will confirm and reassemble them together. This part of work(splitting, confirming, reassembling) is done by TCP(Transmission Control Protocol).
+Next,  based one size and type, the data will be split into a set of packets before being sent out. The receiving device will receive these packets, then it will confirm and reassemble them together. This part of work(splitting, confirming, reassembling) is done by TCP(Transmission Control Protocol).
 
 In the midst of transportation, these packets may be sent through different routes based the traffic condition or other factors. Which routes to choose is determined by many routers along the way.
 
@@ -51,9 +51,7 @@ All the protocols and routers let the internet send data reliably, and also give
 <summary>More details</summary>
 <p>If the Internet were made of direct, dedicated connections, it would be impossible to keep things working as millions of users join, especially since there is no guarantee that every wire and computer is working all the time. Instead, data travels on the Internet in a much less direct fashion.</p>
 
-</p>The way information gets transferred from one computer to another is pretty interesting. It need not follow a fixed path. In fact, your path may change in the midst of a computer-to-computer conversation. Information on the Internet goes from one computer to another in what we call **a packet of information**, and a packet travels from one place to another on the Internet a lot like how you might get from one place to another in a car, depending on traffic congestion or road conditions, you might choose or be forced to take a different route to get to the same place each time you travel. And just as you can transport all sorts of stuff inside a car, many kinds of digital information can be sent with IP packets, but there are some limits. What if, for example, you need to move a space shuttle from where it was built to where it will be launched? A shuttle won't fit in one truck, so it needs to be broken down into pieces, transported using a fleet of trucks. They could all take different routes, and might get to the destination at different times, but once all the pieces are there, you can reassemble the pieces into the complete shuttle, and it'll be ready for launch. On the Internet, the details work similarly. If you have a very large image that you want to send to a friend or upload to a website, that image might be made up of tens of billions of bits of ones and zeroes, too many to send along in one packet. Since it's data on a computer, the computer sending the image can quickly break it into hundreds or even thousands of smaller parts called **packets**. Unlike cars or trucks, these packets don't have drivers, and they don't choose their route. **Each packet has the internet address of where it came from and where it's going. Special computers on the Internet, called routers, act like traffic managers to keep the packets moving through the networks smoothly.** If one route is congested, individual packets may travel different routes through the Internet, and they may arrive at the destination at slightly different times, or even out of order.</p>
-
-</p>As part of the Internet Protocol, every router keeps track of multiple paths for sending packets, and it chooses the cheapest available path for each piece of data, based on destination IP address for the packet. "Cheapest," in this case, doesn't mean cost, but time and non-technical factors such as politic and relationships between companies. Often the best route for data to travel isn't necessarily the most direct. **Having options for paths makes the network fault tolerant, which means the network can keep sending packets, even if something goes horribly, horribly wrong. This is the basis for a key principle of the Internet, reliability.** Now, what if you want to request some data and not everything is delivered? Say you want to listen to a song. How can you be 100% sure all the data will be delivered so the song plays perfectly? Introducing your new best friend, **TCP, Transmission Control Protocol. TCP manages the sending and receiving of all your data as packets. Think of it like a guaranteed mail service.** When you request a song on your device, Spotify sends the song broken up into many packets. When your packets arrive, TCP does a full inventory and sends back acknowledgements of each packet received. If all packets are there, TCP signs for your delivery, and you're done. If TCP finds some packets are missing, it won't sign. Otherwise, your song wouldn't sound as good, or portions of the song could be missing.</p>
+</p>The way information gets transferred from one computer to another is pretty interesting. It need not to follow a fixed path. In fact, your path may change in the midst of a computer-to-computer conversation. Information on the Internet goes from one computer to another in what we call **a packet of information**, and a packet travels from one place to another on the Internet a lot like how you might get from one place to another in a car, depending on traffic congestion or road conditions, you might choose or be forced to take a different route to get to the same place each time you travel. And just as you can transport all sorts of stuff inside a car, many kinds of digital information can be sent with IP packets, but there are some limits. What if, for example, you need to move a space shuttle from where it was built to where it will be launched? A shuttle won't fit in one truck, so it needs to be broken down into pieces, transported using a fleet of trucks. They could all take different routes, and might get to the destination at different times, but once all the pieces are there, you can reassemble the pieces into the complete shuttle, and it'll be ready for launch. On the Internet, the details work similarly. If you have a very large image that you want to send to a friend or upload to a website, that image might be made up of tens of billions of bits of ones and zeroes, too many to send along in one packet. Since it's data on a computer, the computer sending the image can quickly break it into hundreds or even thousands of smaller parts called **packets**. Unlike cars or trucks, these packets don't have drivers, and they don't choose their route. **Each packet has the internet address of where it came from and where it's going. Special computers on the Internet, called routers, act like traffic managers to keep the packets moving through the networks smoothly.** If one route is congested, individual packets may travel different routes through the Internet, and they may arrive at the destination at slightly different times, or even out of order.</p>
 
 <p>What's great about the TCP and router systems is they're scalable. They can work with eight devices or 8,000,000,000 devices. In fact, because of these principles of fault tolerance and redundancy, the more routers we add, the more reliable the Internet becomes. What's also great is we can grow and scale the Internet without interrupting service for anybody using it. - The Internet is made of hundreds of thousands of networks and billions of computers and devices connected physically. These different systems that make up the Internet connect to each other, communicate with each other, and work together **because of agreed upon standards for how data is sent around on the Internet**. Computing devices, or routers along the Internet, help all the packets make their way to the destination where they're reassembled, if necessary, in order. This happens billions of times a day, whether you and others are sending an email, visiting a webpage, doing a video chat, using a mobile app, or when sensors or devices on the Internet talk to each other.</p>
 </details>
@@ -62,7 +60,7 @@ All the protocols and routers let the internet send data reliably, and also give
 
 HTTP stands for HyperText Transfer Protocol, it's an agreement that stipulate what format of the text should be while devices are communicating with each other on the internet. It's like a simple but rigorous language each device 'speak' to each other.
 
-HTML stands for HyperText Markup Language. It's a text language which be can be rendered by browser then displayed on the webpage.
+HTML stands for HyperText Markup Language. It's a text language which can be rendered by browsers then displayed on the webpage.
 
 The simplest communication case between two devices involves a request from a client and a response sent by server. Throughout the process, TCP/IP(refers to the whole Internet protocol suite) and routers ensures that data is properly divided into packets and can be delivered to the correct destination. There also has lower physical layers under the hood to handle the data transferring, like different kinds of cables, and the data on the lower layers would also be low-level data form like binary.
 
@@ -88,7 +86,7 @@ The simplest communication case between two devices involves a request from a cl
 <p>Fortunately, **once you've learned how one layer of the internet works, you can rely on it without remembering all the details. We can trust that all those layers will work together to successfully deliver information at scale and with reliability.**</p>
 </details>
 
-7. What is a socket?
+7. (Optional)What is a socket?
 
 Sockets can be thought of as interfaces on different programs or processes. These programs or processes can exist in different places in the world, or at the same machine.
 
@@ -101,7 +99,7 @@ Sockets can be thought of as interfaces on different programs or processes. Thes
 
 8. What's the relationships among: client, port, server, IP address, DNS
 
-Clients and servers are devices on the internet, every device on the internet has its unique identifier that's IP address, for example `192.168.0.1`. For humans to locate a device we usually don't know anything else than a host name like `google.com`, Then, it's the DNS(domain name system)'s responsibility to convert the hostname into IP address, DNS a distributed database system for looking for IP addresses. The port is like a subinterface of a device. A device has its IP address(`192.168.0.1`) to locate where it is, further, it also may have different interfaces(ports like `192.168.0.1:1234` or`192.168.0.1:5678`) to handle different types of incoming requests or other information.
+Clients and servers are devices on the internet, every device on the internet has its unique identifier that's IP address, for example `192.168.0.1`. For humans to locate a device we usually don't know anything else than a host name like `google.com`, Then, it's the DNS(domain name system)'s responsibility to convert the hostname into IP address, DNS is a distributed database system for looking for IP addresses. The port is like a subinterface of a device. A device has its IP address(`192.168.0.1`) to locate where it is, further, it also may have different interfaces(ports like `192.168.0.1:1234` or`192.168.0.1:5678`) to handle different types of incoming requests or other information.
 
 <details>
   <summary>More details</summary>
@@ -122,9 +120,9 @@ When a port number is needed, the address is specified as:
 
 9. What is the statelessness of HTTP? What's the pros and cons?
 
-Statelessness of HyperText Transfer Protocol means every request/response between devices using http is independent from each other. No state is persisted through their communication.
+Statelessness of HyperText Transfer Protocol means every request/response cycle between devices using http is independent from each other. No state is persisted through their communication.
 
-The pros is it makes communication more lightweight, and both the server and client don't have to accumulate more and more data as their communication goes on, neither they need to do cleanup work when their communication finished or accidentally broken.
+The pros is it makes communication more lightweight, and both the server and client don't have to accumulate more and more data as their communication goes on, also they don't have to do cleanup work when their communication finished or accidentally broken.
 
 The cons is it makes it harder to maintain a state during a session between client and server. Developers have to find a way to simulate a statefulness so the both sides -- especially the server side -- know who is sending the information.
 
@@ -183,7 +181,7 @@ URL(web address) is originally designed to only accept chars in [ASCII Character
 
 https://en.wikipedia.org/wiki/Percent-encoding
 
-Percentage sign `%` plus two hexidecimal digits.
+Percentage sign `%` plus two hexadecimal digits.
 
 https://en.wikipedia.org/wiki/ASCII#/media/File:USASCII_code_chart.png
 
@@ -193,7 +191,7 @@ curl is a free command line tool that is used to issue HTTP requests.
 
 18. When we type a url in a tab bar of browser, then click enter, see the displayed webpage, would there only one get request be issued by the browser?
 
-No. If there's other resource like css, js or images, by default the browser will automatically issue new requests to download these resource. Another situation is if the first response's headers contains status 3xx and `"Location"` header, the page we `GET` is not the page we first requested for, we'd been redirected to another page.
+No. If there's other resource like css, js or images, by default the browser will automatically issue new requests to download these resource. Another situation is if the first response's headers contains status 3xx and `"Location"` header, the page we `GET` is not the page we first requested for, we would be redirected to another page.
 
 19. What is HTTP Request Method?
 
@@ -246,11 +244,11 @@ Only status code is required.
 
 Its full name is session identifier, not an id of something.
 
-Session identifier can be used by server to identify client. A session identifier is a unique token such as(`AHWqTUmEn3d-zaGnzmAvwmYNxt1Egj......`). This string identifier is first sent from server to client -- there may have a authenticating step before -- then the client will save this session id locally, normally it would be the browser's cookies. After saving, all the sequent requests send to the said server from this client(browser) will carry this session id information, as a result, the server can identify the identity of the sender. This is how we make an app seemed stateful, even http is stateless.
+Session identifier can be used by server to identify client. A session identifier is a unique token such as(`AHWqTUmEn3d-zaGnzmAvwmYNxt1Egj......`). This string identifier is first sent from server to client -- there may have an authenticating step before -- then the client will save this session id locally, normally it would be the browser's cookies. After saving, all the sequent requests send to the server from this client(browser) will carry this session id, as a result, the server can identify the identity of the sender. This is how we make an app seemed stateful, even http is stateless.
 
-28. Where is the difference between session data stored in server and the session data stored in a client's browser?
+28. What is the difference between session data stored in server and the session data stored in a client's browser?
 
-Originally, session identifier was generated by server, the client only store that information in its browser. Server can validate the session id sent by the client. It can also reset(send a new one) or make the client's session id unavailable(e.g. by means of set expire time) . It's up to the server side to determine how to handle the session data sent along with a request.
+Originally, session identifier was generated by server, the client only store that information in its browser. Server can validate the session id sent by the client. It can also reset(send a new one) or make the client's session id unavailable(e.g. by setting expire time) . It's up to the server side to determine how to handle the session data sent along with a request.
 
 <details>
   <summary>More details</summary>
@@ -280,7 +278,7 @@ SOP is an important concept for security.
 
 31. What is session hijacking?
 
-When a malicious person hijacks a user's session id of a certain web app, that person can use the session id to access the use's information on different web apps. She/he doesn't even need to know the users username and password.
+When a malicious person hijacks a user's session id(cookies), that person can use the session id to access the user's information on different web apps. She/he doesn't even need to know the users username and password.
 
 32. What's the main countermeasures for session hijacking?
 
@@ -315,7 +313,7 @@ XSS stands for Cross-Site-Scripting. It's a type of malicious attack that inject
   <p>Attackers can craft ingeniously malicious HTML and JavaScript and be very destructive to both the server as well as future visitors of this page. For example, an attacker can use JavaScript to grab the session id of every future visitor of this site and then come back and assume their identity. It could happen silently without the victims ever knowing about it. Note that the malicious code would bypass the same-origin policy because the code lives on the site.</p>
 </details>
 
-34. What the possible solutions to defend xss?
+34. What are the possible solutions to defend xss?
 
 Sanitize all user input data, especially some sensitive text like `<script>` tag. (input)
 
@@ -335,7 +333,7 @@ From a simplified view of point, there are 3 components on the server side: web 
 
 - web server responds to static resource requests, since this part of work doesn't involve business logic so it needs not to reach application server
 - application server is where primarily we write out business logic
-- data store is where out application server can save, retrieve or change data. It may have different forms(like file, relationship database etc.) based on the needs of our app.
+- data store is where our application server can save, retrieve or change data. It may have different forms(like file, relationship database etc.) based on the needs of our app.
 
 <details>
   <summary>More details</summary>
@@ -357,7 +355,7 @@ Think of this in what each of these protocols are used for.
 - TCP used for splitting and reassembling data, so it's at the transportation layer
 - IP used for locating devices on the internet, so its at the network layer
 
-TCP is built upon IP(and all the layers below), HTTP is built upon TCP(and all the layers below).
+TCP is built upon IP(and all the layers below), HTTP is built upon TCP(and all the layers beneath it).
 
 38. What is the scheme, host, path, port. query strings in these url?
 
@@ -424,7 +422,7 @@ From the previous question, in the [Order of precedence](https://github.com/rack
 
 49. What does Ruby's `ERB` library do?
 
-The ERB library can process a special syntax that mixes Ruby into HTML, and produces a final 100% HTML string. That’s all it does.
+The ERB library can process a special syntax that mixes Ruby into HTML, and produces a final 100% HTML string. That's all it does.
 
 50. What's the difference between `<% 5.inspect %>` and `<%= 5.inspect %>`
 
@@ -481,7 +479,7 @@ Take the code example above.
 
 Templates (or view templates) are files that contain text that will be converted into HTML before being sent to a user's browser in a response. There are a lot of different templating languages, and they all provide different ways to define what HTML to generate and how to embed dynamic values.
 
-53. Rack's basic idea can be described by using the code below:
+53. (Optional)Rack's basic idea can be described by using the code below:
 
 ```ruby
 def run_the_stack(middlewares, app, env)
@@ -529,6 +527,15 @@ class Zuul
 end
 
 p run_the_stack([Shout, Zuul], Talk.new, { name: "Dana"} )
+
+# Talk app
+# Zuul app wrapped Talk app
+# Shout app wrapped Zuul app wrapped Talk app
+# Then the first `call` being invoked would be the one in `run_the_stack`
+# Then the second `call` being invoked would be the one in `Shout`
+# then strip layer by layer
+# Finally the `call` in Talk will be invoked
+
 ```
 
 A more likely flow and the interaction through the course can be drawn as below:
@@ -551,7 +558,7 @@ The `redirect` method sets the Location header in the HTTP **response** that is 
 - attributes of form
   - `action` indicates request path
   - `method` indicates http method of this form
-- a input related tag for example `<input>` or `<textarea>`
+- an input related tag for example `<input>` or `<textarea>`
   - this part is actually optional, a post request could not contain form data(like a delete operation)
   - if it has, the input tag should contain `name` and `value` attributes to form a complete a valid `name/value` pair as part of the parameters sent to server
 - a submit button which has the attribute `type="submit"`
@@ -568,7 +575,7 @@ From heroku doc:
 
 Heroku apps include a Procfile that specifies the commands that are executed by the app on startup. You can use a Procfile to declare a variety of process types, including:
 
-- Your app’s web server
+- Your app's web server
 - Multiple types of worker processes
 - A singleton process, such as a clock
 - Tasks to run before a new release is deployed
@@ -610,7 +617,7 @@ if we are under `/Users/xullnn`
 
 http://ruby-doc.org/core-2.6.1/Dir.html#method-c-glob
 
-65. When learning Rack app, we know that a Rack app can simply be a ruby object which responds to `call` method that takes an argument `env` and returns an array Rack asked for all rack apps.
+65. (Optional)When learning Rack app, we know that a Rack app can simply be a ruby object which responds to `call` method that takes an argument `env` and returns an array Rack asked for all rack apps.
 
 config.ru
 
@@ -700,7 +707,7 @@ List all file changes and code changes, explain the use of every change.
 
 67. Why should we isolate data from different environments? What's the general idea to do this?
 
-In general isolating data from different environments can prevent operations under different environments from affecting the data of each other.
+In general, isolating data from different environments can prevent operations under different environments from affecting the data of each other.
 
 There are several reasons to do so.
 - if we use the same file/database/space to store data used in different environments(development, test, production)
@@ -718,14 +725,14 @@ Fetch the value of `'rack.session'` from the last request's application environm
 
 What's the difference between this and the previous mentioned code? (hint: Are they relating to request or response? They all have `rack.session` part, where does that come from?)
 
-- `last_request.env['rack.session']` is a expression from within a test. There should have a request before this line.
-  - it grasp the last reqeust's application environment variable `env`
-- `get "/", {}, {"rack.session" => { username: "admin"} }` is also a expression from within a test. But instead of fetch information, this expression is simulating issuing a get request to `"/"` path.
+- `last_request.env['rack.session']` is an expression from within a test. There should have a request before this line.
+  - it grasp the last request's application environment variable `env`
+- `get "/", {}, {"rack.session" => { username: "admin"} }` is also an expression from within a test. But instead of fetch information, this expression is simulating issuing a get request to `"/"` path.
   - There are 3 arguments passed to `get`
     - the path `"/"`, only this one is required argument
     - the parameters sent along with the request -- in this case there's no so it's an empty hash `{}`
-    - the third is information that will be inject into applicaton environment variable `env`
-      - here we are setting the session information we be sent in this request
+    - the third is information that will be inject into application environment variable `env`
+      - here we are setting the session information will be sent in this request
       - sinatra's session is actually supplied by Rack, this can be seen from the key name `"rack.session"`
 - after `get "/", {}, {"rack.session" => { username: "admin"} }`, if there is no redirection or other operations, we can actually use `last_request.env['rack.session'][:username]` to fetch the information in session.
 
@@ -735,7 +742,7 @@ What's the difference between this and the previous mentioned code? (hint: Are t
 
   <p>There are two Hashes passed as arguments to get; the first is the Hash of parameters (which in this case is empty), and the second is values to be added to the request's Rack.env hash.</p>
 
-  <p>Once values have been provided like this once, they will be remembered for all future calls to get or post within the same test, unless, of course, those values are modified by code within your application. This means that you can set values for the session in the first request made in a test and they will be retained until you remove them.</p>
+  <p>Once values have been provided like this once, they will be remembered for all future calls to get or post within the **same test**, unless, of course, those values are modified by code within your application. This means that you can set values for the session in the first request made in a test and they will be retained until you remove them.</p>
 </details>
 
 70. In this test:
@@ -771,7 +778,7 @@ end
 
 The `last_request_session` holds the session of the last request, but the message `"notafile.ext does not exist."` is set in a sinatra route handler, means in a response, why this session information still remains in the last request session?(hint: how many request will happen in this case?)
 
-The first fact is session is set server, so in the response the server side can tell a client to store a piece of session data in this case is `session[:message] = "#{file_name} doesn't exist."`, but this happened at the first response.
+The first fact is session is set on server, so in the response the server side can tell a client to store a piece of session data in this case is `session[:message] = "#{file_name} doesn't exist."`, but this happened at the first response.
 
 `redirect "/"` only set the first responses header `status` to `302` and the `"Location"` to `"/"`, also set the session data. After the browser receiving the first response, it sees the status 302 and the Location header, it will automatically issue another get request to path `"/"` while carrying that session data `session[:message] = "#{file_name} doesn't exist."`, so the second request actually contains that session data.
 
@@ -805,9 +812,9 @@ def test_hard_coded_signin
 end
 ```
 
-Why after we performing `get last_response["Location"]` the `:sigin_in_as` request session remains？
+Why after we performing `get last_response["Location"]` the `:sigin_in_as` request session remains?
 
-Unlike the example above the session data about `:sign_in_as` will only be deteled when signout or delete it manually, so it will retain until then.
+Unlike the example above the session data about `:sign_in_as` will only be deleted when sign out or delete it manually, so it will retain until then.
 
 What if we add more requests in between:
 
@@ -826,11 +833,11 @@ Is the final assertion still succeed? Why?
 
 Same result, same reason.
 
-72. Simply describe what's an one-way hash function, and how it can be used on cryptography?
+72. (Optional)Simply describe what's an one-way hash function, and how it can be used on cryptography?
 
 An one-way hash function is a function that can convert a string which has arbitrary length to a fixed length token. And this operation is one-way, means we cannot convert this token back to the original string.
 
-In practice we won't store users' password or other sensitive information as raw data, we only store the hashed ones. If an attacker steal this hashed data, it's almost impossible to restore the user's real password.
+In practice we won't store users' passwords or other sensitive information as raw data, we only store the hashed ones. If an attacker steal this hashed data, it's almost impossible to restore the user's real password.
 
 73. This is a code example from [bcrypt's doc](https://github.com/codahale/bcrypt-ruby):
 
@@ -857,7 +864,7 @@ The returned string `"$2a$12$K0ByB.6YI2/OYrB4fQOYLe6Tv0datUVf6VZ/2Jzwm879BW5K1cH
 2.5.3 :006 > BCrypt::Password.create("my password").class
  => BCrypt::Password
 ```
-So `...2Jzwm879BW5K1cHey" == "my password"` is not invocating `String#==` it is invocating instance method `BCrypt::Password#==`
+So `...2Jzwm879BW5K1cHey" == "my password"` is not invoking `String#==`, it is invoking instance method `BCrypt::Password#==`
 
 74. If there's a yaml file:
 
