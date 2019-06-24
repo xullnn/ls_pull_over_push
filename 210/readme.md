@@ -2,6 +2,8 @@ What is Node.js?
 
 What's the difference between static and instance method?
 
+What's static scoping?
+
 What are the 5 primitive types in Javascript?
 
 What're the only one compound data type in Javascript?

@@ -13,6 +13,12 @@ What's the difference between static and instance method?
 
 answer:
 
+A method is a function which is a property of an object. There are two kind of methods: **Instance Methods** which are built-in tasks performed by an object instance, or **Static Methods** which are tasks that are called directly on an object constructor.
+
+What's static scoping?
+
+answer:
+
 In js, static scoping is also called lexical scoping. It uses the structure of the source code to determine the variable's scope. To put it another way: the source code defines the scope.
 
 > At any point in a JavaScript program, there is a hierarchy of scopes from the local scope of the code up to the program's global scope. When JavaScript tries to find a variable, it searches this hierarchy from the bottom to the top. It stops and returns the first variable it finds with a matching name. This means that variables in a lower scope can shadow, or hide, a variable with the same name in a higher scope.
