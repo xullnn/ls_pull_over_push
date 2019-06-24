@@ -103,7 +103,7 @@ Order these operators from the highest precedence to the lowest:
 - && - Logical AND
 - <=, <, >, >= - Comparison
 
-What's ternary operator and what's its syntax?
+What's ternary operator and what's the syntax?
 
 What's the syntax of switch statement in Javascript?
 
@@ -124,7 +124,7 @@ What does `continue` do in a loop? What is it similar to in Ruby?
 What's the return value of the code below, why?
 
 ```js
-let numbers = [ 1, 4, 6, 8 ]
+let numbers = [ 1, 4, 6, 8 ];
 numbers.map(number => {if (number > 4) return number * number})
 ```
 
@@ -143,7 +143,7 @@ What's the difference between `forEach`, `map`, `filter`?
 
 What's the return value of `Array.prototype.push()`?
 
-How Javascript handles non-integer and negative indexes?
+How Javascript handles non-positive integer indexes?
 
 ```js
 > arr = [3, 4, 5];

@@ -50,7 +50,7 @@ answer:
 - single quotations inside double quotation string don't have to escape.
 - in other situations use back slash when needed.
 
-What's the syntax to use JS' string interpretation(template literals)?
+What's the syntax to use JS's string interpretation(template literals)?
 
 answer:
 
@@ -66,13 +66,13 @@ What is implicit type coercion and explicit type coercion?
 
 answer:
 
-- when performing certain types of operation -- often comparisons, arithmetic operations etc. -- js will implicitly convert some value to another type, even though you didn't tend to do this.
+- when performing certain types of operation -- often comparisons, arithmetic operations etc. -- js will implicitly convert some value to another type, even though you didn't tend to do this. This is called implicit coercion.
 
 What's the difference between `Number()` and `parseInt()`?
 
 answer:
 
-- `Number()` can convert other types of value as possible as it can
+- `Number()` can convert various types of value into different types of number
   ```js
   > Number('3')
   3
@@ -87,7 +87,7 @@ answer:
   > Number(undefined)
   NaN
   ```
-- `parseInt()` only return integers
+- `parseInt()` only return integers or `NaN`
   ```js
   > parseInt('1.23')
   1
@@ -99,9 +99,9 @@ What's the difference between statement and expression, how to discriminate them
 
 answer:
 
-https://www.quora.com/Whats-the-difference-between-a-statement-and-an-expression-in-Python-Why-is-print-%E2%80%98hi%E2%80%99-a-statement-while-other-functions-are-expressions
-
 Unlike expressions, statements in JavaScript don't necessarily resolve to a value. Statements generally control the execution of the program. Statements always return `undefined` and expressions often but not always return a 'meaningful value'(other than `undefined`).
+
+https://www.quora.com/Whats-the-difference-between-a-statement-and-an-expression-in-Python-Why-is-print-%E2%80%98hi%E2%80%99-a-statement-while-other-functions-are-expressions
 
 What is variable declaration and initialization?
 
@@ -135,7 +135,6 @@ undefined
 2
 ```
 
-
 What's the return value of the last line:
 
 ```js
@@ -149,7 +148,7 @@ answer:
 
 - `4`
 - variable `A` is first declared in global scope, although we use `let` which limits the scope to a block(if any), but since there's not a block, `A` is local to the current scope -- global scope
-- since inner scope can access outer scope, so all the reassignment can change the value of `A`
+- since inner scope can access outer scope, so all the reassignments can change the value of `A`
 
 What's the return value of the last line?
 
@@ -177,9 +176,12 @@ what's the difference between function and method?
 answer:
 
 - if there's a preceding caller then it's a method
-- otherwise we it's a function
+- otherwise it's a function
 
 What a function/method can mutate?
+
+answer:
+
 - a function can mutate passed in arguments
 - a method can mutate the caller or passed in arguments
 
@@ -191,7 +193,7 @@ answer:
 
 - function declaration must start with key word `function`
   - `function hi() {}`
-- function expression is a function declaration as a part of a larger expression
+- function expression is a function declaration as part of a larger expression
   - `let a = function b() {}` or `let a = function() {}` or simply `(function hi() {})`
 - arrow function is a way to write anonymous functions, it's often used during method invocations(being passed in as one of the argument)
   - `[1,2,3].forEach(e => console.log(e))`
@@ -208,14 +210,14 @@ If we assign a value to a variable name without declaring that variable, what th
 
 answer:
 
-It will be at the global variable.
+- It will be at the global variable.
 
 What is non-strict equality operator and non-strict inequality operator? How they work?
 
 answer:
 
 - non-strict equality and inequality are `==` and `!=`(differ from strict ones `===` and `!==`)
-- they are used to perform comparison operation, non-strict mean they don't require the operands to be the same type(e.g `String` to `String`, `Number` to `Number`). If the operands are not same type, non-strict comparison operators will first try convert them to the same type, then perform the comparison.
+- they are used to perform comparison operation, non-strict means they don't require the operands to be the same type(e.g `String` to `String`, `Number` to `Number`). If the operands are not the same type, non-strict comparison operators will first try converting them into the same type, then perform the comparison.
 
 What're the main 3 logical operators in Javascript?
 
@@ -236,11 +238,11 @@ Which values are evaluated to false in Javascript?
 - `false`
 - `null`
 - `undefined`
-- emtpy string `''`
+- empty string `''`
 - the Number `0`
 - the Number `NaN`
 
-How will Javascript handle the situations that we use non-boolean values in a logical expression? For example `'' && 0`, or `6 || 7`?
+How will Javascript handle the situations that non-boolean values are used in a logical expression? For example `'' && 0`, or `6 || 7`?
 
 answer:
 
@@ -254,28 +256,31 @@ answer:
 
 Order these operators from the highest precedence to the lowest?
 
-answer:
-
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
-
 - ===, !== - Equality
 - || - Logical OR
 - && - Logical AND
 - <=, <, >, >= - Comparison
+
+answer:
+
 - comparison > equality > logical `&&` > logical `||`
 
-What's ternary operator and what's its syntax?
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+What's ternary operator and what's the syntax?
 
 answer:
 
 - a shorthand syntax which contains dense logical meaning.
-- there are 3 parts in the expression which are divided by a `?` and `:`
+- there are 3 parts in the expression which are divided by a `?` and a `:`
   - part 1: serve as a if condition
   - `?` signifies the end of if condition
-  - part 2: what to do if the if the part1 if condition is true
+  - part 2: what to do if the part1 if condition is true
   - `:` signifies the beginning of a `else` clause
   - part 3: what to do if `else` clause is triggered(or say if condition is false)
-- for part2 and part3, if that part only contains a single expression, the `return` key word can be omitted.
+- for part2 and part3, if they only contain a single expression, the `return` key word can be omitted.
+
+example: `a > b ? 'greater' : 'less'`
 
 What's the syntax of switch statement in Javascript?
 
@@ -289,7 +294,7 @@ switch (match_criterion) {
 }
 ```
 
-- `match_criterion` will be compared with each case clause one by one.
+- `match_criterion` will be compared with each case condition one by one.
 - once a case is matched, it will execute the code inside the clause
 - if there is no `break` or `return` in the matched case, all the following cases will be executed once. This is called "fall through".
 
@@ -301,8 +306,8 @@ When using loop, what's the difference between `while` and `do/while` syntax?
 
 answer:
 
-- `while` will first check if the loop condition is matched before each round, then determines whether to execute the loop
-- `do/while` place the `while()` condition at the end of the loop, so it will always execute the loop once before it check the loop condition.
+- `while` will first check if the loop condition is matched before each iteration, then determine whether to execute the loop
+- `do/while` places the `while()` condition at the end of the loop, so it will always execute the loop at least one time before it check the loop condition.
 
 What're the 3 components in a `for` loop's argument list?
 
@@ -326,14 +331,14 @@ answer:
 What's the return value of the code below, why?
 
 ```js
-let numbers = [ 1, 4, 6, 8 ]
+let numbers = [ 1, 4, 6, 8 ];
 numbers.map(number => {if (number > 4) return number * number})
 ```
 
 answer:
 
 - `[ undefined, undefined, 36, 64 ]`
-- this is due to how `map()` work. Always remember `map` use the return value of the block to transform every element. It always returns the same number of elements.
+- this is due to how `map()` work. Always remember `map` uses the return value of the block to transform every element. It always returns the same number of elements to the caller.
 
 What's the return value of the code below, why?
 
@@ -349,7 +354,7 @@ numbers.filter(function(number) { number > 6 })
 answer:
 
 - 1: returns `[7, 8, 9, 10]` . When using arrow function syntax, we can omit `return` if there's only one expression inside the block
-- 2: returns `[]`, syntax makes the difference, the comparisons are performed but the comparison results are not returned since we use simple anonymous syntax.
+- 2: returns `[]`, syntax makes the difference, the comparisons are performed but the comparison results are not returned since we use simple anonymous function syntax that will not automatically return comparison value.
 
 What's the difference between `forEach`, `map`, `filter`?
 
@@ -365,7 +370,7 @@ answer:
 
 - the new length of the caller array after pushing.
 
-How Javascript handles non-integer and negative indexes?
+How Javascript handles non-positive integer indexes?
 
 ```js
 > arr = [3, 4, 5];
@@ -415,7 +420,7 @@ arr.includes([1, 2])
 answer:
 
 - first one returns `true`, the second returns `false`
-- in the second situation the passed in `[1,2]` is not the same object which `x` is pointing to, though they contain the same elements.
+- in the second situation the passed in `[1,2]` is not the same object that `x` is pointing to, though they contain the same numbers.
 
 How to access an object's value in Javascript?
 
@@ -431,10 +436,10 @@ How to remove a key-value pair from a Javascript object?
 
 answer:
 
-- use `delete obj['property']` or `obj.property`
+- use `delete obj['property']` or `delete obj.property`
 - notice when the key is number(in string form), dot notation is illegal
-- when handling array object, methods mentioned above will leave a empty 'slot' in the array
-  - one way to avoid this is use `arr.splice(start, deleteAmount)`
+- when handling array object, methods mentioned above will leave an empty 'slot' in the array
+  - one way to avoid this is to use `arr.splice(start, deleteAmount)`
 
 Which of those are primitive types and which are objects?
 
@@ -471,7 +476,7 @@ What does prototype mean?
 
 answer:
 
-JavaScript has the feature of prototype-based. This type of style allows the creation of an object without first defining its class.
+JavaScript is a prototype-based language. This feature allows the creation of an object without first defining its class.
 
 >  Classes are not explicitly defined, but rather derived by adding properties and methods to an instance of another class or, less frequently, adding them to an empty object.
 
@@ -514,7 +519,7 @@ How to merge two or more objects into one? What's the side effect?
 
 answer:
 
-Use `Object.assign(obj1, obj2, objn)` method. This will merge all objects properties and values into the first obj1, which is also the side effect -- it mutate the first argument object.
+Use `Object.assign(obj1, obj2, objn)` method. This will merge all objects properties and values into the first `obj1`, which is also the side effect -- it mutates the first argument object.
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 
@@ -524,7 +529,7 @@ answer:
 
 - strings.
 - But sometimes js allow a convenient syntax like `let object = { 1: 'a', b: c }`
-  - when creating the object, the keys are not string-like but they will be.
+  - when creating the object, the keys are not string-like but they are.
 
 How to use a regex to determine if a string contains certain pattern and return a boolean value?
 
@@ -571,7 +576,7 @@ answer:
 '[object Object]'
 ```
 
-- `toString()` has a more strict requirement on the caller. They should be meaningful values like Object, boolean.
+- `toString()` has a more strict requirement on the caller.
 
 ```js
 > true.toString()
@@ -606,7 +611,7 @@ answer:
 
 - `isNaN(sth)`
 
-In a `for` loop, what's the execution order of 1 initializer, 2 condition, 3 increment expression, 4 loop body -- in single iteration?
+In a `for` loop, what's the execution order of 1 initializer, 2 condition, 3 increment expression, 4 loop body -- in each iteration?
 
 answer:
 
@@ -615,11 +620,11 @@ answer:
 - loop body
 - increment expression
 
-How to type a very long single-line string across multiple lines  without breaking the string into many lines?
+How to type a very long single-line string across multiple lines without breaking the string into many lines?
 
 answer:
 
-- insert back slash `/` when it needs to break a line, but don't append any extra char after the `\` such as empty space
+- insert back slash `/` when it needs to break a line, but don't append any extra char after the `\` such as white space
 
 ```js
 'This is a \
@@ -631,7 +636,7 @@ If the internal of a function doesn't contain `return`, what would be the return
 
 answer:
 
-- undefined
+- `undefined`
 
 What will happen if we pass fewer arguments to a function than it's required? What about passing extra arguments?
 
@@ -639,7 +644,7 @@ answer:
 
 - Js functions have a loose requirement on the number of arguments passed in
   - if we pass in extra arguments they will be ignored
-  - if we pass insufficient arguments the corresponding parameters will be assigned with `undefined`
+  - if we pass insufficient arguments, the corresponding parameters will be assigned with `undefined`
 
 Simply describe what is nested function in JavaScript?
 
@@ -662,7 +667,7 @@ How to understand "a function declaration not only creates a function, but also 
 
 answer:
 
-- when declaring a function we also declare a same name variable to the function  
+- when declaring a function we also declare a same name variable as the function  
   - then we can pass this variable(which is referencing the function object) to other variables
   - then we can append parentheses `()` to invoke the function
 
@@ -677,16 +682,16 @@ How to differentiate a function declaration and a function expression?
 
 answer:
 
-- see if the statement starts with `function` if it is, then it's a function declaration
+- see if the statement starts with `function`. If it is, then it's a function declaration
 - otherwise it's a function expression
 
 What is hoisting(behavior; precedence)?
 
 answer:
 
-- hoisting is a mechanism that will first perform function declaration and variable initializing before all other operations in a file
+- hoisting is a mechanism that will first perform function declaration and variable declaration before all other operations in a file
 - function declarations are firstly hoisted and the whole declaration will be hoisted
-- variable initializations(only initializations) are secondly hoisted but no assignment will be hoisted
+- variable declarations(only declaration) are then hoisted but no assignment will be hoisted
 - note hoisting won't make too much sense in node console
 
 what's the scope of a variable which is declared inside a `for` loop's argument list? What if the `for` loop is at global scope? How about inside a function body?
@@ -760,6 +765,7 @@ console.log(a);
 
 answer:
 
+- NO.
 - in the first case `a` is `2`
   - `a` is at the global scope so inside the function it it also accessible
 - in the second case `a` is `1`
@@ -810,7 +816,7 @@ How to merge multiple objects into one without mutating any of the original ones
 
 answer:
 
-Use `Object.assign({}, obj1, obj2)`. By doing this(pass in an empty object as the first argument) we extract all properties and values into one object and don't have to mutate any existing objects.
+Use `Object.assign({}, obj1, obj2)`. By doing this(pass in an empty object as the first argument) we collect all properties and values into one object and don't have to mutate any existing objects.
 
 How to accomplish this, why?
 
@@ -885,7 +891,7 @@ answer:
 
 A pure function is a function that:
 - has no side effect
-- always return the same value for the same input(s)
+- always returns the same value for the same input(s)
 
 What is the return value of the following expressions, why?
 
@@ -907,8 +913,8 @@ typeof sayHi();
 
 answer:
 
-- 1: return `Function` object which the variable `sayHi` is referencing to
-- 2: return `'Hi'`
+- 1: returns `Function` object which the variable `sayHi` is referencing to
+- 2: returns `'Hi'`
 - 3:
   - `function`
   - `'string'`
@@ -932,7 +938,7 @@ var sayHi = function sayHello() {
 answer:
 
 - First one is a function declaration, the second is a function expression
-- In second case, `sayHello` can only be invoked inside the function declaration body
+- In second case, `sayHello` can only be referenced inside the function declaration body
 
 What's the third way to define a function?
 
@@ -947,7 +953,7 @@ What's arrow function's "implicit returns" property?
 
 answer:
 
-We can omit it in arrow functions when the function body contains one expression. If it contains two or more expressions or statements, you must explicitly return the return value if you need it, and you must also use curly braces.
+We can omit `return` and curly braces in arrow functions when the function body contains only one expression. If it contains two or more expressions, you must explicitly return the return value if you need it, and you must also use curly braces.
 
 Use code example to demonstrate?
 
@@ -1007,7 +1013,7 @@ How to import an external `js` file into html page? How to embed `js` code direc
 answer:
 
 - to import an external `js` file into html page, add a `<script>` tag pair to html `body` and add a `src` attribute to opening `script` tag, and set the value to the file path.
-- to embed `js` code directly into html page also need to add a `<script>` tag pair, then directly write code between two tags.
+- to embed `js` code directly into html page also need to add a `<script>` tag pair, then directly write code between the two tags.
 
 Describe the scope of variable declared by `var` keyword?
 
@@ -1019,8 +1025,8 @@ What's the difference between different variable declarations `var`, `let`, `con
 
 answer:
 
-- `var` declared variable is local to a function scope or at the global scope
-- `let` and `const` declared variable
+- `var` declared variable is local to function scope or at the global scope
+- `let` and `const` declared variable:
   - when declared at the global scope, they are local to global scope(means they are at the global scope)
   - when declared inside a function body but outside of any block, they have function scope
   - when declared inside a block, they are only local to the block
@@ -1029,7 +1035,7 @@ What is first-class value?
 
 answer:
 
-- a first-class value of first-class object is an entity that can be operated(e.g pass to variables) like any other entities in the language.
+- a first-class value or first-class object is an entity that can be operated(e.g pass to variables) like any other entities in the language.
 
 https://www.computerhope.com/jargon/f/firstclass-object.htm
 
@@ -1059,7 +1065,7 @@ How to sort an array of Numbers by using `Array.prototype.sort()` method?
 
 answer:
 
-- `Array.prototype.sort()` compares elements after converting them to `String`. So we need to pass in another comparing function to set how we want to compare the elements.
+- `Array.prototype.sort()` compares elements after converting them to `String`. So we need to pass in another comparing function to indicate how we want to compare the elements.
 
 ```js
 function compareNum(a, b) {
@@ -1075,7 +1081,7 @@ function compareNum(a, b) {
 [7,1,2,6,0].sort(compareNum)
 ```
 
-What's the possible return value of `Date.prototype.getDay()` and `Date.prototype.getMonth()`, when use these methods what need to be noted?
+What's the possible return values of `Date.prototype.getDay()` and `Date.prototype.getMonth()`, when using these methods, what need to be noted?
 
 answer:
 
