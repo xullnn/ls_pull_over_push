@@ -94,7 +94,7 @@ What's the return value of `!!'!'`?
 
 Which values are evaluated to false in Javascript?
 
-How will Javascript handle the situations that we use non-boolean values in a logical expression? For example `'' && 0`, or `6 || 7`?
+How will Javascript handle the situations that when non-boolean values are used in a logical expression? For example `'' && 0`, or `6 || 7`?
 
 Order these operators from the highest precedence to the lowest:
 
@@ -401,7 +401,7 @@ What's arrow function's "implicit returns" property?
 
 We can omit it in arrow functions when the function body contains one expression. If it contains two or more expressions or statements, you must explicitly return the return value if you need it, and you must also use curly braces.
 
-Use code example to demonstrate?
+Use code example to demonstrate this quotation?
 
 https://stackoverflow.com/questions/1047454/what-is-lexical-scope
 
@@ -442,3 +442,13 @@ What's the difference between `substr()` and `substring()` methods?
 How to sort an array of Numbers by using `Array.prototype.sort()` method?
 
 What's the possible return value of `Date.prototype.getDay()` and `Date.prototype.getMonth()`, when use these methods what need to be noted?
+
+What's the output of the code below?
+
+```js
+//1
+() => console.log('a');
+
+//2
+(() => console.log('a'))();
+```

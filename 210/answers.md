@@ -242,7 +242,7 @@ Which values are evaluated to false in Javascript?
 - the Number `0`
 - the Number `NaN`
 
-How will Javascript handle the situations that non-boolean values are used in a logical expression? For example `'' && 0`, or `6 || 7`?
+How will Javascript handle the situations that when non-boolean values are used in a logical expression? For example `'' && 0`, or `6 || 7`?
 
 answer:
 
@@ -288,8 +288,8 @@ answer:
 
 ```js
 switch (match_criterion) {
-  case: case_1:
-  case: case_2:
+  case case_1:
+  case case_2:
   default:
 }
 ```
@@ -338,7 +338,7 @@ numbers.map(number => {if (number > 4) return number * number})
 answer:
 
 - `[ undefined, undefined, 36, 64 ]`
-- this is due to how `map()` work. Always remember `map` uses the return value of the block to transform every element. It always returns the same number of elements to the caller.
+- this is due to how `map()` works. Always remember `map` uses the return value of the block to transform every element. It always returns the same number of elements to the caller.
 
 What's the return value of the code below, why?
 
@@ -848,7 +848,7 @@ let arr = [1, 2, 3];
 arr[true] = 4;
 arr.length;
 Object.keys(arr).length;
-``
+```
 
 Inspect the code below, what is the value of `counter` and `arr.length`, Why?
 
@@ -955,7 +955,7 @@ answer:
 
 We can omit `return` and curly braces in arrow functions when the function body contains only one expression. If it contains two or more expressions, you must explicitly return the return value if you need it, and you must also use curly braces.
 
-Use code example to demonstrate?
+Use code example to demonstrate this quotation?
 
 > Lexical Scoping defines how variable names are resolved in nested functions: inner functions contain the scope of parent functions even if the parent function has returned.
 
@@ -993,7 +993,7 @@ answer:
 - one positive: return the rest of the string from the `start`
 - one negative
   - negative indexes will be converted to positive indexes by the formula `length + n` n is the **negative** index
-  - therefor `-1` pointing to the `length - 1` char, which is the last char in the string(notice how this differs from positive indexes which the starting index is `0`)
+  - therefor `-1` pointing to the `length - 1` char, which is the last char in the string(notice how this differs from positive indexes where the starting index is `0`)
   - so a negative index `-n` will return the last `n` chars of the string
 - two negative
   - first covert them into positive ones and think again
@@ -1087,3 +1087,13 @@ answer:
 
 - `Date.prototype.getDay()`'s return values are from `0` to `6`. `0` denotes Sunday.
 - `Date.prototype.getMonth()`'s return values are from `0` to `11`. `0` denotes January.
+
+What's the output of the code below?
+
+```js
+//1
+() => console.log('a');
+
+//2
+(() => console.log('a'))();
+```
