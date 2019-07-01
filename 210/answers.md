@@ -610,6 +610,7 @@ How to check if a variable is pointing to `NaN`? What if we pass in a string?
 answer:
 
 - `isNaN(sth)`
+- passing a string will return `true`.
 
 In a `for` loop, what's the execution order of 1 initializer, 2 condition, 3 increment expression, 4 loop body -- in each iteration?
 
@@ -940,20 +941,11 @@ answer:
 - First one is a function declaration, the second is a function expression
 - In second case, `sayHello` can only be referenced inside the function declaration body
 
-What's the third way to define a function?
-
-answer:
-
-```js
-let greetPeople = () => console.log('Good Morning!');
-greetPeople();
-```
-
 What's arrow function's "implicit returns" property?
 
 answer:
 
-We can omit `return` and curly braces in arrow functions when the function body contains only one expression. If it contains two or more expressions, you must explicitly return the return value if you need it, and you must also use curly braces.
+We can omit `return` and curly braces in **arrow functions** when the function body contains only one expression. If it contains two or more expressions, you must explicitly return the return value if you need it, and you must also use curly braces.
 
 Use code example to demonstrate this quotation?
 

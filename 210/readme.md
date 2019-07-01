@@ -20,12 +20,6 @@ What's the difference between `Number()` and `parseInt()`?
 
 What's the difference between statement and expression, how to discriminate them?
 
-https://www.quora.com/Whats-the-difference-between-a-statement-and-an-expression-in-Python-Why-is-print-%E2%80%98hi%E2%80%99-a-statement-while-other-functions-are-expressions
-
-Statements always evaluate as undefined. They differ from expressions in that you cannot use a statement as part of another expression.
-
-Unlike expressions, statements in JavaScript don't necessarily resolve to a value. Statements generally control the execution of the program.
-
 What is variable declaration and initialization?
 
 A variable declaration is a statement that asks the JavaScript engine to reserve space for a variable with a particular name.
@@ -77,12 +71,8 @@ What're the two factors which can determine the scope of a variable?
 what's the difference between function and method?
 
 What a function/method can mutate?
-- a function can mutate passed in arguments
-- a method can mutate the caller or passed in arguments
 
 What're the syntaxes of writing function declarations, function expressions, and arrow functions?
-
-A Function Expression defines a function as a part of a larger expression syntax (typically a variable assignment ). Functions defined via Functions Expressions can be named or anonymous.
 
 If we assign a value to a variable name without declaring that variable, what the scope of the variable will be?
 
@@ -234,15 +224,11 @@ How to determine whether a primitive value or an object would be evaluated to `t
 
 What's the meaning of `NaN`?
 
-NaN is a special value in JavaScript that represents an illegal operation on numbers.NaN stands for "Not a Number".?
-
 How to check if a variable is pointing to `NaN`? What if we pass in a string?
 
 In a `for` loop, what's the execution order of 1 initializer, 2 condition, 3 increment expression, 4 loop body -- in single iteration?
 
 How to type a very long single-line string across multiple lines  without breaking the string into many lines?
-
-https://launchschool.com/exercises/b39951cf
 
 If the internal of a function doesn't contain `return`, what would be the return value of that function?
 
@@ -310,8 +296,6 @@ console.log(a);
 ```
 
 How many ways are there in JavaScript to create a function? How to differentiate "create a function" and "declare a function"?
-
-hint: define from the top level
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#Constructor_vs._declaration_vs._expression
 
@@ -390,16 +374,7 @@ var sayHi = function sayHello() {
 }
 ```
 
-What's the third way to define a function?
-
-```js
-let greetPeople = () => console.log('Good Morning!');
-greetPeople();
-```
-
 What's arrow function's "implicit returns" property?
-
-We can omit it in arrow functions when the function body contains one expression. If it contains two or more expressions or statements, you must explicitly return the return value if you need it, and you must also use curly braces.
 
 Use code example to demonstrate this quotation?
 
@@ -428,14 +403,6 @@ What is first-class value?
 https://www.computerhope.com/jargon/f/firstclass-object.htm
 
 What's the main difference between imperative and declarative style programming?
-
-it focuses on the steps or mechanics of solving the problem. Each line of code has a purpose, but that purpose comes from understanding the developer's implementation.
-
-By moving the "how to do something" and focusing on "what we need to do," we raise the abstraction level of the program.
-
-Filter Abstraction that Truly Reflects the Purpose. Omit some secondary implementation details and let us focus on the main task.
-
-The higher the level of abstraction that you work with, the more declarative your code is. Declarative programming frees programmers to think on a higher level that's more natural for humans. We focus on writing a good description of the problem to solve, and the computer takes care of the rest. In comparison, imperative programming often means that you must imagine yourself as the computer
 
 What's the difference between `substr()` and `substring()` methods?
 
