@@ -4,6 +4,6 @@
 
 ---
 
-assumption: If you make an assumption that something is true or will happen, you accept that it is true or will happen, *often without any real proof*.
+> assumption: If you make an assumption that something is true or will happen, you accept that it is true or will happen, *often without any real proof*.
 
 -- collins dictionary 2019.07.02
