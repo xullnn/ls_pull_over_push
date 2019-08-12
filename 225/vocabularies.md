@@ -1,0 +1,24 @@
+- regrettably adv. ［用于致歉或表示惋惜］令人遗憾地，不幸地 unfortunately (used to express apology for or sadness at something)
+- aid verb. 援助;救助;资助 To aid a country, organization, or person means to provide them with money, equipment, or services that they need.
+- flip side (情况的)不明显的一面，反面，负面 The flip side of a situation consists of the less obvious or less pleasant aspects of it.
+- menagerie /mə'nædʒəri/ ［总称］（兽笼中供展览的）野生动物 a collection of wild animals kept in captivity for exhibition
+- resultant /rɪ'zʌltənt/ 作为结果的;由此引起的;因而发生的 Resultant means caused by the event just mentioned.
+- insidious /ɪn'sɪdɪəs/ 隐伏的;潜在的;不知不觉间加剧的 Something that is insidious is unpleasant or dangerous and develops gradually without being noticed.
+- elapse /ɪˈlæps/ （时间）过去，流逝 When time elapses, it passes.
+- close over v. 淹没，遮蔽；封盖
+- clash /klæʃ/
+  - 发生冲突;打斗;争论;意见不合 When people clash, they fight, argue, or disagree with each other.
+  - 颜色搭配不当
+  - （事件、活动时间的）不凑巧，冲突
+- proprietary /prə'praɪətɛri/
+  - （与）所有者（有关）的；（与）所有权（有关）的 of or relating to an owner or ownership
+  - （态度）以所有者自居的 If someone has a proprietary attitude towards something, they act as though they own it.
+- reiterate /rɪ'ɪtəret/ （通常为了强调）重复讲，反复说，重申 If you reiterate something, you say it again, usually in order to emphasize it.
+- shed one's pretense 脱掉伪装
+- roundabout
+  - 旋转木马(或旋转游乐设施)
+  - (说话或做事)迂回的，转弯抹角的，不直截了当的 If you do or say something in a roundabout way, you do not do or say it in a simple, clear, and direct way.
+- misnomer /mɪs'nəʊmə/ 用词不当;使用不当的名称;误称 If you say that a word or name is a misnomer, you mean that it describes something incorrectly.
+- endure
+  - 忍受 v
+  - 存在 v to continue to exist in the same state or condition
