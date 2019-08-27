@@ -66,3 +66,85 @@ How to check if a value(or object) has access to a certain property or method? F
 Given the code below, answer 1) what is `sub1` and `sub2`'s `constructor`; 2) what is the value of `sub1` and `sub2`'s `property1` property; 3) what's the meaning of doing this: `subType.prototype.constructor = subType;`?
 
 Describe the inheritance chain in the previous question, and what about this one?
+
+
+updates:
+
+
+What's the 3 typical ways to fix context loss caused by function nesting? Write out solution for each way?
+
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    function nestedFunc() {
+      return (this.a + ' ' + this.b);
+    };
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc() // returns 'undefined undefined'
+```
+
+- preserve context with function scope variable, then utilize lexical scope rule to pass in context to nested function.
+- use `call/apply` to invoke nested function while providing context object
+- wrapp nested function with function expression while hard binding it with the context object
+
+- way 1:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    let self = this;
+
+    function nestedFunc() {
+      return (self.a + ' ' + self.b);
+    };
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc()
+```
+- way2:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+
+    function nestedFunc() {
+      return (this.a + ' ' + this.b);
+    };
+
+    return nestedFunc.call(this); // here
+  },
+};
+
+obj.outerFunc()
+```
+- way3:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    let nestedFunc = (function() {
+      return (this.a + ' ' + this.b);
+    }).bind(this);
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc()
+```
