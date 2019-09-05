@@ -468,3 +468,126 @@ sub1 instanceof subType; // true
 Object.getPrototypeOf(sub1); //subType { constructor: [Function: subType] }
 Object.getPrototypeOf(subType.prototype); // superType {}
 ```
+
+updates:
+
+What can be the cause of context loss?
+
+- when a method is decoupled from its owner object.
+- when nested function is defined.
+- when functions are passed as arguments, especially when using some built-in methods like `forEach`, `map`
+
+What's the 3 typical ways to fix context loss caused by function nesting? Write out solution for each way?
+
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    function nestedFunc() {
+      return (this.a + ' ' + this.b);
+    };
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc() // returns 'undefined undefined'
+```
+
+- preserve context with function scope variable, then utilize lexical scope rule to pass in context to nested function.
+- use `call/apply` to invoke nested function while providing context object
+- wrapp nested function with function expression while hard binding it with the context object
+
+- way 1:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    let self = this;
+
+    function nestedFunc() {
+      return (self.a + ' ' + self.b);
+    };
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc()
+```
+- way2:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+
+    function nestedFunc() {
+      return (this.a + ' ' + this.b);
+    };
+
+    return nestedFunc.call(this); // here
+  },
+};
+
+obj.outerFunc()
+```
+- way3:
+```js
+var obj = {
+  a: 'Hello',
+  b: 'World',
+
+  outerFunc: function() {
+    let nestedFunc = (function() {
+      return (this.a + ' ' + this.b);
+    }).bind(this);
+
+    return nestedFunc();
+  },
+};
+
+obj.outerFunc()
+```
+
+What the cause of context loss in the code below? How to fix?
+
+```js
+var myAccount = {
+  accountsNames: ['account1', 'account2', 'account3'],
+  account1: 100,
+  account2: 200,
+  account3: 150,
+
+  calculateTotal: function() {
+    let total = 0;
+    this.accountsNames.forEach(function(account) {
+      total += this[account];
+    })
+    return total;
+  },
+};
+
+myAccount.calculateTotal(); // returns NaN
+```
+
+*Notice in this case if we use [arrow function], context will not lose*
+
+```js
+// this.accountsNames.forEach(accout => total += this[accout])
+```
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this
+
+> An arrow function does not have its own this. The this value of the enclosing lexical scope is used; arrow functions follow the normal variable lookup rules. So while searching for this which is not present in current scope, an arrow function ends up finding the this from its enclosing scope.
+
+- How to fix:
+  - pick up ways brought up in typical ways mentioned above
+    - preserve `this` in a function scope variable, then pass it to the argument function
+    - `bind` the function to outer `this`
+  - pass `this` as the second argument(`thisArg`) of `forEach` call
+  - use arrow function syntax

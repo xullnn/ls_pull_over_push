@@ -67,9 +67,9 @@ Given the code below, answer 1) what is `sub1` and `sub2`'s `constructor`; 2) wh
 
 Describe the inheritance chain in the previous question, and what about this one?
 
-
 updates:
 
+What can be the cause of context loss?
 
 What's the 3 typical ways to fix context loss caused by function nesting? Write out solution for each way?
 
@@ -90,61 +90,30 @@ var obj = {
 obj.outerFunc() // returns 'undefined undefined'
 ```
 
-- preserve context with function scope variable, then utilize lexical scope rule to pass in context to nested function.
-- use `call/apply` to invoke nested function while providing context object
-- wrapp nested function with function expression while hard binding it with the context object
+What the cause of context loss in the code below? How to fix?
 
-- way 1:
 ```js
-var obj = {
-  a: 'Hello',
-  b: 'World',
+var myAccount = {
+  accountsNames: ['account1', 'account2', 'account3'],
+  account1: 100,
+  account2: 200,
+  account3: 150,
 
-  outerFunc: function() {
-    let self = this;
-
-    function nestedFunc() {
-      return (self.a + ' ' + self.b);
-    };
-
-    return nestedFunc();
+  calculateTotal: function() {
+    let total = 0;
+    this.accountsNames.forEach(function(account) {
+      total += this[account];
+    })
+    return total;
   },
 };
 
-obj.outerFunc()
+myAccount.calculateTotal(); // returns NaN
 ```
-- way2:
+
+*Notice in this case if we use [arrow function], context will not lose*
+
 ```js
-var obj = {
-  a: 'Hello',
-  b: 'World',
-
-  outerFunc: function() {
-
-    function nestedFunc() {
-      return (this.a + ' ' + this.b);
-    };
-
-    return nestedFunc.call(this); // here
-  },
-};
-
-obj.outerFunc()
+// this.accountsNames.forEach(accout => total += this[accout])
 ```
-- way3:
-```js
-var obj = {
-  a: 'Hello',
-  b: 'World',
-
-  outerFunc: function() {
-    let nestedFunc = (function() {
-      return (this.a + ' ' + this.b);
-    }).bind(this);
-
-    return nestedFunc();
-  },
-};
-
-obj.outerFunc()
-```
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this
