@@ -4,7 +4,7 @@ How to invoke a method in the form of function invocation?
 
 How to define `this` in Javascript?
 
-- `this` refers to the current execution context object during the evaluating of an expression or during the executing of a function.
+- `this` refers to the current execution context object during the evaluating of an expression or during the execution of a function.
 
 ```js
 var a = 'Hello';
@@ -83,7 +83,7 @@ What are the 3 ways to specify context for a function execution? What's the diff
 
 The differences among these ways depends on the specific use case.
   - for `apply` / `call` and 'assign property', we treat the function as a more abstract entity, or say a general purpose function. When we want to use it, we provide the execution context and pass in arguments at the last moment.
-  - for `bind` we make a function specialize for a single purpose by permanently binding it to an execution context, which can not be changed after the binding.
+  - for `bind` we make a function specialized for a single purpose by permanently binding it to an execution context, which can not be changed after the binding.
 
 What this code snippet demonstrates?
 
@@ -108,7 +108,7 @@ console.log(foo.a); // 0
 console.log(a); // 3
 ```
 
-- the word `this` inside nested function definition refers to global object, not the first level wrapper function.
+- the word `this` inside nested function definition refers to global object, not the first level wrapper function. In other words, `this` written inside nested function will lose its context, then point to `this` defined in global scope.
 
 What can be called 'explicit execution'?
 
@@ -116,7 +116,7 @@ What can be called 'explicit execution'?
 
 What is a high-order function? what is a first-class function?
 
-- A high-oder function is a function either accepts functions as arguments or returns a function object, or both.
+- A high-oder function is a function either accepts functions as arguments or returns a function, or both.
 - first-class function: when we say "first-class something", we mean that the "something" is a value that can be passed, assigned, referenced etc. In other words, we treat it as other normal values in that language.
   - the concept of high-order function is based on the "first-class" concept.
 
@@ -129,25 +129,25 @@ What's IIFE? When we need it?
 Why IIFE:
 - IIFE has a high quality of independence
   - instead of declare a function, it wraps function in an expression -> the expression returns the function right away
-    - whether or not we give a name to the function(inside the expression), function expression just return a function, without delcaring a variable(name) to reference this function. This means it will never collide with existing reference names in other scope, which makes it a safe operation.
+    - whether or not we give a name to the function(inside the expression), function expression just return a function, without declaring a variable(name) to reference this function. This means it will never collide with existing reference names in surrounding scope(s), which makes it a scope safe operation.
   - function definition creates closure -> which can provide useful private data for certain operations
   - execute the returned function immediately "consume" the function almost at the same time as the function is created. After that execution, the function is gone.
 - All these features make it a useful technique when we want to perform some tasks in the middle of lines of code without affecting the original code base.
 
 How will you describe the relationships among `this`, closure, IIFE?
 
-- `this` is the execution context during the invoking of a function or evaluating of an expression
-- "closure" is a private scope created by a function definition
+- `this` is the execution context during the execution of a function or evaluating of an expression
+- "closure" is a private scope created by a function **definition**
 - IIFE is a technique that utilize `this`, 'closure' and some other features of Js
 
 What is a constructor function?
 
 - in Js a constructor is a function which is used to return an object which has the `constructor` property referencing back to the function
-- in essence, a constructor is the function used to instantiate an instance object of a 'class' -- from the perspective of classical OOP -- and the defacto 'class' is held by the constructor's  `prototype` property.
+- in essence, a constructor is the function used to instantiate an instance object of a 'class' -- from the perspective of classical OOP -- and the de-facto 'class' is held by the constructor's  `prototype` property.
 
 What would be the return value if we perpend operator `new` to a function name?
 
-- an instance of that function if there is no `return` statement inside the function to return another object.
+- an instance of that function if there is no `return` statement inside the function which returns another object.
 
 `prototype` property name can be called on which of these callers?
 
@@ -205,7 +205,7 @@ console.log(Object.getPrototypeOf(Object) === Object.prototype)
 ```
 
 - The last expression returns `false` because when we call `Object.getPrototypeOf(obj)`, we are asking what the `obj` inherits from.
-- `Object` has a type of 'function', more specifically, a constructor function. The usual way of using `Object.getPrototypeOf()` is to provide it with an object, then it returns the prototype(conceputally class) object.
+- `Object` has a type of 'function', more specifically, a constructor function. The usual way of using `Object.getPrototypeOf()` is to provide it with an object, then it returns the prototype(conceptually class) object.
 - consider this example:
 ```js
 var F = function() {};
@@ -261,7 +261,7 @@ aFunc();
 new aFunc();
 ```
 
-- case 1: when a function is called without `new`, the keyword `this` referening the global object.
+- case 1: when a function is called without `new`, the keyword `this` referencing the global object.
 - case 2: being called with `new`, the function is now treated as a constructor, so the `this` inside it is referencing the newly created object.
 
 Insert an implicit step not shown in the code and let it become the reason of why `'Steve'` is not eligible for GC clearer. Then explain why?
@@ -286,7 +286,7 @@ function makeHello(name) {
 }
 ```
 
-- although the step `// var name = 'Steve'` is not explicitly written out, there is a implicit step like this.
+- although the step `// var name = 'Steve'` is not explicitly written out, there is an implicit step like this.
   - when defining a function with some parameters, the names of the parameters will be declared as function scope variables then initialized with the passed in arguments respectively.
 - in this case, `name` becomes the function scope variable which is referenced by the closure of `makeHello`
 - further more, `makeHello` returns a function which include the `name` variable inside the closure. So after `makeHello` returned, the closure have to persist with the returned function, so the `name` is still accessible.
@@ -310,13 +310,14 @@ Man.walk = function() { console.log('walk') };
 var joe = new Man();
 ```
 
-- in case 1, `type` and `walk` are both defined for every instance, this means every newly created (by `new Man()`) instance has there own copy of `type` and `walk` value. Because `Man` function is funcitoning as a constructor which is used to instantiate new object. So every time new instance gets created, `type` and `walk` write to the new instance.
+- in case 1, `type` and `walk` are both defined for every instance, this means every newly created (by `new Man()`) instance has there own copy of `type` and `walk` value. Because `Man` function is functioning as a constructor which is used to instantiate new object. So every time new instance gets created, `type` and `walk` write to the new instance.
   - if we create many instance of `Man`, there will be much duplication of `type`(String type) and `walk`(function).
 - in case 2, `type` is defined on `Man.prototype` which is also the 'prototype' of every instance
-  - so this `type` will become a state shared across all instances, means there is only one copy of the value, if the value of `Man.prototype.type` changed, this will reflect on all instances either.
+  - so this `type` will become a state shared across all instances(as well as all 'subclasses' instances), means there is only one copy of the value, if the value of `Man.prototype.type` changed, this will reflect on all instances either.
   - `Man.walk` is defined as a function.
     - First `Man` in fact is a function, now we add a property `walk` to it, which is a function
     - a constructor's custom property is not accessible to its instances, so if we want to invoke this `walk` function, we have to do `Man.walk()`
+    - this `walk` function will not be 'passed' by syntax like `new Man()`
 
 What is the return value of the code below?
 
@@ -330,7 +331,7 @@ F.prototype.constructor === F; //?
 function F() {};
 F.prototype.constructor === F; // true
 
-(new F()).constructor === F; // alse  true
+(new F()).constructor === F; // also  true
 ```
 
 What's the return value of the code below, why?
@@ -379,7 +380,7 @@ Object.defineProperty(person, 'age', {
   configurable: false,
 })
 ```
-- `Object.defineProperty` alter's attributes of an object's property, you can seen it as a method to change the properties of a property.
+- `Object.defineProperty` alter's attributes of an object's property, you can see it as a method to change the properties of a property.
 
 How to check if a value(or object) has access to a certain property or method? Further more, how to determine if the the property or method is defined on the object itself?
 
@@ -397,7 +398,7 @@ How to check if a value(or object) has access to a certain property or method? F
 'hello'.split(''); // [ 'h', 'e', 'l', 'l', 'o' ]
 ```
 - if we want to determine if the the property or method is defined on the object itself, we can use:
-  - `Object.getOwnPropertyNames(instnace)`
+  - `Object.getOwnPropertyNames(instance)`
   - `instance.hasOwnProperty('property name')`
 
 Given the code below, answer 1) what is `sub1` and `sub2`'s `constructor`; 2) what is the value of `sub1` and `sub2`'s `property1` property; 3) what's the meaning of doing this: `subType.prototype.constructor = subType;`?
@@ -420,11 +421,11 @@ sub2 = new subType();
 ```
 - 1) what is `sub1` and `sub2`'s `constructor` property;
   - `sub1`'s constructor is `superType` -- if we check this right after the creation of `sub1` -- since its the original constructor `subType`'s `prototype` is changed to an instance of `superType` which has `constructor` property referencing to `superType`
-  - but if we finish executing `subType.prototype.constructor = subType;`, both `sub1` and`sub2`'s constructor are `subType`
+  - but if we finish executing `subType.prototype.constructor = subType;`, both `sub1` and `sub2`'s constructor are `subType`
 - 2) what is the value of `sub1` and `sub2`'s `property1` property;
-  - `subType.prototype` now is an instance of `superType`, so it has access to `property1`. Since `sub1` ans `sub2` is instance of `subType` it can search up to `subType.prototype` to find the `property1` there too. But in this case, we haven't passed argument during instantiation, so the returned value would be `undefined`
+  - `subType.prototype` now is an instance of `superType`, so it has access to `property1`. Since `sub1` and `sub2` is instance of `subType` it can search up to `subType.prototype` to find the `property1` there too. But in this case, we haven't passed argument during instantiation, so the returned value would be `undefined`
 - 3) what's the purpose of doing this: `subType.prototype.constructor = subType;`
-  - if we substitute a constructor's `prototype` object, we need to change the new prototype's constructor referening back to the current constructor, so all the instances can get the rigth type(reflected by constructor name) of them.
+  - if we substitute a constructor's `prototype` object, we need to change the new prototype's constructor referencing back to the current constructor, so all the instances can get the right type(reflected by constructor name) of them.
 
 Describe the inheritance chain in the previous question, and what about this one?
 
@@ -473,7 +474,7 @@ updates:
 
 What can be the cause of context loss?
 
-- when a method is decoupled from its owner object.
+- when a method is decoupled from its owner object then be called elsewhere.
 - when nested function is defined.
 - when functions are passed as arguments, especially when using some built-in methods like `forEach`, `map`
 
@@ -498,7 +499,7 @@ obj.outerFunc() // returns 'undefined undefined'
 
 - preserve context with function scope variable, then utilize lexical scope rule to pass in context to nested function.
 - use `call/apply` to invoke nested function while providing context object
-- wrapp nested function with function expression while hard binding it with the context object
+- wrap nested function with function expression while hard binding it with the context object
 
 - way 1:
 ```js
@@ -519,7 +520,9 @@ var obj = {
 
 obj.outerFunc()
 ```
+
 - way2:
+
 ```js
 var obj = {
   a: 'Hello',
@@ -537,7 +540,9 @@ var obj = {
 
 obj.outerFunc()
 ```
+
 - way3:
+
 ```js
 var obj = {
   a: 'Hello',
@@ -583,7 +588,7 @@ myAccount.calculateTotal(); // returns NaN
 ```
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this
 
-> An arrow function does not have its own this. The this value of the enclosing lexical scope is used; arrow functions follow the normal variable lookup rules. So while searching for this which is not present in current scope, an arrow function ends up finding the this from its enclosing scope.
+> An arrow function does not have its own `this`. The this value of the enclosing lexical scope is used; arrow functions follow the normal variable lookup rules. So while searching for `this` which is not present in current scope, an arrow function ends up finding the `this` from its enclosing scope.
 
 - How to fix:
   - pick up ways brought up in typical ways mentioned above
