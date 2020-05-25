@@ -7,7 +7,7 @@
 
 A relational database is a database based on the relational model of data. A software system used to maintain relational database is call Relational Database Management System(RDBMS). In practice all RDBMS use SQL to operate relational database.
 
-- Relational model organizes data into one or more tables(relaitons) of columns and rows, with an unique key identifying each row. Rows are also called records, columns are also called attributes. Generally each table(relation) represents one "[entity](https://en.wikipedia.org/wiki/Associative_entity) type".
+- Relational model organizes data into one or more tables(relations) of columns and rows, with an unique key identifying each row. Rows are also called records, columns are also called attributes. Generally each table(relation) represents one "[entity](https://en.wikipedia.org/wiki/Associative_entity) type".
 - RDBMS is software/application used to maintain relational database
 - SQL stands for standard query language, it's the language used by RDBMS to query and manipulate data in database.
 
