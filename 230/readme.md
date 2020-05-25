@@ -523,6 +523,36 @@ What problem does the 'bubbling and capturing' model solve?
 
 answer:
 
-1. when we want to listen certain type of event on many elements held by a parent elements, but it's not approachable to attach many listeners on each of the child elements. 
+1. when we want to listen certain type of event on many elements held by a parent elements, but it's not approachable to attach many listeners on each of the child elements.
 
 2. It also solves the problem that when new node(s) is dynamically inserted into the parent element, using 'bubbling and capturing' model can, to some extent, maintain the listening behaviors we set before, means the changing of the DOM structure won't break the feature of the page.
+
+What is a `Promise`?
+
+answer: a promise is an object that represents the eventual completion state of an asynchronous operation and its result(when succeed) or failure reason(when error occurs)
+
+
+What's the way to chain promises together?
+
+answer: we use `promise.then()` to chain promises together.
+
+What are the mainly possible return value types within a `then()` call? And what happens to each of these types if there are further chained `then`s?
+
+answer:
+
+- returns a new promise
+  - the next chained `when` will wait until the returned promise to settle
+- return async values such as array or string
+  - the program flow will move to the next chained `then` and returned async value will be passed as argument to the success callback of next `then`.
+- throw an error
+  - the error will be caught by the next chained `catch()`
+
+Simply describe what is the event loop model in browser?
+
+answer:
+
+the event loop model consists of:
+- a main thread, which is the calling stack of synchronous functions
+- a scheduler, which is an API provided by browser to act as a timer and to schedule async functions
+- a task queue, async functions(tasks) are pushed into here
+  - tasks in here will only be executed if the main thread is clear
