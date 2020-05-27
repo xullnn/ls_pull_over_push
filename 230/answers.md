@@ -1,8 +1,10 @@
-Use this excerpt from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction#DOM_and_JavaScript) as a hint to explain what's the relationship between javascript and DOM?
+what's the relationship between javascript and DOM?
 
 > The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, XML documents, and their component parts (e.g. elements).
 
 answer: DOM(Document Object Model) is cross-platform and independent implementation of interfaces for representing HTML or XML document as structured objects. Each node in a DOM instance represents a part of the whole document(HTML or XML). Also interfaces are implemented on nodes of different levels to be accessed or manipulated by certain programming languages such as JavaScript.
+
+excerpt from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction#DOM_and_JavaScript)
 
 - https://en.wikipedia.org/wiki/Document_Object_Model
 
@@ -22,7 +24,8 @@ answer:
 - A DOM instance is made of structured nodes. Elements are just a type of nodes.
 
 ```js
-let a_p_e = document.querySelector('p');
+let a_p_e = document.querySelector('p'); // paragraph element
+
 function getInheritanceChain(node) {
   let chain = [];
   let proto = Object.getPrototypeOf(node);
@@ -39,14 +42,7 @@ console.log(getInheritanceChain(a_p_e));
 // logs
 
 // (6) [{…}, EventTarget, Node, Element, HTMLElement, HTMLParagraphElement]
-    // 0: {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
-    // 1: EventTarget {Symbol(Symbol.toStringTag): "EventTarget", addEventListener: ƒ, removeEventListener: ƒ, dispatchEvent: ƒ, constructor: ƒ}
-    // 2: Node {ELEMENT_NODE: 1, ATTRIBUTE_NODE: 2, TEXT_NODE: 3, CDATA_SECTION_NODE: 4, ENTITY_REFERENCE_NODE: 5, …}
-    // 3: Element {…}
-    // 4: HTMLElement {…}
-    // 5: HTMLParagraphElement {Symbol(Symbol.toStringTag): "HTMLParagraphElement", constructor: ƒ}
-  // length: 6
-  // __proto__: Array(0)
+// ...
 ```
 
 - check the prototypal chain starts from a `p` element, the relationship is
@@ -59,18 +55,9 @@ console.log(getInheritanceChain(a_p_e));
 
 What is the top-most node in a DOM?
 
-answer: The `document` node.
+answer: The `document` node.(although there's the `window` object, it's a `EventTarget` object not a `Node`)
 
-Explain the main purpose of these DOM object types: `Node`, `Element`, `Text`, `EventTarget`?
-
-answer:
-- `EventTarget` is the supertype of `Node`, which also makes it the supertype of `Element` and `Text`
-  - it provides interfaces to interact with nodes in a DOM
-- `Node` is the supertype of all elements, so it provides shared properties and behaviors for all elements
-- `Element` represents all html elements
-- `Text` represents all text nodes in a DOM
-
-What are the two ways to know the type of a node?
+What are the two ways of knowing the type of a node?
 
 answer:
 - `toString()`, `String()` or call `.constructor` on the node
@@ -78,7 +65,7 @@ answer:
 
 > The `instanceof` operator tests whether the prototype property of a constructor appears **anywhere** in the prototype chain of an object.
 
-Which of these two returns a static or live collection?
+Do these two lines return a static or live collection?
 
 - document.querySelectorAll();
 - node.childNodes;
@@ -94,14 +81,7 @@ What can be called "sequential code"?
 
 answer: code that are execute line by line, in a certain sequence.
 
-Which statements are more accurate when talking about lines of code that contains `setTimeout()`?
-
-- the execution of code is divided by `setTimeout()` into a number of parts, non-setTimeout parts are execute immediately, setTimeout parts will pause for given time delay, then execute, then continue to execute the next part
-- actually all lines of code are executed in sequence, only the (operations contained in)functions passed to `setTimeout` are delayed for the given delays. And we can somehow treat the starting points for calculating delays as the same time point, because the sequential execution of all code is very fast.
-
-answer: the second one.
-
-Insert `'load'` and `'DOMContentLoaded'` event at the right place where they are fired? Which one is more useful, why?
+Locate `'load'` and `'DOMContentLoaded'` event at the right place where they are fired. Which one is more useful, why?
 
 - html code received from server
   - 1
@@ -117,20 +97,20 @@ Insert `'load'` and `'DOMContentLoaded'` event at the right place where they are
 answer:
 
 - `DOMContentLoaded` fired when the building of Document Object Model is finished, and before page(interfaces) displayed to user, so it's at the place 3.
-- `load` fired when all html, js, and all related assets(css, image, videos etc) finishes loading, so it's at place 5.
-- `load` event is fired at a very late moment of a page's life cycle, waiting for all assets to finish loading is an uncertain situation, so it's not very useful. Instead, `DOMContentLoaded` fired when the DOM built successfully, which is the point when the main frame of a page is built, that's when most useful interactions can happen.
+- `load` fired when all html, js, and all related assets(css, image, videos etc) finish loading, so it's at place 5.
+- `load` event is fired very late during a page's life cycle, waiting for all assets to finish loading is an uncertain situation, so it's not very useful. Instead, `DOMContentLoaded` fired when the DOM is built successfully, that's when most useful interactions can happen.
 
 What's is event listener in JavaScript?
 
-answer: the answer of 'what' is tightly bound with the 'how'. An event listener is like a monitor attached to specific DOM object(s), which can detect and recognize an interaction happening between user and the device(browser), if the interaction meets the pre-specified event type, it will invoke some predefined procedures(functions).
+answer: An event listener is like a monitor attached to specific event target(s), which can detect and recognize an event occurring, then based on the type of the event, some predefined operations may be executed.
 
 What's the difference between `target` and `currentTarget` properties of an `Event` object?
 
-answer: `target` refers to the exact DOM object that the event is happening on. `currentTarget` refers to the DOM object that we originally attach the event. The difference is not obvious until we use event delegation.
+answer: `target` refers to the exact event target that the event is happening. `currentTarget` refers to the event target that we originally attach the event. The difference is not obvious until we use event delegation.
 
-For any event triggered in a webpage, what are the default starting and ending DOM objects of the event dispatching path?
+For any event triggered on a webpage, what are the default starting and ending object of the event dispatching path?
 
-answer: when an event is happened on a webpage, the dispatch of it won't start with the `currentTarget` or `target` object. Instead the event will first be dispatched to the top most object `window`, then all the way down to where the event is exactly happened or say the `target`, then from there it reverses the dispatch direction, all the way up back to the `window` again. So the starting and ending points are both `window` object.
+answer: when an event happens on a webpage, the dispatch of the event won't start with the `currentTarget` or `target` object. Instead the event will first be dispatched to the top most object `window`(of type `EventTarget`), then all the way down to the `target`, then from there it reverses the dispatch direction, all the way back up to the `window` again. So the starting and ending points are both `window` object.
 
 Will the dispatching of an event be stopped after the event is triggered once in the bubbling phase?
 
@@ -144,11 +124,7 @@ Which one comes into play first? And why?
 - the third argument of `obj.addEventListener()`
 - `event.stopPropagation()`
 
-answer: the third argument of `obj.addEventListener()` is a boolean value that indicates at which phase an event be fired -- capture phase or bubbling phase -- `true` for capture phase. `event.stopPropagation()` will stop the passing of the event after it is fired no matter it's fired on capture or bubbling phase. So logically the third argument of `obj.addEventListener()` must go first then the `event.stopPropagation()` can determine if the dispatching of event is stopped.
-
-If we want to rename `stopPropagation()`, would `stopEventDispatching()` make sense? If not, can you think of anything else?
-
-answer: In essence, what `stopPropagation()` does is stopping the dispatching of an event along the default dispatching path which is from `window` down to `target` then up to `window` again. So `stopPropagation()` stops the dispatching of an event, so the event will be done there, no further listeners will response to the event. So it makes sense to name it `stopEventDispatching()`.
+answer: the third argument of `obj.addEventListener()` is a boolean value that indicates at which phase an event will be fired -- capturing phase or bubbling phase -- `true` for capture phase. `event.stopPropagation()` will stop the passing of the event after it is fired no matter it's fired on capturing or bubbling phase. So logically the third argument of `obj.addEventListener()` must go first then the `event.stopPropagation()` can determine if the dispatching of event is stopped.
 
 When handling `XMLHttpRequest` object, what's the difference between `load` and `loadend` events?
 
@@ -173,15 +149,10 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 What's the difference between `encodeURI()` and `encodeURIComponent()`?
 
 answer:
-- `encodeURI()` accepts a complete URL as argument, and it doesn't escape reserved chars in the url, since this will make the url invalid.
-- `encodeURIComponent()` can be used to encode query string, which means chars with special meaning in (protocol + host + path) will be escaped.
+- `encodeURI()` accepts a complete URL as argument, and it doesn't escape reserved chars in the url such as colon or slash, since this will make the url invalid.
+- `encodeURIComponent()` can be used to encode query string, which means chars with special meaning(protocol + host + path) will be escaped.
 
 > The `encodeURI()` function does not encode characters that have special meaning (reserved characters) for a URI.
-
-What's the difference between `XMLHttpRequest.responseType` and  `Accept` request HTTP header?
-
-answer:
-  - they both specify the response type, but `Accept` is a http header, which means it's part of the implementation of HTTP, it's set by calling `XMLHttpRequest.setRequestHeader()` method. `XMLHttpRequest.responseType` is not a method but a property, it can directly set by `request.responseType = type` syntax.
 
 what is the full name of 'CORS'? What does it do?
 
@@ -193,7 +164,7 @@ https://en.wikipedia.org/wiki/Same-origin_policy
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-Is the `'Access-Control-Allow-Origin'` set on the server side or on the client side?
+Is the `'Access-Control-Allow-Origin'` header set on the server side or on the client side?
 
 answer: Server side.
 
@@ -240,6 +211,8 @@ $("a[href$=abc]") // choose anchor(s) whose href attribute ends with 'abc'
 $("a[href!=abc]") // choose anchor(s) whose href attribute not with 'abc'
 ```
 
+They return a jQuery collection.
+
 https://stackoverflow.com/questions/190253/jquery-selector-regular-expressions
 
 Is there any difference between these two code snippets below? How jQuery handle situations when multiple methods are added to the same element?
@@ -255,37 +228,18 @@ $p.fadeIn(500);
 
 answer: They are the same. All these operations either chained or called in multiple lines will be executed sequentially.
 
-What's the difference between `stop()` and `finish()` methods?
-
-answer:
-  - `stop`:
-    - stop the *current* running animation
-    - 1st argument: clear all queued animation of the current element
-    - 2nd argument: jump to the end value of the animation
-  - `finish`:
-    - stop all *current* running animation(so it is more suitable to be called on a collection)
-    - 1st argument: clear all queued animation on current page, this is due to the argument it takes `queue (default: 'fx')`
-      - `fx`: a reference to the `jQuery.fx` prototype object
-    - 2nd argument: jump to the end value of the animation of each element within the collection
-
-https://api.jquery.com/stop/
-
-https://api.jquery.com/finish/
-
-https://api.jquery.com/jquery.fx.off/
-
 What's the difference between `attributes` and `properties` when talking about an html page?
 
 answer:
-  - when talking about `attributes` in the context of HTML tag, `attributes` are the additional key-value pairs written within the tag, such as `id='1'`, `class='container abc'`
-  - when talking about `attributes` in the context of a DOM object, its an `property` which returns a live collection that contains data extracted from the corresponding HTML tag's concrete `attributes`
+  - when talking about `attributes` under the context of HTML tag, `attributes` are the additional key-value pairs written within the tag, such as `id='1'`, `class='container abc'`
+  - when talking about `attributes` under the context of a DOM object, its an `property` which returns a live collection that contains data extracted from the corresponding HTML tag's specific `attributes`
   - when talking about `properties`, we are in the context of DOM object. A DOM object can contain many `properties` relating to many aspects of itself such as `children`, `className`, `classList`, `id`, as well as `attributes`
 
 
 What's the difference between jQuery's `data()` and `attr()` method when attaching data to a DOM element?
 
 answer:
-  - `data()` method only get and set data to an element without affecting DOM attributes of that element, neither does at HTML level.
+  - `data()` method only get and set data to an element without affecting DOM attributes of that element, neither the HTML.
   - using `attr()` to set `data-` will write a new `data-` attribute in HTML code as well as update the corresponding attributes of that DOM object.
 
 https://api.jquery.com/data/#data-key-value
@@ -294,7 +248,7 @@ https://api.jquery.com/data/#data-key-value
 
 https://api.jquery.com/attr/
 
-What's the native Web API to access information in related to `data-` attributes?
+What's the native Web API to access information in relating to `data-` attributes?
 
 answer:
   - use `element.dataset` to get all `data-` related information
@@ -303,7 +257,7 @@ answer:
 
 What is 'namespace' of an event in jQuery? How to use it?
 
-answer: A namespace is a further identifier for a specific event, in contrast to the general ones such as `click` and `submit`. For example, an event being named with `click.remove` is bound to an anchor, this event can be pinpoint by the exact name `click.bob`, it can also be found by `click` but along with many other `click` events being bound to this anchor. This is useful when we have multiple events bound to a single element and we have the need to handle one of the event separately. For example, we want to `off()` one of the `click` event on the element while keeping the others unchanged.
+answer: A namespace is a further identifier for a specific event, in contrast to the general ones such as `click` and `submit`. For example, an event being named with `click.remove` is bound to an anchor, this event can be pinpointed by the exact name `click.remove`, it can also be found by `click` but along with many other `click` events being bound to this anchor. This is useful when we have multiple events bound to a single element and we have the need to handle one of the event separately. For example, we want to `off()` one of the `click` event on the element while keeping the others unchanged.
 
 How many times will the callback be invoked if we click on the anchor multiple times?
 
@@ -315,7 +269,7 @@ $('#the_link').on('click', function(event) {
 })
 ```
 
-answer: since we unbind(`off()`) the event when we first invoke the callback. This `click` event will only be invoked once.
+answer: since we unbind(`off()`) the event when we first invoke the callback. This `click` event will only be triggered once.
 
 Describe what the code does?
 
@@ -366,9 +320,9 @@ answer:
   - `app.init()` returns `undefined`, `$(undefined)` returns an empty jQuery object.
 - will `$(app.init)` logs out `online` to the console? If not, why, and how to fix this?
   - answer: No. We first call `app.init`, this returns a function as a first class value to the DOM ready syntax `$()`. The time we invoke this function is when the DOM is ready, the way we invoke the function is not calling it with the `app` object, therefore the function will by then lose its execution context.  So when the function is invoked, `this` is referencing the global object which has no `state` property being defined.
-  - To fix this. We need to hard bind the `app` object as the context of `init` when we pass it to the `$()` -- `$(app.init.bind(app))`. Or we can use a wrapper function then change the way we invoke `init()` -- `$(function() { app.init() })`
+  - To fix this. We need to hard bind the `app` object as the context of `init` when we pass it to the `$()` -- `$(app.init.bind(app))`.
 
-If we have this code, how to use `off()` with one selector to unbind all `click` events of which have the word `yellow` in them?
+If we have this code, how to use `off()` with one selector to unbind all `click` events which have the word `yellow` in them?
 
 ```html
 <ul id="bottle">
@@ -454,7 +408,6 @@ answer:
 
 - the main difference between "polyfill" and "transcompiler" is that polyfill is talking about features of browser, while 'transcompiler' is talking about features of language.
 
-
 - https://remysharp.com/2010/10/08/what-is-a-polyfill
 - https://developer.mozilla.org/en-US/docs/Glossary/Polyfill
 - https://en.wikipedia.org/wiki/Babel_(transcompiler)
@@ -519,15 +472,15 @@ What does this code do?
 let [a, b, ...c] = [1,2,3,4,5];
 ```
 
-answer: it's a syntax to initiate multiple variables in single line. `a` and `b` will reference integer `1` and `2` separately, `c` will reference the array `[3, 4, 5]`.
+answer: it's a syntax to initiate multiple variables in a single line. `a` and `b` will reference integer `1` and `2` separately, `c` will reference the array `[3, 4, 5]`.
 
 What problem does the 'bubbling and capturing' model solve?
 
 answer:
 
-1. when we want to listen certain type of event on many elements held by a parent elements, but it's not approachable to attach many listeners on each of the child elements.
+1. when we want to listen certain type of event on many elements held by a parent elements, but it's not approachable to attach lots of listeners on each of the child elements.
 
-2. It also solves the problem that when new node(s) is dynamically inserted into the parent element, using 'bubbling and capturing' model can, to some extent, maintain the listening behaviors we set before, means the changing of the DOM structure won't break the feature of the page.
+2. It also solves the problem that when new node(s) is dynamically inserted into the parent element, using 'bubbling and capturing' model can, to some extent, maintain the listening behaviors we set beforehand, means the changing of the DOM structure won't break the feature of the page.
 
 What is a `Promise`?
 
@@ -542,9 +495,9 @@ What are the mainly possible return value types within a `then()` call? And what
 answer:
 
 - returns a new promise
-  - the next chained `when` will wait until the returned promise to settle
+  - the next chained `then` will wait until the returned promise to settle
 - return async values such as array or string
-  - the program flow will move to the next chained `then` and returned async value will be passed as argument to the success callback of next `then`.
+  - the program flow will move to the next chained `then` and then returned async value will be passed as argument to the success callback of then next `then`.
 - throw an error
   - the error will be caught by the next chained `catch()`
 
@@ -554,6 +507,6 @@ answer:
 
 the event loop model consists of:
 - a main thread, which is the calling stack of synchronous functions
-- a scheduler, which is an API provided by browser to act as a timer and to schedule async functions
+- a scheduler, which is an API provided by browser to act as a timer and to schedule async function calls
 - a task queue, async functions(tasks) are pushed into here
   - tasks in here will only be executed if the main thread is clear

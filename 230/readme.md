@@ -1,4 +1,4 @@
-Use this excerpt from [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction#DOM_and_JavaScript) as a hint to explain what's the relationship between javascript and DOM?
+what's the relationship between javascript and DOM?
 
 > The DOM is not a programming language, but without it, the JavaScript language wouldn't have any model or notion of web pages, HTML documents, XML documents, and their component parts (e.g. elements).
 
@@ -20,15 +20,11 @@ What is the top-most node in a DOM?
 
 ---
 
-Explain the main purpose of these DOM object types: `Node`, `Element`, `Text`, `EventTarget`?
-
----
-
 What are the two ways to know the type of a node?
 
 ---
 
-Which of these two returns a static or live collection?
+Do these two lines return a static or live collection?
 
 ---
 
@@ -40,11 +36,7 @@ What can be called "sequential code"?
 
 ---
 
-Which statements are more accurate when talking about lines of code that contains `setTimeout()`?
-
----
-
-Insert `'load'` and `'DOMContentLoaded'` event at the right place where they are fired? Which one is more useful, why?
+Locate `'load'` and `'DOMContentLoaded'` event at the right place where they are fired. Which one is more useful, why?
 
 - html code received from server
   - 1
@@ -67,7 +59,7 @@ What's the difference between `target` and `currentTarget` properties of an `Eve
 
 ---
 
-For any event triggered in a webpage, what are the default starting and ending DOM objects of the event dispatching path?
+For any event triggered on a webpage, what are the default starting and ending object of the event dispatching path?
 
 ---
 
@@ -82,10 +74,6 @@ Can we add multiple same type event listeners to the same DOM object? If so what
 Which one comes into play first? And why?
 - the third argument of `obj.addEventListener()`
 - `event.stopPropagation()`
-
----
-
-If we want to rename `stopPropagation()`, would `stopEventDispatching()` make sense? If not, can you think of anything else?
 
 ---
 
@@ -104,10 +92,6 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 ---
 
 What's the difference between `encodeURI()` and `encodeURIComponent()`?
-
----
-
-What's the difference between `XMLHttpRequest.responseType` and  `Accept` request HTTP header?
 
 ---
 
@@ -196,7 +180,7 @@ https://api.jquery.com/attr/
 
 ---
 
-What's the native Web API to access information in related to `data-` attributes?
+What's the native Web API to access information in relating to `data-` attributes?
 
 ---
 
@@ -260,7 +244,7 @@ let app = {
 
 ---
 
-If we have this code, how to use `off()` with one selector to unbind all `click` events of which have the word `yellow` in them?
+If we have this code, how to use `off()` with one selector to unbind all `click` events which have the word `yellow` in them?
 
 ```html
 <ul id="bottle">
